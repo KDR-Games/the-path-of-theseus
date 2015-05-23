@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="215.0" maxWidth="400.0" minHeight="180.0" minWidth="400.0" prefHeight="215.0" prefWidth="400.0" stylesheets="@../css/TheseusLoginLayout.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kdr.game.theseus.view.LoginViewController">
+   <center>
+      <AnchorPane prefHeight="140.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="name" layoutX="169.0" layoutY="45.0" prefHeight="25.0" prefWidth="200.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextField>
+            <PasswordField fx:id="password" layoutX="169.0" layoutY="79.0" prefHeight="25.0" prefWidth="200.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </PasswordField>
+            <PasswordField fx:id="confirmPassword" layoutX="169.0" layoutY="111.0" prefHeight="25.0" prefWidth="200.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </PasswordField>
+            <Label layoutX="21.0" layoutY="49.0" text="Character name">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label layoutX="21.0" layoutY="83.0" text="Password">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label fx:id="confirmPasswordLabel" layoutX="21.0" layoutY="115.0" text="Confirm password">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label fx:id="welcomeLabel" layoutX="75.0" layoutY="14.0" text="Prepare to follow the path of Theseus!" />
+            <HBox layoutX="169.0" layoutY="146.0">
+               <children>
+                  <RadioButton fx:id="difficultyEasy" layoutX="169.0" layoutY="146.0" mnemonicParsing="false" text="Easy">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="difficulty" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="difficultyNormal" layoutX="233.0" layoutY="146.0" mnemonicParsing="false" selected="true" text="Normal" toggleGroup="$difficulty" />
+                  <RadioButton fx:id="difficultyHard" layoutX="313.0" layoutY="146.0" mnemonicParsing="false" text="Hard" toggleGroup="$difficulty" />
+               </children>
+            </HBox>
+            <Label fx:id="difficultyLabel" layoutX="21.0" layoutY="147.0" text="Difficulty" />
+         </children>
+      </AnchorPane>
+   </center>
+   <bottom>
+      <AnchorPane prefHeight="30.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" mnemonicParsing="false" onAction="#check" text="Start!" textAlignment="CENTER" />
+            <CheckBox fx:id="isNewCharacter" alignment="CENTER" contentDisplay="CENTER" layoutX="150.0" layoutY="4.0" mnemonicParsing="false" onAction="#switchLoginRegister" selected="true" text="New character" textAlignment="CENTER" />
+            <Button alignment="CENTER" cancelButton="true" contentDisplay="CENTER" layoutX="299.0" mnemonicParsing="false" onAction="#quit" text="Quit" textAlignment="CENTER" />
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>

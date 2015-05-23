@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kdr.game.theseus.view.GameViewController">
+	<bottom>
+		<HBox styleClass="hbox" stylesheets="@../css/TheseusGameLayout-StatusBar.css" BorderPane.alignment="CENTER">
+			<BorderPane.margin>
+				<Insets top="1.0" />
+			</BorderPane.margin>
+			<children>
+				<VBox prefHeight="40.0" prefWidth="78.0" styleClass="vbox">
+					<HBox.margin>
+						<Insets />
+					</HBox.margin>
+					<children>
+						<Label prefHeight="20.0" text="Health">
+                     <padding>
+                        <Insets left="4.0" />
+                     </padding></Label>
+						<Label prefHeight="20.0" text="Stamina">
+                     <padding>
+                        <Insets left="4.0" />
+                     </padding></Label>
+					</children>
+				</VBox>
+				<VBox prefHeight="40.0" prefWidth="306.0">
+					<children>
+						<ProgressBar prefWidth="800.0" progress="1.0" styleClass="health-bar" />
+						<ProgressBar prefWidth="800.0" progress="1.0" styleClass="stamina-bar" />
+					</children>
+				</VBox>
+				<VBox prefHeight="32.0" prefWidth="144.0" styleClass="vbox" />
+				<VBox prefHeight="32.0" prefWidth="270.0" styleClass="level-map">
+					<HBox.margin>
+						<Insets />
+					</HBox.margin>
+				</VBox>
+			</children>
+		</HBox>
+	</bottom>
+	<top>
+		<MenuBar maxHeight="26.0" BorderPane.alignment="CENTER">
+			<menus>
+				<Menu mnemonicParsing="false" text="File">
+					<items>
+						<MenuItem mnemonicParsing="false" onAction="#saveAndClose" text="Save and close" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="Help">
+					<items>
+                  <MenuItem mnemonicParsing="false" text="High scores" />
+						<MenuItem mnemonicParsing="false" text="About" />
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+	</top>
+	<left>
+		<TilePane fx:id="pane" alignment="CENTER" focusTraversable="true" maxHeight="528.0" maxWidth="528.0" minHeight="528.0" minWidth="528.0" prefHeight="528.0" prefWidth="528.0" styleClass="tilepane" stylesheets="@../css/TheseusGameLayout-Map.css" BorderPane.alignment="CENTER">
+			<!-- Generated buttons -->
+		</TilePane>
+	</left>
+	<center>
+		<TabPane focusTraversable="false" prefHeight="540.0" prefWidth="260.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+			<tabs>
+				<Tab text="Character">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <TitledPane collapsible="false" focusTraversable="false" prefHeight="264.0" prefWidth="200.0" />
+                        <TitledPane collapsible="false" focusTraversable="false" prefHeight="264.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+               </content></Tab>
+				<Tab text="Inventory">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0" />
+               </content></Tab>
+            <Tab text="Combat">
+               <content>
+                  <ListView focusTraversable="false" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+			</tabs>
+			<BorderPane.margin>
+				<Insets left="1.0" />
+			</BorderPane.margin>
+		</TabPane>
+	</center>
+</BorderPane>

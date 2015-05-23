@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Monsters SYSTEM "Monsters.dtd">
+
+
+<Monsters>
+	<Monster>
+		<health></health>
+		<speed></speed>
+		<equipment></equipment>
+		<items></items>
+		<XP></XP>
+	</Monster>
+</Monsters>
