@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT Weapons (one-handed, two-handed, shields)>
+
+<!ELEMENT one-handed (slashing, piercing, blunt)>
+<!ELEMENT two-handed (slashing, piercing, blunt)>
+<!ELEMENT shields (small-shield, medium-shield, tower-shield)>
+
+<!ELEMENT slashing (weapon)+>
+<!ELEMENT piercing (weapon)+>
+<!ELEMENT blunt (weapon)+>
+
+<!ELEMENT round-shield (shield)+>
+<!ELEMENT kite-shield (shield)+>
+<!ELEMENT tower-shield (shield)+>
+
+<!ELEMENT weapon (name, damage, speed)>
+<!ELEMENT shield (name, damage-reduction, speed)>
+
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT damage (#PCDATA)>
+<!ELEMENT damage-reduction (#PCDATA)>
+<!ELEMENT speed (#PCDATA)>

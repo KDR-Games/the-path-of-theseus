@@ -1,3 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!ELEMENT Monsters (Monster+)>
-<!ELEMENT Monster (health, speed, equipment, items, XP)>
+
+<!ELEMENT Monster (name, image, attributes, equipment, XP)>
+
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT image (#PCDATA)>
+<!ELEMENT attributes (stats, proficiency)>
+<!ELEMENT equipment (weapons, armors)>
+<!ELEMENT XP (#PCDATA)>
+
+<!ELEMENT stats (strength, agility, endurance)>
+<!ELEMENT proficiency (slash | piercing | blunt | none)>
+<!ELEMENT weapons (double-hand | (main-hand, off-hand))>
+<!ELEMENT armors (head, chest, legs, arms)>
+
+<!ELEMENT strength (value)>
+<!ELEMENT agility (value)>
+<!ELEMENT endurance (value)>
+
+<!ELEMENT slash (value)>
+<!ELEMENT piercing (value)>
+<!ELEMENT blunt (value)>
+<!ELEMENT none EMPTY>
+
+<!ELEMENT double-hand (weapon-name)>
+<!ELEMENT main-hand (weapon-name)>
+<!ELEMENT off-hand (weapon-name)>
+
+<!ELEMENT head (armor-name)>
+<!ELEMENT chest (armor-name)>
+<!ELEMENT legs (armor-name)>
+<!ELEMENT arms (armor-name)>
+
+<!ELEMENT value (E | D | C | B | A | S)>
+<!ELEMENT weapon-name (#PCDATA)>
+<!ELEMENT armor-name (#PCDATA)>
+
+<!ELEMENT E EMPTY>
+<!ELEMENT D EMPTY>
+<!ELEMENT C EMPTY>
+<!ELEMENT B EMPTY>
+<!ELEMENT A EMPTY>
+<!ELEMENT S EMPTY>

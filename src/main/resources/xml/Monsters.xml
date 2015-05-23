@@ -4,10 +4,5 @@
 
 <Monsters>
 	<Monster>
-		<health></health>
-		<speed></speed>
-		<equipment></equipment>
-		<items></items>
-		<XP></XP>
 	</Monster>
 </Monsters>
