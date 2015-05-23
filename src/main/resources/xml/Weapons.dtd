@@ -14,10 +14,11 @@
 <!ELEMENT kite-shield (shield)+>
 <!ELEMENT tower-shield (shield)+>
 
-<!ELEMENT weapon (name, damage, speed)>
-<!ELEMENT shield (name, damage-reduction, speed)>
+<!ELEMENT weapon (name, image, damage, speed)>
+<!ELEMENT shield (name, image, defense, speed)>
 
 <!ELEMENT name (#PCDATA)>
+<!ELEMENT image (#PCDATA)>
 <!ELEMENT damage (#PCDATA)>
-<!ELEMENT damage-reduction (#PCDATA)>
+<!ELEMENT defense (#PCDATA)>
 <!ELEMENT speed (#PCDATA)>
