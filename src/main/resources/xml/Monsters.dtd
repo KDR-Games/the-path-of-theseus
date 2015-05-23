@@ -2,14 +2,16 @@
 
 <!ELEMENT Monsters (Monster+)>
 
-<!ELEMENT Monster (name, image, attributes, equipment, XP)>
+<!ELEMENT Monster (name, image, XP, attributes, equipment)>
 
 <!ELEMENT name (#PCDATA)>
-<!ELEMENT image (#PCDATA)>
+<!ELEMENT image (full, tile)>
 <!ELEMENT attributes (stats, proficiency)>
 <!ELEMENT equipment (weapons, armors)>
 <!ELEMENT XP (#PCDATA)>
 
+<!ELEMENT full (#PCDATA)>
+<!ELEMENT tile (#PCDATA)>
 <!ELEMENT stats (strength, agility, endurance)>
 <!ELEMENT proficiency (slash | piercing | blunt | none)>
 <!ELEMENT weapons (double-hand | (main-hand, off-hand))>
@@ -33,13 +35,6 @@
 <!ELEMENT legs (armor-name)>
 <!ELEMENT arms (armor-name)>
 
-<!ELEMENT value (E | D | C | B | A | S)>
+<!ELEMENT value (#PCDATA)>
 <!ELEMENT weapon-name (#PCDATA)>
 <!ELEMENT armor-name (#PCDATA)>
-
-<!ELEMENT E EMPTY>
-<!ELEMENT D EMPTY>
-<!ELEMENT C EMPTY>
-<!ELEMENT B EMPTY>
-<!ELEMENT A EMPTY>
-<!ELEMENT S EMPTY>

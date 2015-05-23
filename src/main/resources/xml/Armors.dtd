@@ -14,6 +14,9 @@
 <!ELEMENT armor (name, image, defense, speed)>
 
 <!ELEMENT name (#PCDATA)>
-<!ELEMENT image (#PCDATA)>
+<!ELEMENT image (full, tile)>
 <!ELEMENT defense (#PCDATA)>
 <!ELEMENT speed (#PCDATA)>
+
+<!ELEMENT full (#PCDATA)>
+<!ELEMENT tile (#PCDATA)>
