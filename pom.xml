@@ -65,7 +65,7 @@
 				<targetPath>image</targetPath>
 				<directory>${basedir}/src/main/resources/image</directory>
 				<includes>
-					<include>*.png</include>
+					<include>*</include>
 				</includes>
 			</resource>
 		</resources>

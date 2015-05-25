@@ -23,10 +23,26 @@
 
 package kdr.game.theseus.view;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TitledPane;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import kdr.game.theseus.Constants;
 import kdr.game.theseus.ObservableMap;
@@ -39,10 +55,95 @@ public class GameViewController extends ViewController {
 	private WorldMap world;
 	private ObservableMap map;
 	private Player player;
+	private ArrayList<Button> inventoryBag;
 	
 	@FXML
-	TilePane pane;
-
+	private TilePane pane;
+	@FXML
+	private ProgressBar healthProgressBar;
+	@FXML
+	private ProgressBar staminaProgressBar;
+	@FXML
+	private Label currentHealthLabel;
+	@FXML 
+	private Label currentStaminaLabel;
+	@FXML
+	private TextArea smallMessageTextArea;
+	@FXML
+	private TitledPane playerInformationContainer;
+	@FXML
+	private Label playerMaxHealthLabel;
+	@FXML
+	private Label playerStrengthLabel;
+	@FXML
+	private Label playerAgilityLabel;
+	@FXML
+	private Label playerEnduranceLabel;
+	@FXML
+	private Label playerSlashingLabel;
+	@FXML
+	private Label playerPiercingLabel;
+	@FXML
+	private Label playerBluntLabel;
+	@FXML
+	private Label playerArmorLabel;
+	@FXML
+	private Label playerDamageLabel;
+	@FXML
+	private Label playerSpeedLabel;
+	@FXML
+	private Button playerMaxHealthButton;
+	@FXML
+	private Button playerStrengthButton;
+	@FXML
+	private Button playerAgilityButton;
+	@FXML
+	private Button playerEnduranceButton;
+	@FXML
+	private Button playerSlashingButton;
+	@FXML
+	private Button playerPiercingButton;
+	@FXML
+	private Button playerBluntButton;
+	@FXML
+	private TitledPane enemyInformationContainer;
+	@FXML
+	private Label enemyMaxHealthLabel;
+	@FXML
+	private Label enemyStrengthLabel;
+	@FXML
+	private Label enemyAgilityLabel;
+	@FXML
+	private Label enemyEnduranceLabel;
+	@FXML
+	private Label enemySlashingLabel;
+	@FXML
+	private Label enemyPiercingLabel;
+	@FXML
+	private Label enemyBluntLabel;
+	@FXML
+	private TitledPane equipmentContainer;
+	@FXML
+	private Button headArmorButton;
+	@FXML
+	private Button chestArmorButton;
+	@FXML
+	private Button legArmorButton;
+	@FXML
+	private Button handArmorButton;
+	@FXML
+	private Button rightHandWeaponButton;
+	@FXML
+	private Button leftHandWeaponButton;
+	@FXML
+	private Button deleteButton;
+	@FXML
+	private TextArea bigMessageTextArea;
+	@FXML
+	private TabPane bagTabPane;
+	
+	
+	
 	public void initialize() {
 		map = new ObservableMap();
 		buttons = new Button[Constants.ObservableMapSize][Constants.ObservableMapSize];
@@ -71,12 +172,51 @@ public class GameViewController extends ViewController {
 	public void setUp() {
 		player = mainApp.getPlayer();
 		world = new WorldMap();
-		map.setCurrentLevel(world.getFirstLevel());
 		player.setMap(map);
+		map.setCurrentLevel(world.getFirstLevel());
+		playerInformationContainer.setText(player.getName());
+		equipmentContainer.setText(player.getName());
+		GridPane bag1 = (GridPane) bagTabPane.getTabs().get(0).getContent();
+		GridPane bag2 = (GridPane) bagTabPane.getTabs().get(1).getContent();
+		GridPane bag3 = (GridPane) bagTabPane.getTabs().get(2).getContent();
+		inventoryBag = new ArrayList<Button>();
+		System.out.println("number of children " + bag1.getChildren().size());
+		for(Node node : bag1.getChildren()) {
+			try {
+				inventoryBag.add((Button) node);
+			} catch(ClassCastException e) {
+				// where those this child come from?
+			}
+		}
+		for(Node node : bag2.getChildren()) {
+			try {
+				inventoryBag.add((Button) node);
+			} catch(ClassCastException e) {
+				// where those this child come from?
+			}
+		}
+		for(Node node : bag3.getChildren()) {
+			try {
+				inventoryBag.add((Button) node);
+			} catch(ClassCastException e) {
+				// where those this child come from?
+			}
+		}
 	}
 	
 	@FXML
 	private void close() {
-		Platform.exit();
+		Alert exitPrompt = new Alert(AlertType.CONFIRMATION);
+		exitPrompt.setTitle("Exit game");
+		exitPrompt.setHeaderText("This game has no save functionality, any progress will be lost.");
+		exitPrompt.setContentText("Are you sure, you want to exit?");
+		ButtonType buttonYes = new ButtonType("Yes");
+		ButtonType buttonNo = new ButtonType("No", ButtonData.CANCEL_CLOSE);
+		exitPrompt.getButtonTypes().setAll(buttonYes, buttonNo);
+		
+		Optional<ButtonType> result = exitPrompt.showAndWait();
+		if(result.get() == buttonYes) {
+			Platform.exit();
+		}		
 	}
 }

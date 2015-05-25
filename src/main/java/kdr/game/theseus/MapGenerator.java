@@ -335,8 +335,6 @@ public class MapGenerator {
 				int indexToRemove = rd.nextInt(deadEnds.size());
 				deadEnds.get(indexToRemove).setType(TileType.Wall);
 				deadEnds.get(indexToRemove).setContainerRegion(null);
-
-				System.out.println(k);
 			} else {
 				break;
 			}

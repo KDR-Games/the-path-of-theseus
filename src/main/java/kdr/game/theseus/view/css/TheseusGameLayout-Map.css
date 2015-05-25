@@ -39,32 +39,32 @@
 /*===========================================================*/
 
 .tile-floor {
-	-fx-background-image:url("../image/tile-floor.png");
+	-fx-background-image: url("../image/tile-floor.png");
 }
 
 /*===========================================================*/
 .tile-wall {
-	-fx-background-image:url("../image/tile-wall.png");
+	-fx-background-image: url("../image/tile-wall.png");
 }
 
 /*===========================================================*/
 .tile-trap {
-	-fx-background-image:url("../image/tile-trap.png");
+	-fx-background-image: url("../image/tile-trap.png");
 }
 
 /*===========================================================*/
 .tile-door {
-	-fx-background-image:url("../image/tile-door.png");
+	-fx-background-image: url("../image/tile-door.png");
 }
 
 /*===========================================================*/
 .tile-entrance {
-	-fx-background-image:url("../image/tile-entrance.png");
+	-fx-background-image: url("../image/tile-entrance.png");
 }
 
 /*===========================================================*/
 .tile-margin {
-	-fx-background-image:url("../image/tile-margin.png");
+	-fx-background-image: url("../image/tile-margin.png");
 }
 
 /*===========================================================*/

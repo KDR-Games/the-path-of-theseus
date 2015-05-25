@@ -93,7 +93,7 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.centerOnScreen();
-            primaryStage.show();            
+            primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

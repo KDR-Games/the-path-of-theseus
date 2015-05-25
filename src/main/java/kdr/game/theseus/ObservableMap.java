@@ -51,8 +51,8 @@ public class ObservableMap {
 	private void updateMap() {
 		for(int i = 0; i < Constants.ObservableMapSize; i++) {
 			for(int j = 0; j < Constants.ObservableMapSize; j++) {
-				int col = centerTile.x() - Constants.ObservableMapSize/2 + j;
-				int row = centerTile.y() - Constants.ObservableMapSize/2 + i;
+				int col = centerTile.x() - center + j;
+				int row = centerTile.y() - center + i;
 				tiles[i][j] = currentLevel.getTiles()[row][col];
 			}
 		}
@@ -113,7 +113,7 @@ public class ObservableMap {
 				default:
 					break;
 				}
-
+				buttons[i][j].applyCss();
 			}
 		}
 	}
@@ -459,22 +459,18 @@ public class ObservableMap {
 		switch (code) {
 		case LEFT:
 			setCenterTile(centerTile.getNeighbors().getLeft());
-			System.out.println("left");
 			break;
 
 		case RIGHT:
 			setCenterTile(centerTile.getNeighbors().getRight());
-			System.out.println("right");
 			break;
 
 		case UP:
 			setCenterTile(centerTile.getNeighbors().getTop());
-			System.out.println("up");
 			break;
 
 		case DOWN:
 			setCenterTile(centerTile.getNeighbors().getBottom());
-			System.out.println("down");
 			break;
 
 		default:
