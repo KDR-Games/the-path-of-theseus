@@ -26,10 +26,6 @@ package kdr.game.theseus;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * @author koldavid
- *
- */
 public class MapGenerator {
 
 	static public int roomAttempts = 200;

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!ELEMENT Monsters (Monster+)>
+<!ELEMENT Monsters (Monster)+>
 
-<!ELEMENT Monster (name, image, XP, attributes, equipment)>
+<!ELEMENT Monster (name, boss?, image, XP, attributes, equipment)>
 
 <!ELEMENT name (#PCDATA)>
+<!ELEMENT boss EMPTY>
 <!ELEMENT image (full, tile)>
 <!ELEMENT attributes (stats, proficiency)>
 <!ELEMENT equipment (weapons, armors)>
@@ -12,11 +13,12 @@
 
 <!ELEMENT full (#PCDATA)>
 <!ELEMENT tile (#PCDATA)>
-<!ELEMENT stats (strength, agility, endurance)>
+<!ELEMENT stats (health, strength, agility, endurance)>
 <!ELEMENT proficiency (slash | piercing | blunt | none)>
 <!ELEMENT weapons (double-hand | (main-hand, off-hand))>
 <!ELEMENT armors (head, chest, legs, arms)>
 
+<!ELEMENT health (#PCDATA)>
 <!ELEMENT strength (value)>
 <!ELEMENT agility (value)>
 <!ELEMENT endurance (value)>
@@ -26,14 +28,14 @@
 <!ELEMENT blunt (value)>
 <!ELEMENT none EMPTY>
 
-<!ELEMENT double-hand (weapon-name)>
-<!ELEMENT main-hand (weapon-name)>
-<!ELEMENT off-hand (weapon-name)>
+<!ELEMENT double-hand (weapon-name)*>
+<!ELEMENT main-hand (weapon-name)*>
+<!ELEMENT off-hand (weapon-name)*>
 
-<!ELEMENT head (armor-name)>
-<!ELEMENT chest (armor-name)>
-<!ELEMENT legs (armor-name)>
-<!ELEMENT arms (armor-name)>
+<!ELEMENT head (armor-name)*>
+<!ELEMENT chest (armor-name)*>
+<!ELEMENT legs (armor-name)*>
+<!ELEMENT arms (armor-name)*>
 
 <!ELEMENT value (#PCDATA)>
 <!ELEMENT weapon-name (#PCDATA)>

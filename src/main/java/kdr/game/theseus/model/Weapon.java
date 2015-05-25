@@ -24,5 +24,5 @@
 package kdr.game.theseus.model;
 
 public class Weapon extends Wearable {
-
+	private WeaponType type;
 }

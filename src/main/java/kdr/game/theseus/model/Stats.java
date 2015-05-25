@@ -24,5 +24,48 @@
 package kdr.game.theseus.model;
 
 public class Stats {
-
+	private int health;
+	private Stat strength;
+	private Stat agility;
+	private Stat endurance;
+	
+	/**
+	 * @param health
+	 * @param strength
+	 * @param agility
+	 * @param endurance
+	 */
+	public Stats(int health, Stat strength, Stat agility, Stat endurance) {
+		super();
+		this.health = health;
+		this.strength = strength;
+		this.agility = agility;
+		this.endurance = endurance;
+	}
+	/**
+	 * @return the health
+	 */
+	public int getHealth() {
+		return health;
+	}
+	/**
+	 * @return the strength
+	 */
+	public Stat getStrength() {
+		return strength;
+	}
+	/**
+	 * @return the agility
+	 */
+	public Stat getAgility() {
+		return agility;
+	}
+	/**
+	 * @return the endurance
+	 */
+	public Stat getEndurance() {
+		return endurance;
+	}
+	
+	
 }

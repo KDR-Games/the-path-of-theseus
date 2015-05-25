@@ -30,7 +30,6 @@ package kdr.game.theseus;
 public class Constants {
 	public static final int ButtonSize = 48;
 	public static final int ObservableMapSize = 11;
-	public static final int MapSize_1 = 64;
-	public static final int MapSize_2 = 48;
-	public static final int MapSize_3 = 32;
+	public static final int MapSize = 64;
+	public static final int MapSizeBoss = 24;
 }

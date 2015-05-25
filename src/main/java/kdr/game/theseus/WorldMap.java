@@ -23,32 +23,14 @@
 
 package kdr.game.theseus;
 
-/**
- * @author koldavid
- *
- */
 public class WorldMap {
 	private LevelMap firstLevel;
-	private LevelMap secondLevel;
-	private LevelMap thirdLevel;
+	private LevelMap bossLevel;
 	
 	
-	
-	/**
-	 * @param firstLevel
-	 * @param secondLevel
-	 * @param thirdLevel
-	 */
-	public WorldMap(LevelMap firstLevel, LevelMap secondLevel, LevelMap thirdLevel) {
+	public WorldMap() {
 		super();
-		if(firstLevel == null && secondLevel == null && thirdLevel == null) {
-			generateNew();
-			System.out.println("New map generated.");
-		} else {
-			this.firstLevel = firstLevel;
-			this.secondLevel = secondLevel;
-			this.thirdLevel = thirdLevel;			
-		}
+		generateNew();
 	}
 
 	/**
@@ -59,43 +41,14 @@ public class WorldMap {
 	}
 	
 	/**
-	 * @param first the first to set
-	 */
-	public void setFirstLevel(LevelMap firstLevel) {
-		this.firstLevel = firstLevel;
-	}
-	
-	/**
 	 * @return the second
 	 */
-	public LevelMap getSecondLevel() {
-		return secondLevel;
-	}
-	
-	/**
-	 * @param second the second to set
-	 */
-	public void setSecondLevel(LevelMap secondLevel) {
-		this.secondLevel = secondLevel;
-	}
-	
-	/**
-	 * @return the third
-	 */
-	public LevelMap getThirdLevel() {
-		return thirdLevel;
-	}
-	
-	/**
-	 * @param third the third to set
-	 */
-	public void setThirdLevel(LevelMap thirdLevel) {
-		this.thirdLevel = thirdLevel;
+	public LevelMap getBossLevel() {
+		return bossLevel;
 	}
 	
 	private void generateNew() {
-		firstLevel = new LevelMap(Constants.MapSize_1);
-		secondLevel = new LevelMap(Constants.MapSize_2);
-		thirdLevel = new LevelMap(Constants.MapSize_3);
+		firstLevel = new LevelMap(Constants.MapSize);
+		bossLevel = new LevelMap(Constants.MapSizeBoss);
 	}
 }

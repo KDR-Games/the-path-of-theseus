@@ -68,20 +68,15 @@ public class GameViewController extends ViewController {
 		map.setButtons(buttons);
 	}
 
-	@SuppressWarnings("unused") // TODO: remove this
 	public void setUp() {
 		player = mainApp.getPlayer();
-		if(true) { // Generate new map
-			world = new WorldMap(null, null, null);
-			map.setCurrentLevel(world.getFirstLevel());
-		} else { // Load saved game
-			// TODO: search for the saved game state
-		}
+		world = new WorldMap();
+		map.setCurrentLevel(world.getFirstLevel());
 		player.setMap(map);
 	}
 	
 	@FXML
-	private void saveAndClose() {
+	private void close() {
 		Platform.exit();
 	}
 }

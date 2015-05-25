@@ -12,6 +12,7 @@
 		<XP>10</XP>
 		<attributes>
 			<stats>
+				<health>50</health>
 				<strength>
 					<value>E</value>
 				</strength>
@@ -23,444 +24,535 @@
 				</endurance>
 			</stats>
 			<proficiency>
+				<piercing>
+					<value>E</value>
+				</piercing>
+
+			</proficiency>
+		</attributes>
+		<equipment>
+			<weapons>
+				<main-hand>
+					<weapon-name>Dagger</weapon-name>
+					<weapon-name>Javelin</weapon-name>
+				</main-hand>
+				<off-hand>
+					<weapon-name>Dagger</weapon-name>
+					<weapon-name>Buckler</weapon-name>
+				</off-hand>
+			</weapons>
+			<armors>
+				<head>
+					<armor-name>Leather helmet</armor-name>
+				</head>
+				<chest>
+					<armor-name>Leather shirt</armor-name>
+				</chest>
+				<legs>
+					<armor-name>Leather leggings</armor-name>
+				</legs>
+				<arms>
+					<armor-name>Leather bracelets</armor-name>
+				</arms>
+			</armors>
+		</equipment>
+	</Monster>
+	<Monster>
+		<name>Savage</name>
+		<image>
+			<full>savage.png</full>
+			<tile>savage-48x48.png</tile>
+		</image>
+		<XP>15</XP>
+		<attributes>
+			<stats>
+				<health>100</health>
+				<strength>
+					<value>C</value>
+				</strength>
+				<agility>
+					<value>E</value>
+				</agility>
+				<endurance>
+					<value>D</value>
+				</endurance>
+			</stats>
+			<proficiency>
 				<none />
 			</proficiency>
 		</attributes>
 		<equipment>
 			<weapons>
+				<double-hand>
+					<weapon-name>Club</weapon-name>
+					<weapon-name>Spetum</weapon-name>
+				</double-hand>
 			</weapons>
 			<armors>
 				<head>
-					<armor-name></armor-name>
+					<armor-name>Leather helmet</armor-name>
 				</head>
-				<chest>
-					<armor-name></armor-name>
-				</chest>
+				<chest></chest>
 				<legs>
-					<armor-name></armor-name>
 				</legs>
 				<arms>
-					<armor-name></armor-name>
+					<armor-name>Leather bracelets</armor-name>
 				</arms>
 			</armors>
 		</equipment>
 	</Monster>
-	
 	<Monster>
-		<name></name>
+		<name>Shaman</name>
 		<image>
-			<full></full>
-			<tile></tile>
+			<full>shaman.png</full>
+			<tile>shaman-48x48.png</tile>
 		</image>
-		<XP></XP>
+		<XP>20</XP>
 		<attributes>
 			<stats>
+				<health>100</health>
 				<strength>
-					<value></value>
+					<value>D</value>
 				</strength>
 				<agility>
-					<value></value>
+					<value>C</value>
 				</agility>
 				<endurance>
-					<value></value>
+					<value>D</value>
 				</endurance>
 			</stats>
 			<proficiency>
+				<blunt>
+					<value>D</value>
+				</blunt>
+
 			</proficiency>
 		</attributes>
 		<equipment>
 			<weapons>
+				<main-hand>
+					<weapon-name>Hammer</weapon-name>
+					<weapon-name>Mace</weapon-name>
+				</main-hand>
+				<off-hand>
+					<weapon-name>Hammer</weapon-name>
+					<weapon-name>Ceremonial shield</weapon-name>
+					<weapon-name>Parma</weapon-name>
+				</off-hand>
+
 			</weapons>
 			<armors>
 				<head>
-					<armor-name></armor-name>
+					<armor-name>Leather helmet</armor-name>
+					<armor-name>Chain helmet</armor-name>
 				</head>
 				<chest>
-					<armor-name></armor-name>
+					<armor-name>Leather shirt</armor-name>
 				</chest>
 				<legs>
-					<armor-name></armor-name>
+					<armor-name>Leather leggings</armor-name>
 				</legs>
 				<arms>
-					<armor-name></armor-name>
+					<armor-name>Leather bracelets</armor-name>
 				</arms>
 			</armors>
 		</equipment>
 	</Monster>
-	
 	<Monster>
-		<name></name>
+		<name>Thorned warrior</name>
 		<image>
-			<full></full>
-			<tile></tile>
+			<full>spiked-man.png</full>
+			<tile>spiked-man-48x48.png</tile>
 		</image>
-		<XP></XP>
+		<XP>30</XP>
 		<attributes>
 			<stats>
+				<health>120</health>
 				<strength>
-					<value></value>
+					<value>C</value>
 				</strength>
 				<agility>
-					<value></value>
+					<value>D</value>
 				</agility>
 				<endurance>
-					<value></value>
+					<value>C</value>
 				</endurance>
 			</stats>
 			<proficiency>
+				<piercing>
+					<value>B</value>
+				</piercing>
+
 			</proficiency>
 		</attributes>
 		<equipment>
 			<weapons>
+				<main-hand>
+					<weapon-name>Javelin</weapon-name>
+					<weapon-name>Rapier</weapon-name>
+				</main-hand>
+				<off-hand>
+					<weapon-name>Javelin</weapon-name>
+					<weapon-name>Tower shield</weapon-name>
+				</off-hand>
+
+			</weapons>
+			<armors>
+				<head></head>
+				<chest>
+					<armor-name>Kinght armor</armor-name>
+				</chest>
+				<legs></legs>
+				<arms></arms>
+			</armors>
+		</equipment>
+	</Monster>
+	<Monster>
+		<name>Skeleton</name>
+		<image>
+			<full>skeleton.png</full>
+			<tile>skeleton-48x48.png</tile>
+		</image>
+		<XP>40</XP>
+		<attributes>
+			<stats>
+				<health>150</health>
+				<strength>
+					<value>D</value>
+				</strength>
+				<agility>
+					<value>C</value>
+				</agility>
+				<endurance>
+					<value>C</value>
+				</endurance>
+			</stats>
+			<proficiency>
+				<slash>
+					<value>B</value>
+				</slash>
+			</proficiency>
+		</attributes>
+		<equipment>
+			<weapons>
+				<main-hand>
+					<weapon-name>Gladius</weapon-name>
+					<weapon-name>Longsword</weapon-name>
+					<weapon-name>Waraxe</weapon-name>
+				</main-hand>
+				<off-hand>
+					<weapon-name>Parma</weapon-name>
+					<weapon-name>Myrmidon shield</weapon-name>
+					<weapon-name>Aspis</weapon-name>
+				</off-hand>
+
 			</weapons>
 			<armors>
 				<head>
-					<armor-name></armor-name>
+					<armor-name>Steel helmet</armor-name>
 				</head>
+				<chest></chest>
+				<legs></legs>
+				<arms></arms>
+			</armors>
+		</equipment>
+	</Monster>
+	<Monster>
+		<name>Beast</name>
+		<image>
+			<full>lion-warrior.png</full>
+			<tile>lion-warror-48x48.png</tile>
+		</image>
+		<XP>45</XP>
+		<attributes>
+			<stats>
+				<health>200</health>
+				<strength>
+					<value>B</value>
+				</strength>
+				<agility>
+					<value>C</value>
+				</agility>
+				<endurance>
+					<value>C</value>
+				</endurance>
+			</stats>
+			<proficiency>
+				<none />
+
+			</proficiency>
+		</attributes>
+		<equipment>
+			<weapons>
+				<double-hand>
+					<weapon-name>Scythe</weapon-name>
+					<weapon-name>Flail</weapon-name>
+				</double-hand>
+			</weapons>
+			<armors>
+				<head></head>
 				<chest>
-					<armor-name></armor-name>
+					<armor-name>Knight armor</armor-name>
+					<armor-name>Steel armor</armor-name>
 				</chest>
 				<legs>
-					<armor-name></armor-name>
+					<armor-name>Knight leggings</armor-name>
+				</legs>
+				<arms></arms>
+			</armors>
+		</equipment>
+	</Monster>
+	<Monster>
+		<name>Winged warrior</name>
+		<image>
+			<full>winged-warrior.png</full>
+			<tile>winged-warrior-48x48.png</tile>
+		</image>
+		<XP>50</XP>
+		<attributes>
+			<stats>
+				<health>175</health>
+				<strength>
+					<value>D</value>
+				</strength>
+				<agility>
+					<value>B</value>
+				</agility>
+				<endurance>
+					<value>C</value>
+				</endurance>
+			</stats>
+			<proficiency>
+				<piercing>
+					<value>B</value>
+				</piercing>
+
+			</proficiency>
+		</attributes>
+		<equipment>
+			<weapons>
+				<double-hand>
+					<weapon-name>Partizan</weapon-name>
+					<weapon-name>Trident</weapon-name>
+					<weapon-name>Spetum</weapon-name>
+				</double-hand>
+			</weapons>
+			<armors>
+				<head>
+					<armor-name>Chain helmet</armor-name>
+				</head>
+				<chest>
+					<armor-name>Leather shirt</armor-name>
+					<armor-name>Knight armor</armor-name>
+				</chest>
+				<legs>
+					<armor-name>Leather leggings</armor-name>
+					<armor-name>Knight leggings</armor-name>
 				</legs>
 				<arms>
-					<armor-name></armor-name>
+					<armor-name>Leather bracelets</armor-name>
 				</arms>
 			</armors>
 		</equipment>
 	</Monster>
-	
 	<Monster>
-		<name></name>
+		<name>Viking</name>
 		<image>
-			<full></full>
-			<tile></tile>
+			<full>viking.png</full>
+			<tile>viking-48x48.png</tile>
 		</image>
-		<XP></XP>
+		<XP>60</XP>
 		<attributes>
 			<stats>
+				<health>300</health>
 				<strength>
-					<value></value>
+					<value>B</value>
 				</strength>
 				<agility>
-					<value></value>
+					<value>B</value>
 				</agility>
 				<endurance>
-					<value></value>
+					<value>B</value>
 				</endurance>
 			</stats>
 			<proficiency>
+				<slash>
+					<value>B</value>
+				</slash>
 			</proficiency>
 		</attributes>
 		<equipment>
 			<weapons>
+				<double-hand>
+					<weapon-name>Greatsword</weapon-name>
+					<weapon-name>Greataxe</weapon-name>
+				</double-hand>
 			</weapons>
 			<armors>
 				<head>
-					<armor-name></armor-name>
+					<armor-name>Chain helmet</armor-name>
+					<armor-name>Steel helmet</armor-name>
 				</head>
 				<chest>
-					<armor-name></armor-name>
+					<armor-name>Knight armor</armor-name>
 				</chest>
 				<legs>
-					<armor-name></armor-name>
+					<armor-name>Knight leggings</armor-name>
 				</legs>
 				<arms>
-					<armor-name></armor-name>
+					<armor-name>Knight gauntlets</armor-name>
+					<armor-name>Steel gauntlets</armor-name>
 				</arms>
 			</armors>
 		</equipment>
 	</Monster>
-	
 	<Monster>
-		<name></name>
+		<name>Vampire</name>
 		<image>
-			<full></full>
-			<tile></tile>
+			<full>vampire.png</full>
+			<tile>vampire-48x48.png</tile>
 		</image>
-		<XP></XP>
+		<XP>75</XP>
 		<attributes>
 			<stats>
+				<health>350</health>
 				<strength>
-					<value></value>
+					<value>B</value>
 				</strength>
 				<agility>
-					<value></value>
+					<value>S</value>
 				</agility>
 				<endurance>
-					<value></value>
+					<value>B</value>
 				</endurance>
 			</stats>
 			<proficiency>
+				<slash>
+					<value>A</value>
+				</slash>
 			</proficiency>
 		</attributes>
 		<equipment>
 			<weapons>
+				<main-hand>
+					<weapon-name>Longsword</weapon-name>
+					<weapon-name>Gladius</weapon-name>
+				</main-hand>
+				<off-hand>
+					<weapon-name>Knight shield</weapon-name>
+					<weapon-name>Longsword</weapon-name>
+					<weapon-name>Crest shield</weapon-name>
+				</off-hand>
+
 			</weapons>
 			<armors>
 				<head>
-					<armor-name></armor-name>
+					<armor-name>Chain helmet</armor-name>
 				</head>
 				<chest>
-					<armor-name></armor-name>
+					<armor-name>Knight armor</armor-name>
 				</chest>
 				<legs>
-					<armor-name></armor-name>
+					<armor-name>Knight leggings</armor-name>
 				</legs>
 				<arms>
-					<armor-name></armor-name>
+					<armor-name>Knight gauntlets</armor-name>
 				</arms>
 			</armors>
 		</equipment>
 	</Monster>
-	
 	<Monster>
-		<name></name>
+		<name>Giant</name>
 		<image>
-			<full></full>
-			<tile></tile>
+			<full>two-headed-cyclops.png</full>
+			<tile>two-headed-cyclops-48x48.png</tile>
 		</image>
-		<XP></XP>
+		<XP>90</XP>
 		<attributes>
 			<stats>
+				<health>500</health>
 				<strength>
-					<value></value>
+					<value>S</value>
 				</strength>
 				<agility>
-					<value></value>
+					<value>C</value>
 				</agility>
 				<endurance>
-					<value></value>
+					<value>A</value>
 				</endurance>
 			</stats>
 			<proficiency>
+				<blunt>
+					<value>A</value>
+				</blunt>
+
 			</proficiency>
 		</attributes>
 		<equipment>
 			<weapons>
+				<double-hand>
+					<weapon-name>Warhammer</weapon-name>
+				</double-hand>
 			</weapons>
 			<armors>
 				<head>
-					<armor-name></armor-name>
+					<armor-name>Steel helmet</armor-name>
 				</head>
 				<chest>
-					<armor-name></armor-name>
+					<armor-name>Steel armor</armor-name>
 				</chest>
 				<legs>
-					<armor-name></armor-name>
+					<armor-name>Steel leggings</armor-name>
 				</legs>
 				<arms>
-					<armor-name></armor-name>
+					<armor-name>Steel gauntlets</armor-name>
 				</arms>
 			</armors>
 		</equipment>
 	</Monster>
-	
 	<Monster>
-		<name></name>
+		<name>Minotaur</name>
+		<boss />
 		<image>
-			<full></full>
-			<tile></tile>
+			<full>minotaur.png</full>
+			<tile>minotaur-48x48.png</tile>
 		</image>
-		<XP></XP>
+		<XP>500</XP>
 		<attributes>
 			<stats>
+				<health>1000</health>
 				<strength>
-					<value></value>
+					<value>S</value>
 				</strength>
 				<agility>
-					<value></value>
+					<value>A</value>
 				</agility>
 				<endurance>
-					<value></value>
+					<value>S</value>
 				</endurance>
 			</stats>
 			<proficiency>
+				<slash>
+					<value>S</value>
+				</slash>
 			</proficiency>
 		</attributes>
 		<equipment>
 			<weapons>
+				<double-hand>
+					<weapon-name>Greataxe</weapon-name>
+				</double-hand>
 			</weapons>
 			<armors>
-				<head>
-					<armor-name></armor-name>
-				</head>
+				<head></head>
 				<chest>
-					<armor-name></armor-name>
+					<armor-name>Steel armor</armor-name>
 				</chest>
 				<legs>
-					<armor-name></armor-name>
+					<armor-name>Steel armor</armor-name>
 				</legs>
 				<arms>
-					<armor-name></armor-name>
-				</arms>
-			</armors>
-		</equipment>
-	</Monster>
-	
-	<Monster>
-		<name></name>
-		<image>
-			<full></full>
-			<tile></tile>
-		</image>
-		<XP></XP>
-		<attributes>
-			<stats>
-				<strength>
-					<value></value>
-				</strength>
-				<agility>
-					<value></value>
-				</agility>
-				<endurance>
-					<value></value>
-				</endurance>
-			</stats>
-			<proficiency>
-			</proficiency>
-		</attributes>
-		<equipment>
-			<weapons>
-			</weapons>
-			<armors>
-				<head>
-					<armor-name></armor-name>
-				</head>
-				<chest>
-					<armor-name></armor-name>
-				</chest>
-				<legs>
-					<armor-name></armor-name>
-				</legs>
-				<arms>
-					<armor-name></armor-name>
-				</arms>
-			</armors>
-		</equipment>
-	</Monster>
-	
-	<Monster>
-		<name></name>
-		<image>
-			<full></full>
-			<tile></tile>
-		</image>
-		<XP></XP>
-		<attributes>
-			<stats>
-				<strength>
-					<value></value>
-				</strength>
-				<agility>
-					<value></value>
-				</agility>
-				<endurance>
-					<value></value>
-				</endurance>
-			</stats>
-			<proficiency>
-			</proficiency>
-		</attributes>
-		<equipment>
-			<weapons>
-			</weapons>
-			<armors>
-				<head>
-					<armor-name></armor-name>
-				</head>
-				<chest>
-					<armor-name></armor-name>
-				</chest>
-				<legs>
-					<armor-name></armor-name>
-				</legs>
-				<arms>
-					<armor-name></armor-name>
-				</arms>
-			</armors>
-		</equipment>
-	</Monster>
-	
-	<Monster>
-		<name></name>
-		<image>
-			<full></full>
-			<tile></tile>
-		</image>
-		<XP></XP>
-		<attributes>
-			<stats>
-				<strength>
-					<value></value>
-				</strength>
-				<agility>
-					<value></value>
-				</agility>
-				<endurance>
-					<value></value>
-				</endurance>
-			</stats>
-			<proficiency>
-			</proficiency>
-		</attributes>
-		<equipment>
-			<weapons>
-			</weapons>
-			<armors>
-				<head>
-					<armor-name></armor-name>
-				</head>
-				<chest>
-					<armor-name></armor-name>
-				</chest>
-				<legs>
-					<armor-name></armor-name>
-				</legs>
-				<arms>
-					<armor-name></armor-name>
-				</arms>
-			</armors>
-		</equipment>
-	</Monster>
-	
-	<Monster>
-		<name></name>
-		<image>
-			<full></full>
-			<tile></tile>
-		</image>
-		<XP></XP>
-		<attributes>
-			<stats>
-				<strength>
-					<value></value>
-				</strength>
-				<agility>
-					<value></value>
-				</agility>
-				<endurance>
-					<value></value>
-				</endurance>
-			</stats>
-			<proficiency>
-			</proficiency>
-		</attributes>
-		<equipment>
-			<weapons>
-			</weapons>
-			<armors>
-				<head>
-					<armor-name></armor-name>
-				</head>
-				<chest>
-					<armor-name></armor-name>
-				</chest>
-				<legs>
-					<armor-name></armor-name>
-				</legs>
-				<arms>
-					<armor-name></armor-name>
+					<armor-name>Steel armor</armor-name>
 				</arms>
 			</armors>
 		</equipment>

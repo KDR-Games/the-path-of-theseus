@@ -27,9 +27,8 @@ public class Creature {
 	protected String name;
 	protected int health;
 	protected int stamina;
-	protected int gold;
-	protected int level;
 	protected Stats stats;
+	protected int XP;
 	/**
 	 * @param name
 	 */
@@ -72,30 +71,6 @@ public class Creature {
 	 */
 	public void setStamina(int stamina) {
 		this.stamina = stamina;
-	}
-	/**
-	 * @return the gold
-	 */
-	public int getGold() {
-		return gold;
-	}
-	/**
-	 * @param gold the gold to set
-	 */
-	public void setGold(int gold) {
-		this.gold = gold;
-	}
-	/**
-	 * @return the level
-	 */
-	public int getLevel() {
-		return level;
-	}
-	/**
-	 * @param level the level to set
-	 */
-	public void setLevel(int level) {
-		this.level = level;
 	}
 	/**
 	 * @return the stats

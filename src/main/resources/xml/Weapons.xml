@@ -29,7 +29,7 @@
 					<tile>longsword-48x48.png</tile>
 				</image>
 				<damage>15</damage>
-				<speed>1</speed>
+				<speed>1.0</speed>
 			</weapon>
 		</slashing>
 		

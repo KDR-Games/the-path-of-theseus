@@ -25,10 +25,6 @@ package kdr.game.theseus.view;
 
 import kdr.game.theseus.Main;
 
-/**
- * @author koldavid
- *
- */
 public class ViewController {
 	protected Main mainApp;
 

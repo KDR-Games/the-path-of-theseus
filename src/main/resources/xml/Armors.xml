@@ -2,5 +2,144 @@
 <!DOCTYPE Armors SYSTEM "Armors.dtd">
 
 <Armors>
-	
+	<head>
+		<light>
+			<armor>
+				<name>Leather helmet</name>
+				<image>
+					<full>leatherhelmet.png</full>
+					<tile>leatherhelmet-48x48.png</tile>
+				</image>
+				<defense>1</defense>
+				<speed>1.5</speed>
+			</armor>
+		</light>
+		<medium>
+			<armor>
+				<name>Chain helmet</name>
+				<image>
+					<full>chainhelmet.png</full>
+					<tile>chainhelmet-48x48.png</tile>
+				</image>
+				<defense>3</defense>
+				<speed>1.0</speed>
+			</armor>
+		</medium>
+		<heavy>
+			<armor>
+				<name>Steel helmet</name>
+				<image>
+					<full>ironhelmet.png</full>
+					<tile>ironhelmet-48x48.png</tile>
+				</image>
+				<defense>5</defense>
+				<speed>0.6</speed>
+			</armor>
+		</heavy>
+	</head>
+	<chest>
+		<light>
+			<armor>
+				<name>Leather shirt</name>
+				<image>
+					<full>leathershirt.png</full>
+					<tile>leathershir-48x48.png</tile>
+				</image>
+				<defense>3</defense>
+				<speed>1.5</speed>
+			</armor>
+		</light>
+		<medium>
+			<armor>
+				<name>Knight armor</name>
+				<image>
+					<full>knightarmor.png</full>
+					<tile>knightarmor-48x48.png</tile>
+				</image>
+				<defense>6</defense>
+				<speed>1.0</speed>
+			</armor>
+		</medium>
+		<heavy>
+			<armor>
+				<name>Steel armor</name>
+				<image>
+					<full>steelarmor.png</full>
+					<tile>steelarmor.png</tile>
+				</image>
+				<defense>10</defense>
+				<speed>0.6</speed>
+			</armor>
+		</heavy>
+	</chest>
+	<legs>
+		<light>
+			<armor>
+				<name>Leather leggings</name>
+				<image>
+					<full>leatherleggings.png</full>
+					<tile>leatherleggings-48x48.png</tile>
+				</image>
+				<defense>3</defense>
+				<speed>1.5</speed>
+			</armor>
+		</light>
+		<medium>
+			<armor>
+				<name>Knight leggings</name>
+				<image>
+					<full>knightleggings.png</full>
+					<tile>knightleggings-48x48.png</tile>
+				</image>
+				<defense>5</defense>
+				<speed>1.0</speed>
+			</armor>
+		</medium>
+		<heavy>
+			<armor>
+				<name>Steel leggings</name>
+				<image>
+					<full>steelleggings.png</full>
+					<tile>steelleggings-48x48.png</tile>
+				</image>
+				<defense>7</defense>
+				<speed>0.6</speed>
+			</armor>
+		</heavy>
+	</legs>
+	<arms>
+		<light>
+			<armor>
+				<name>Leather bracelets</name>
+				<image>
+					<full>leatherbracelets.png</full>
+					<tile>leatherbracelets-48x48.png</tile>
+				</image>
+				<defense>2</defense>
+				<speed>1.5</speed>
+			</armor>
+		</light>
+		<medium>
+			<armor>
+				<name>Knight gloves</name>
+				<image>
+					<full>knightgloves.png</full>
+					<tile>knightgloves-48x48.png</tile>
+				</image>
+				<defense>4</defense>
+				<speed>1.0</speed>
+			</armor>
+		</medium>
+		<heavy>
+			<armor>
+				<name>Steel gloves</name>
+				<image>
+					<full>steelgloves.png</full>
+					<tile>steelgloves.png</tile>
+				</image>
+				<defense>6</defense>
+				<speed>0.6</speed>
+			</armor>
+		</heavy>
+	</arms>
 </Armors>

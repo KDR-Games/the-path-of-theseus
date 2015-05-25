@@ -34,9 +34,6 @@
 	-fx-padding: 0;
 	-fx-focus-traversable: true;
 }
-.tile:hover {
-	-fx-opacity: 0.85;
-}
 
 /*===========================================================*/
 /*===========================================================*/
@@ -75,6 +72,9 @@
 .tile-visibility-visible {
 	-fx-opacity: 1.0;
 }
+.tile-visibility-visible:hover {
+	-fx-effect: innershadow( gaussian , rgba(60,60,60,0.7) , 20,0,0,0 );
+}
 .tile-visibility-dim {
 	-fx-opacity: 0.4;
 }
@@ -87,4 +87,7 @@
 
 #player {
 	-fx-graphic: url("../image/player.png");
+}
+#player:hover {
+	
 }

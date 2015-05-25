@@ -24,5 +24,5 @@
 package kdr.game.theseus.model;
 
 public class Item {
-
+	private ItemType type;
 }
