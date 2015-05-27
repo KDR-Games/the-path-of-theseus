@@ -41,6 +41,7 @@
       <AnchorPane prefHeight="30.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
             <Button alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="2.0" mnemonicParsing="false" onAction="#check" text="Start!" textAlignment="CENTER" />
+            <CheckBox fx:id="ghostModeCheckBox" layoutX="283.0" layoutY="6.0" mnemonicParsing="false" text="Ghost mode" />
          </children>
       </AnchorPane>
    </bottom>

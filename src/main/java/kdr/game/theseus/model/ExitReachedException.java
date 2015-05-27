@@ -20,37 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package kdr.game.theseus.model;
 
-
-
-public class WorldMap {
-	private LevelMap firstLevel;
-	private LevelMap bossLevel;
-	
-	
-	public WorldMap() {
-		super();
-		generateNew();
-	}
+/**
+ * ExitReachedException 
+ */
+public class ExitReachedException extends Exception {
 
 	/**
-	 * @return the first
+	 * 
 	 */
-	public LevelMap getFirstLevel() {
-		return firstLevel;
-	}
-	
+	private static final long serialVersionUID = 9042960435466384673L;
+
 	/**
-	 * @return the second
+	 * 
 	 */
-	public LevelMap getBossLevel() {
-		return bossLevel;
+	public ExitReachedException() {
+		// TODO Auto-generated constructor stub
 	}
-	
-	private void generateNew() {
-		firstLevel = new LevelMap(Constants.MapSize);
-		bossLevel = new LevelMap(Constants.MapSizeBoss);
-	}
+
 }

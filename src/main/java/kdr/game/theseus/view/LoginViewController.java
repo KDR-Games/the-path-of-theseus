@@ -25,6 +25,7 @@ package kdr.game.theseus.view;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -48,6 +49,8 @@ public class LoginViewController extends ViewController {
 	private Label difficultyLabel;
 	@FXML
 	private ToggleGroup difficulty;
+	@FXML
+	private CheckBox ghostModeCheckBox;
 
 	@SuppressWarnings("unused") // TODO: remove this
 	@FXML
@@ -82,6 +85,9 @@ public class LoginViewController extends ViewController {
 			currentPlayer.setDifficulty(Difficulty.Normal);
 		} else if (difficulty.getSelectedToggle().equals(difficultyHard)) {
 			currentPlayer.setDifficulty(Difficulty.Hard);
+		}
+		if(ghostModeCheckBox.isSelected()) {
+			currentPlayer.setGhostMode(true);
 		}
 		mainApp.setPlayer(currentPlayer);
 		mainApp.showGame();

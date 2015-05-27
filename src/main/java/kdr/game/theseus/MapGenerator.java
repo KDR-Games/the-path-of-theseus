@@ -326,7 +326,7 @@ public class MapGenerator {
 			}
 		}
 
-		// TODO: delete some of the dead ends
+		// delete some of the dead ends
 		for(int k = 0; k < rows*cols - tilesToLeave; k++) {
 			ArrayList<Tile> deadEnds = new ArrayList<Tile>();
 			for(int i = 0; i < map.length; i++) {
@@ -336,7 +336,6 @@ public class MapGenerator {
 					}
 				}
 			}
-
 			
 			if(!deadEnds.isEmpty()) {
 				int indexToRemove = rd.nextInt(deadEnds.size());
@@ -347,6 +346,7 @@ public class MapGenerator {
 			}
 		}
 		
+		// look for an entrance and exit
 		ArrayList<Tile> potentialEntrances = new ArrayList<Tile>();
 		int k = 0;
 		while(potentialEntrances.isEmpty()) {
@@ -364,6 +364,16 @@ public class MapGenerator {
 		}
 		int entranceIndex = rd.nextInt(potentialEntrances.size());
 		potentialEntrances.get(entranceIndex).setType(TileType.Entrance);
+		Tile entranceTile = potentialEntrances.get(entranceIndex);
+		int exitIndex = 0;
+		Tile exitTile = null;
+		do {
+			exitIndex = rd.nextInt(potentialEntrances.size());
+			exitTile = potentialEntrances.get(exitIndex);
+			System.out.println("asd");
+		} while((entranceTile.x() == exitTile.x()) || 
+				(entranceTile.y() == exitTile.y()));
+		potentialEntrances.get(exitIndex).setType(TileType.Exit);
 
 		return map;
 	}

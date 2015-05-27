@@ -35,6 +35,7 @@ public class Player extends Creature {
 	private Difficulty difficulty;
 	private int level;
 	private int freePoints;
+	private boolean ghostMode;
 	
 	/**
 	 * @param name
@@ -43,8 +44,23 @@ public class Player extends Creature {
 		super(name);
 		level = 0;
 		freePoints = 1;
+		setGhostMode(false);
 	}
 	
+	/**
+	 * @return the ghostMode
+	 */
+	public boolean isGhostMode() {
+		return ghostMode;
+	}
+
+	/**
+	 * @param ghostMode the ghostMode to set
+	 */
+	public void setGhostMode(boolean ghostMode) {
+		this.ghostMode = ghostMode;
+	}
+
 	/**
 	 * @return the kills
 	 */
@@ -86,6 +102,7 @@ public class Player extends Creature {
 	public void setMap(ObservableMap map) {
 		this.map = map;
 		map.setDifficulty(difficulty);
+		map.setGhostMode(ghostMode);
 	}
 
 	/**

@@ -30,6 +30,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import kdr.game.theseus.model.Constants;
 import kdr.game.theseus.model.Difficulty;
+import kdr.game.theseus.model.ExitReachedException;
 import kdr.game.theseus.model.LevelMap;
 import kdr.game.theseus.model.Tile;
 import kdr.game.theseus.model.TileType;
@@ -46,12 +47,14 @@ public class ObservableMap {
 	private Tile centerTile;
 	private Difficulty difficulty;
 	private final int center = (int)(Constants.ObservableMapSize/2);
+	private boolean ghostMode;
 
 	public ObservableMap() {
 		super();
 		tiles = new Tile[Constants.ObservableMapSize][Constants.ObservableMapSize];
 		buttons = new Button[Constants.ObservableMapSize][Constants.ObservableMapSize];
 		difficulty = Difficulty.Normal;
+		ghostMode = false;
 	}
 
 	private void updateMap() {
@@ -98,6 +101,10 @@ public class ObservableMap {
 
 				case PotentialDoor:
 					buttons[i][j].getStyleClass().add("tile-door");
+					break;
+					
+				case Exit:
+					buttons[i][j].getStyleClass().add("tile-exit");
 					break;
 
 				default:
@@ -405,8 +412,9 @@ public class ObservableMap {
 
 	/**
 	 * @param currentLevel the currentLevel to set
+	 * @throws ExitReachedException 
 	 */
-	public void setCurrentLevel(LevelMap currentLevel) {
+	public void setCurrentLevel(LevelMap currentLevel) throws ExitReachedException {
 		this.currentLevel = currentLevel;
 		setCenterTile(currentLevel.getEntrance());
 		updateMap();
@@ -442,9 +450,13 @@ public class ObservableMap {
 
 	/**
 	 * @param centerTile the centerTile to set
+	 * @throws ExitReachedException 
 	 */
-	public void setCenterTile(Tile centerTile) {
+	public void setCenterTile(Tile centerTile) throws ExitReachedException {
 		this.centerTile = centerTile;
+		if(this.centerTile.getType() == TileType.Exit) {
+			throw new ExitReachedException();
+		}
 	}
 
 	/**
@@ -461,7 +473,7 @@ public class ObservableMap {
 		this.difficulty = difficulty;
 	}
 
-	public void move(KeyCode code) {
+	public void move(KeyCode code) throws ExitReachedException {
 		switch (code) {
 		case LEFT:
 			setCenterTile(centerTile.getNeighbors().getLeft());
@@ -503,6 +515,21 @@ public class ObservableMap {
 	}
 
 	private boolean isFreeTile(Tile tile) {
-		return (tile.getType() == TileType.Floor) || (tile.getType() == TileType.Entrance);
+		if(ghostMode && tile.getType() != TileType.Margin) {
+			return true;
+		}
+		switch (tile.getType()) {
+		case Floor:
+		case Entrance:
+		case Exit:
+			return true;
+
+		default:
+			return false;
+		}
+	}
+	
+	public void setGhostMode(boolean ghostMode) {
+		this.ghostMode = ghostMode;
 	}
 }

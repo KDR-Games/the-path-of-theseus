@@ -28,7 +28,6 @@ import java.util.Optional;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -37,7 +36,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
@@ -46,6 +44,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import kdr.game.theseus.ObservableMap;
 import kdr.game.theseus.model.Constants;
+import kdr.game.theseus.model.ExitReachedException;
 import kdr.game.theseus.model.Player;
 import kdr.game.theseus.model.WorldMap;
 
@@ -160,7 +159,11 @@ public class GameViewController extends ViewController {
 				buttons[i][j] = b;
 				buttons[i][j].setOnKeyPressed((KeyEvent ke) -> {
 					if(map.canMove(ke.getCode())) {
-						map.move(ke.getCode());
+						try {
+							map.move(ke.getCode());
+						} catch (ExitReachedException e) {
+							gameOver();
+						}
 					}
 				});
 				pane.getChildren().add(b);
@@ -173,33 +176,36 @@ public class GameViewController extends ViewController {
 		player = mainApp.getPlayer();
 		world = new WorldMap();
 		player.setMap(map);
-		map.setCurrentLevel(world.getFirstLevel());
+		try {
+			map.setCurrentLevel(world.getFirstLevel());
+		} catch (ExitReachedException ex) {
+			ex.printStackTrace();
+		}
 		playerInformationContainer.setText(player.getName());
 		equipmentContainer.setText(player.getName());
 		GridPane bag1 = (GridPane) bagTabPane.getTabs().get(0).getContent();
 		GridPane bag2 = (GridPane) bagTabPane.getTabs().get(1).getContent();
 		GridPane bag3 = (GridPane) bagTabPane.getTabs().get(2).getContent();
 		inventoryBag = new ArrayList<Button>();
-		System.out.println("number of children " + bag1.getChildren().size());
 		for(Node node : bag1.getChildren()) {
 			try {
 				inventoryBag.add((Button) node);
-			} catch(ClassCastException e) {
-				// where does this child come from?
+			} catch(ClassCastException ex) {
+				// ex.printStackTrace();
 			}
 		}
 		for(Node node : bag2.getChildren()) {
 			try {
 				inventoryBag.add((Button) node);
-			} catch(ClassCastException e) {
-				// where does this child come from?
+			} catch(ClassCastException ex) {
+				// ex.printStackTrace();
 			}
 		}
 		for(Node node : bag3.getChildren()) {
 			try {
 				inventoryBag.add((Button) node);
-			} catch(ClassCastException e) {
-				// where does this child come from?
+			} catch(ClassCastException ex) {
+				// ex.printStackTrace();
 			}
 		}
 	}
@@ -218,5 +224,55 @@ public class GameViewController extends ViewController {
 		if(result.get() == buttonYes) {
 			Platform.exit();
 		}		
+	}
+	
+	@FXML
+	private void maxHealthUpgraded() {
+		
+	}
+	
+	@FXML
+	private void strengthUpgraded() {
+		
+	}
+	
+	@FXML
+	private void agilityUpgraded() {
+		
+	}
+	
+	@FXML
+	private void enduranceUpgraded() {
+		
+	}
+	
+	@FXML
+	private void slashingUpgraded() {
+		
+	}
+	
+	@FXML
+	private void piercingUpgraded() {
+		
+	}
+	
+	@FXML
+	private void bluntUpgraded() {
+		
+	}
+	
+	private void gameOver() {
+		Alert exitPrompt = new Alert(AlertType.CONFIRMATION);
+		exitPrompt.setTitle("Congratulations!");
+		exitPrompt.setHeaderText("You reached the exit!");
+		exitPrompt.setContentText("Are you sure, you want to exit?");
+		ButtonType buttonYes = new ButtonType("Yes");
+		ButtonType buttonNo = new ButtonType("No", ButtonData.CANCEL_CLOSE);
+		exitPrompt.getButtonTypes().setAll(buttonYes, buttonNo);
+		
+		Optional<ButtonType> result = exitPrompt.showAndWait();
+		if(result.get() == buttonYes) {
+			Platform.exit();
+		}
 	}
 }

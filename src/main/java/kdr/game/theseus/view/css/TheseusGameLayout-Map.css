@@ -63,6 +63,11 @@
 }
 
 /*===========================================================*/
+.tile-exit {
+	-fx-background-image: url("../image/tile-exit.png");
+}
+
+/*===========================================================*/
 .tile-margin {
 	-fx-background-image: url("../image/tile-margin.png");
 }
