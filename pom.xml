@@ -64,9 +64,6 @@
 			<resource>
 				<targetPath>image</targetPath>
 				<directory>${basedir}/src/main/resources/image</directory>
-				<includes>
-					<include>*</include>
-				</includes>
 			</resource>
 		</resources>
 		<plugins>

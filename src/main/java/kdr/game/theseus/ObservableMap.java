@@ -455,6 +455,7 @@ public class ObservableMap {
 	public void setCenterTile(Tile centerTile) throws ExitReachedException {
 		this.centerTile = centerTile;
 		if(this.centerTile.getType() == TileType.Exit) {
+			updateMap();
 			throw new ExitReachedException();
 		}
 	}
