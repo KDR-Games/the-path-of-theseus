@@ -20,48 +20,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package kdr.game.theseus;
+package kdr.game.theseus.model;
 
 /**
- * @author koldavid
- *
+ * Shield 
  */
-public class Passage {
-	private Tile tile;
-	private boolean horizontal;
+public class Shield extends Weapon {
+	private ShieldType shieldType;
+	private int defense;
 	
-	public Passage(Tile tile, boolean horizontal) {
-		this.tile = tile;
-		this.horizontal = horizontal;
-	}
-
-	/**
-	 * @return the regionA
-	 */
-	public Region getRegionA() {
-		if(horizontal) {
-			return tile.getNeighbors().getLeft().getContainerRegion();
-		} else {
-			return tile.getNeighbors().getTop().getContainerRegion();
-		}
-	}
-
-	/**
-	 * @return the regionB
-	 */
-	public Region getRegionB() {
-		if(horizontal) {
-			return tile.getNeighbors().getRight().getContainerRegion();
-		} else {
-			return tile.getNeighbors().getBottom().getContainerRegion();
-		}
-	}
 	
 	/**
-	 * @return the tile
+	 * @param name
+	 * @param image
+	 * @param speed
+	 * @param shieldType
+	 * @param defense
 	 */
-	public Tile getTile() {
-		return tile;
+	public Shield(String name, String image, double speed,
+			ShieldType shieldType, int defense) {
+		super(name, image, 0, speed);
+		this.shieldType = shieldType;
+		this.defense = defense;
 	}
+	/**
+	 * @return the shieldType
+	 */
+	public ShieldType getShieldType() {
+		return shieldType;
+	}
+	/**
+	 * @return the defense
+	 */
+	public int getDefense() {
+		return defense;
+	}
+	
+	
 }

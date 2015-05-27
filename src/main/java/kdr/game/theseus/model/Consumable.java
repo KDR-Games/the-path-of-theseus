@@ -22,7 +22,32 @@
  */
 
 package kdr.game.theseus.model;
-
+/**
+ * 
+ * Consumable
+ */
 public class Consumable extends Item {
+	/**
+	 * The type of the class derived from this class. Used for type-casting.
+	 * This variable needs to be set by the constructor of the derived class.
+	 */
+	protected ConsumableType consumableType;
+	
+	/**
+	 * @param name 
+	 * @param image
+	 */
+	protected Consumable(String name, String image) {
+		super(name, image);
+		this.itemType = ItemType.Consumable;
+	}
 
+	/**
+	 * @return the consumableType
+	 */
+	public ConsumableType getConsumableType() {
+		return consumableType;
+	}
+	
+	
 }

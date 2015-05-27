@@ -20,13 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package kdr.game.theseus.model;
 
 /**
- * @author koldavid
- *
+ * Monster 
  */
-public enum Stat {
-	E, D, C, B, A, S
+public class Monster extends Creature {
+
+	/**
+	 * @param name
+	 */
+	public Monster(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
 }

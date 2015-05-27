@@ -24,5 +24,32 @@
 package kdr.game.theseus.model;
 
 public class Armor extends Wearable {
-	private ArmorType type;
+	protected ArmorType armorType;
+	protected int defense;
+	
+	/**
+	 * @param name
+	 * @param image
+	 * @param speed
+	 * @param defense
+	 */
+	public Armor(String name, String image, double speed, int defense) {
+		super(name, image, speed);
+		this.defense = defense;
+		this.wearableType = WearableType.Armor;
+	}
+
+	/**
+	 * @return the type
+	 */
+	public ArmorType getArmorType() {
+		return armorType;
+	}
+
+	/**
+	 * @return the defense
+	 */
+	public int getDefense() {
+		return defense;
+	}
 }

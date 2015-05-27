@@ -21,17 +21,39 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.view;
+package kdr.game.theseus.model;
 
-
-public class ViewController {
-	protected Main mainApp;
-
-	/**
-	 * @param mainApp the mainApp to set
-	 */
-	public void setMainApp(Main mainApp) {
-		this.mainApp = mainApp;
-	}
+/**
+ * Stat values in a predefined order:<br>
+ * {@code E < D < C < B < A < S}.<br>
+ * This enum is mainly used by {@link kdr.game.theseus.model.Stats}.
+ * 
+ * @see kdr.game.theseus.model.Stats
+ */
+public enum StatValue {
+	E, D, C, B, A, S;
 	
+	/**
+	 * Static helper function to determine the next value of a stat,
+	 * depending on this enum. It doesn't wrap around, so if <br>{@code stat == StatValue.S}<br> then 
+	 * {@link StatValue#S} is returned.
+	 * @param stat - the stat value
+	 * @return the next stat value
+	 */
+	public static StatValue getNextStatValue(StatValue stat) {
+		switch (stat) {
+		case E:
+			return StatValue.D;
+		case D:
+			return StatValue.C;
+		case C:
+			return StatValue.B;
+		case B:
+			return StatValue.A;
+		case A:
+		case S:
+		default:
+			return StatValue.S;
+		}
+	}
 }

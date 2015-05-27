@@ -2,26 +2,18 @@
 
 <!ELEMENT Weapons (one-handed, two-handed, shields)>
 
-<!ELEMENT one-handed (slashing, piercing, blunt)>
-<!ELEMENT two-handed (slashing, piercing, blunt)>
-<!ELEMENT shields (small-shield, medium-shield, tower-shield)>
+<!ELEMENT one-handed (weapon)+>
+<!ELEMENT two-handed (weapon)+>
+<!ELEMENT shields (shield)+>
 
-<!ELEMENT slashing (weapon)+>
-<!ELEMENT piercing (weapon)+>
-<!ELEMENT blunt (weapon)+>
-
-<!ELEMENT small-shield (shield)+>
-<!ELEMENT medium-shield (shield)+>
-<!ELEMENT tower-shield (shield)+>
-
-<!ELEMENT weapon (name, image, damage, speed)>
-<!ELEMENT shield (name, image, defense, speed)>
+<!ELEMENT weapon (name, image, damage-type, damage, speed)>
+<!ELEMENT shield (name, image, defense-type, defense, speed)>
 
 <!ELEMENT name (#PCDATA)>
-<!ELEMENT image (full, tile)>
+<!ELEMENT image (#PCDATA)>
+<!ELEMENT damage-type (#PCDATA)>
+<!ELEMENT defense-type (#PCDATA)>
 <!ELEMENT damage (#PCDATA)>
 <!ELEMENT defense (#PCDATA)>
 <!ELEMENT speed (#PCDATA)>
 
-<!ELEMENT full (#PCDATA)>
-<!ELEMENT tile (#PCDATA)>

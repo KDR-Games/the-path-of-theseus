@@ -21,9 +21,9 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus;
+package kdr.game.theseus.model;
 
-import kdr.game.theseus.model.Creature;
+import kdr.game.theseus.ObservableMap;
 
 
 public class Player extends Creature {
@@ -33,14 +33,16 @@ public class Player extends Creature {
 	private int kills;
 	private int distanceTravelled;
 	private Difficulty difficulty;
-	
+	private int level;
+	private int freePoints;
 	
 	/**
 	 * @param name
 	 */
 	public Player(String name) {
 		super(name);
-		// TODO Auto-generated constructor stub
+		level = 0;
+		freePoints = 1;
 	}
 	
 	/**
@@ -98,5 +100,18 @@ public class Player extends Creature {
 	 */
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
+	}
+
+	/**
+	 * @return the level
+	 */
+	public int getLevel() {
+		return level;
+	}
+	
+	public void upgradeStrength() {
+		if(freePoints > 0) {
+			stats.upgradeStrength();
+		}
 	}
 }

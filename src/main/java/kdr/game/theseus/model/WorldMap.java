@@ -21,17 +21,35 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.view;
+package kdr.game.theseus.model;
 
 
-public class ViewController {
-	protected Main mainApp;
+public class WorldMap {
+	private LevelMap firstLevel;
+	private LevelMap bossLevel;
+	
+	
+	public WorldMap() {
+		super();
+		generateNew();
+	}
 
 	/**
-	 * @param mainApp the mainApp to set
+	 * @return the first
 	 */
-	public void setMainApp(Main mainApp) {
-		this.mainApp = mainApp;
+	public LevelMap getFirstLevel() {
+		return firstLevel;
 	}
 	
+	/**
+	 * @return the second
+	 */
+	public LevelMap getBossLevel() {
+		return bossLevel;
+	}
+	
+	private void generateNew() {
+		firstLevel = new LevelMap(Constants.MapSize);
+		bossLevel = new LevelMap(Constants.MapSizeBoss);
+	}
 }

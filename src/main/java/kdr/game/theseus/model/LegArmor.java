@@ -20,13 +20,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package kdr.game.theseus;
+package kdr.game.theseus.model;
 
 /**
- * @author koldavid
- *
+ * LegArmor 
  */
-public enum TileType {
-	Floor, Wall, Trap, Door, Margin, Entrance, PotentialDoor
+public class LegArmor extends Armor {
+
+	/**
+	 * @param name
+	 * @param image
+	 * @param speed
+	 * @param defense
+	 */
+	public LegArmor(String name, String image, double speed, int defense) {
+		super(name, image, speed, defense);
+		this.armorType = ArmorType.Leg;
+	}
+
 }

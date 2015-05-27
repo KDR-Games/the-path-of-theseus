@@ -24,5 +24,5 @@
 package kdr.game.theseus.model;
 
 public enum ArmorType {
-	Helmet, Chest, Leggings, Gloves
+	Head, Chest, Leg, Hand
 }

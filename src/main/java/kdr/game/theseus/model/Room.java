@@ -21,7 +21,8 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus;
+package kdr.game.theseus.model;
+
 
 /**
  * @author koldavid

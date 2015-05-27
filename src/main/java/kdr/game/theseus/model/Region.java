@@ -21,34 +21,49 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus;
+package kdr.game.theseus.model;
 
-public class WorldMap {
-	private LevelMap firstLevel;
-	private LevelMap bossLevel;
+import java.rmi.NoSuchObjectException;
+import java.util.ArrayList;
+
+/**
+ * @author koldavid
+ *
+ */
+public class Region {
+	private ArrayList<Tile> tiles;
 	
-	
-	public WorldMap() {
+	/**
+	 * 
+	 */
+	public Region() {
 		super();
-		generateNew();
+		tiles = new ArrayList<Tile>();
 	}
 
 	/**
-	 * @return the first
+	 * @return the tiles
 	 */
-	public LevelMap getFirstLevel() {
-		return firstLevel;
+	public ArrayList<Tile> getTiles() {
+		return tiles;
 	}
 	
-	/**
-	 * @return the second
-	 */
-	public LevelMap getBossLevel() {
-		return bossLevel;
+	public void addTile(Tile tile) {
+		tiles.add(tile);
 	}
 	
-	private void generateNew() {
-		firstLevel = new LevelMap(Constants.MapSize);
-		bossLevel = new LevelMap(Constants.MapSizeBoss);
+	public void removeTileAt(int x, int y) throws NoSuchObjectException {
+		Tile tileToRemove = null;
+		for(Tile tile : tiles) {
+			if((tile.x() == x) && (tile.y() == y)) {
+				tileToRemove = tile;
+			}
+		}
+		
+		if(tileToRemove != null) {
+			tiles.remove(tileToRemove);
+		} else {
+			throw new NoSuchObjectException("There is no tile with index x(" + x + "), y(" + y + ")");
+		}
 	}
 }

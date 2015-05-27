@@ -20,50 +20,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package kdr.game.theseus;
-
-import java.rmi.NoSuchObjectException;
-import java.util.ArrayList;
+package kdr.game.theseus.model;
 
 /**
- * @author koldavid
- *
+ * OneHanded 
  */
-public class Region {
-	private ArrayList<Tile> tiles;
+public class OneHanded extends Weapon {
+	private DamageType damageType;
+	
+	public OneHanded(String name, String image, int damage, int speed, DamageType damageType) {
+		super(name, image, damage, speed);
+		this.weaponType = WeaponType.OneHanded;
+		this.damageType = damageType;
+	}
 	
 	/**
-	 * 
+	 * @return the damageType
 	 */
-	public Region() {
-		super();
-		tiles = new ArrayList<Tile>();
-	}
-
-	/**
-	 * @return the tiles
-	 */
-	public ArrayList<Tile> getTiles() {
-		return tiles;
-	}
-	
-	public void addTile(Tile tile) {
-		tiles.add(tile);
-	}
-	
-	public void removeTileAt(int x, int y) throws NoSuchObjectException {
-		Tile tileToRemove = null;
-		for(Tile tile : tiles) {
-			if((tile.x() == x) && (tile.y() == y)) {
-				tileToRemove = tile;
-			}
-		}
-		
-		if(tileToRemove != null) {
-			tiles.remove(tileToRemove);
-		} else {
-			throw new NoSuchObjectException("There is no tile with index x(" + x + "), y(" + y + ")");
-		}
+	public DamageType getDamageType() {
+		return damageType;
 	}
 }

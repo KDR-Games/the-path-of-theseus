@@ -21,17 +21,12 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.view;
+package kdr.game.theseus.model;
 
-
-public class ViewController {
-	protected Main mainApp;
-
-	/**
-	 * @param mainApp the mainApp to set
-	 */
-	public void setMainApp(Main mainApp) {
-		this.mainApp = mainApp;
-	}
-	
+/**
+ * @author koldavid
+ *
+ */
+public enum Visibility {
+	Visible, Dim, NotVisible
 }

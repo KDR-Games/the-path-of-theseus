@@ -21,12 +21,9 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus;
+package kdr.game.theseus.model;
 
 import java.util.ArrayList;
-
-import kdr.game.theseus.model.Creature;
-import kdr.game.theseus.model.Item;
 
 /**
  * @author koldavid

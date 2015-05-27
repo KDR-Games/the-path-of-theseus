@@ -20,18 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package kdr.game.theseus.model;
 
-package kdr.game.theseus.view;
-
-
-public class ViewController {
-	protected Main mainApp;
+/**
+ * CreatureDeadException 
+ */
+public class CreatureDeadException extends Exception {
 
 	/**
-	 * @param mainApp the mainApp to set
+	 * 
 	 */
-	public void setMainApp(Main mainApp) {
-		this.mainApp = mainApp;
+	private static final long serialVersionUID = 977004021723345034L;
+	
+	private Creature creature;
+	
+	/**
+	 * 
+	 */
+	public CreatureDeadException(Creature creature) {
+		this.creature = creature;
 	}
 	
+	public Creature getCreature() {
+		return creature;
+	}
+
 }

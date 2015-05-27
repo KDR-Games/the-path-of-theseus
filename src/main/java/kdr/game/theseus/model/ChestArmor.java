@@ -20,18 +20,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package kdr.game.theseus.model;
 
-package kdr.game.theseus.view;
-
-
-public class ViewController {
-	protected Main mainApp;
+/**
+ * ChestArmor 
+ */
+public class ChestArmor extends Armor {
 
 	/**
-	 * @param mainApp the mainApp to set
+	 * @param name
+	 * @param image
+	 * @param speed
+	 * @param defense
 	 */
-	public void setMainApp(Main mainApp) {
-		this.mainApp = mainApp;
+	public ChestArmor(String name, String image, double speed, int defense) {
+		super(name, image, speed, defense);
+		this.armorType = ArmorType.Chest;
 	}
-	
+
 }

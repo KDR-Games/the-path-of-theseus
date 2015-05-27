@@ -28,6 +28,12 @@ import java.util.ArrayList;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
+import kdr.game.theseus.model.Constants;
+import kdr.game.theseus.model.Difficulty;
+import kdr.game.theseus.model.LevelMap;
+import kdr.game.theseus.model.Tile;
+import kdr.game.theseus.model.TileType;
+import kdr.game.theseus.model.Visibility;
 
 /**
  * @author koldavid

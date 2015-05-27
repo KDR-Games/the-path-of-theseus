@@ -20,18 +20,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package kdr.game.theseus.model;
 
-package kdr.game.theseus.view;
+/**
+ * TwoHanded 
+ */
+public class TwoHanded extends Weapon {
 
-
-public class ViewController {
-	protected Main mainApp;
-
-	/**
-	 * @param mainApp the mainApp to set
-	 */
-	public void setMainApp(Main mainApp) {
-		this.mainApp = mainApp;
-	}
+	private DamageType damageType;
 	
+	/**
+	 * @param name
+	 * @param image
+	 * @param damage
+	 * @param speed
+	 * @param damageType
+	 */
+	public TwoHanded(String name, String image, int damage, double speed, DamageType damageType) {
+		super(name, image, damage, speed);
+		this.damageType = damageType;
+		this.weaponType = WeaponType.TwoHanded;
+	}
+	/**
+	 * @return the damageType
+	 */
+	public DamageType getDamageType() {
+		return damageType;
+	}
+
 }

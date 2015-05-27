@@ -20,55 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package kdr.game.theseus;
+package kdr.game.theseus.model;
 
 /**
- * @author koldavid
- *
+ * Marks the different types a {@link kdr.game.theseus.model.Consumable} can have.
+ * This class needs to be inherited by classes that describe these different types. 
  */
-public class Neighbors {
-	private Tile top;
-	private Tile bottom;
-	private Tile left;
-	private Tile right;
+public enum ConsumableType {
+	/**
+	 * Drink it. 
+	 */
+	Potion,
 	
 	/**
-	 * @param top
-	 * @param bottom
-	 * @param left
-	 * @param right
+	 * Eat it. The best way to restore health and stamina.
 	 */
-	public Neighbors(Tile top, Tile bottom, Tile left, Tile right) {
-		super();
-		this.top = top;
-		this.bottom = bottom;
-		this.left = left;
-		this.right = right;
-	}
+	Food,
 	
 	/**
-	 * @return the top
+	 * Use it. Intended mainly for magic.
 	 */
-	public Tile getTop() {
-		return top;
-	}
-	/**
-	 * @return the bottom
-	 */
-	public Tile getBottom() {
-		return bottom;
-	}
-	/**
-	 * @return the left
-	 */
-	public Tile getLeft() {
-		return left;
-	}
-	/**
-	 * @return the right
-	 */
-	public Tile getRight() {
-		return right;
-	}
+	Scroll
 }

@@ -24,5 +24,35 @@
 package kdr.game.theseus.model;
 
 public class Item {
-	private ItemType type;
+	
+	/**
+	 * It will be set by this class's children.
+	 */
+	protected ItemType itemType;
+	protected String name;
+	protected String image;
+	
+	protected Item(String name, String image) {
+		super();
+		this.name = name;
+		this.image = image;
+	}
+	/**
+	 * @return the itemType
+	 */
+	public ItemType getItemType() {
+		return itemType;
+	}
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @return the image
+	 */
+	public String getImage() {
+		return image;
+	}
 }

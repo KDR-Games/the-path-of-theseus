@@ -26,6 +26,13 @@ package kdr.game.theseus;
 import java.util.ArrayList;
 import java.util.Random;
 
+import kdr.game.theseus.model.Neighbors;
+import kdr.game.theseus.model.Passage;
+import kdr.game.theseus.model.Region;
+import kdr.game.theseus.model.Room;
+import kdr.game.theseus.model.Tile;
+import kdr.game.theseus.model.TileType;
+
 public class MapGenerator {
 
 	static public int roomAttempts = 200;

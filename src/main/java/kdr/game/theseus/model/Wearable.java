@@ -24,5 +24,27 @@
 package kdr.game.theseus.model;
 
 public class Wearable extends Item {
-	private WearableType type;
+	protected WearableType wearableType;
+	protected double speed;
+	/**
+	 * @param name
+	 */
+	protected Wearable(String name, String image, double speed) {
+		super(name, image);
+		this.itemType = ItemType.Wearable;
+		this.speed = speed;
+	}
+	/**
+	 * @return the wearableType
+	 */
+	public WearableType getWearableType() {
+		return wearableType;
+	}
+	/**
+	 * @return the speed
+	 */
+	public double getSpeed() {
+		return speed;
+	}
+	
 }

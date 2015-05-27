@@ -35,7 +35,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<main.class>kdr.game.theseus.Main</main.class>
+		<main.class>kdr.game.theseus.view.Main</main.class>
 	</properties>
 	<dependencies>
 		<dependency>

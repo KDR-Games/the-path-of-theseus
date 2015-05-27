@@ -20,18 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package kdr.game.theseus.model;
 
-package kdr.game.theseus.view;
-
-
-public class ViewController {
-	protected Main mainApp;
-
-	/**
-	 * @param mainApp the mainApp to set
-	 */
-	public void setMainApp(Main mainApp) {
-		this.mainApp = mainApp;
-	}
-	
+/**
+ * ShieldType 
+ */
+public enum ShieldType {
+	Small, Medium, Tower
 }

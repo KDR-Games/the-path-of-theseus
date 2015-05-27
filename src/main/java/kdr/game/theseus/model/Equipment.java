@@ -24,5 +24,133 @@
 package kdr.game.theseus.model;
 
 public class Equipment {
+	private boolean isTwoHanded;
+	private boolean hasShield;
+	private Weapon mainHandWeapon;
+	private Weapon offHandWeapon;
+	private HeadArmor headArmor;
+	private ChestArmor chestArmor;
+	private LegArmor legArmor;
+	private HandArmor handArmor;
+	/**
+	 * 
+	 */
+	public Equipment() {
+		super();
+		isTwoHanded = false;
+		hasShield = false;
+		mainHandWeapon = null;
+		offHandWeapon = null;
+		headArmor = null;
+		chestArmor = null;
+		legArmor = null;
+		handArmor = null;
+	}
+	/**
+	 * @return the hasShield
+	 */
+	public boolean hasShield() {
+		return hasShield;
+	}
+	/**
+	 * @return the isDoubleHanded
+	 */
+	public boolean isTwoHanded() {
+		return isTwoHanded;
+	}
+	/**
+	 * @return the mainHandWeapon
+	 */
+	public Weapon getMainHandWeapon() {
+		return mainHandWeapon;
+	}
+	/**
+	 * @param mainHandWeapon the mainHandWeapon to set
+	 */
+	public Weapon setMainHandWeapon(Weapon mainHandWeapon) {
+		Weapon previous = this.mainHandWeapon;
+		this.mainHandWeapon = mainHandWeapon;
+		if(mainHandWeapon != null) {
+			isTwoHanded = mainHandWeapon.getWeaponType() == WeaponType.TwoHanded;
+		} else {
+			isTwoHanded = false;
+		}
+		return previous;
+	}
+	/**
+	 * @return the offHandWeapon
+	 */
+	public Weapon getOffHandWeapon() {
+		return offHandWeapon;
+	}
+	/**
+	 * @param offHandWeapon the offHandWeapon to set
+	 */
+	public Weapon setOffHandWeapon(Weapon offHandWeapon) {
+		Weapon previous = this.offHandWeapon;
+		this.offHandWeapon = offHandWeapon;
+		if(offHandWeapon != null) {
+			hasShield = offHandWeapon.getWeaponType() == WeaponType.Shield;
+		} else {
+			hasShield = false;
+		}
+		return previous;
+	}
+	/**
+	 * @return the headArmor
+	 */
+	public HeadArmor getHeadArmor() {
+		return headArmor;
+	}
+	/**
+	 * @param headArmor the headArmor to set
+	 */
+	public HeadArmor setHeadArmor(HeadArmor headArmor) {
+		HeadArmor previous = this.headArmor;
+		this.headArmor = headArmor;
+		return previous;
+	}
+	/**
+	 * @return the chestArmor
+	 */
+	public ChestArmor getChestArmor() {
+		return chestArmor;
+	}
+	/**
+	 * @param chestArmor the chestArmor to set
+	 */
+	public ChestArmor setChestArmor(ChestArmor chestArmor) {
+		ChestArmor previous = this.chestArmor;
+		this.chestArmor = chestArmor;
+		return previous;
+	}
+	/**
+	 * @return the legArmor
+	 */
+	public LegArmor getLegArmor() {
+		return legArmor;
+	}
+	/**
+	 * @param legArmor the legArmor to set
+	 */
+	public LegArmor setLegArmor(LegArmor legArmor) {
+		LegArmor previous = this.legArmor;
+		this.legArmor = legArmor;
+		return previous;
+	}
+	/**
+	 * @return the handArmor
+	 */
+	public HandArmor getHandArmor() {
+		return handArmor;
+	}
+	/**
+	 * @param handArmor the handArmor to set
+	 */
+	public HandArmor setHandArmor(HandArmor handArmor) {
+		HandArmor previous = this.handArmor;
+		this.handArmor = handArmor;
+		return previous;
+	}
 
 }

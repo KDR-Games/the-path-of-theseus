@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus;
+package kdr.game.theseus.view;
 
 import java.io.IOException;
 
@@ -30,8 +30,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import kdr.game.theseus.view.GameViewController;
-import kdr.game.theseus.view.LoginViewController;
+import kdr.game.theseus.model.Player;
 
 public class Main extends Application {
 

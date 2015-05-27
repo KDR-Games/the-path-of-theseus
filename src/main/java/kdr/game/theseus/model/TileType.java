@@ -21,12 +21,45 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus;
+package kdr.game.theseus.model;
 
 /**
- * @author koldavid
- *
+ * Different types that a {@link kdr.game.theseus.model.Tile} can have. Each tile can have 
+ * different role than wall or floor, so in order to let the map have an entrance
+ * or doors, these types are used.
  */
-public enum Difficulty {
-	Easy, Normal, Hard
+public enum TileType {
+	
+	/**
+	 * You can freely walk on this, monsters can spawn here.
+	 */
+	Floor, 
+	/**
+	 * The player can't pass through a wall, monsters can't spawn here. 
+	 */
+	Wall, 
+	/**
+	 * Not implemented yet.
+	 */
+	Trap, 
+	/**
+	 * Not implemented yet.
+	 */
+	Door, 
+	/**
+	 * This is the margin of the map, nothing can happen here.
+	 */
+	Margin, 
+	/**
+	 * The player spawns here.
+	 */
+	Entrance, 
+	/**
+	 * This type is only used while generating the map.
+	 */
+	PotentialDoor, 
+	/**
+	 * End of the map.
+	 */
+	Exit
 }

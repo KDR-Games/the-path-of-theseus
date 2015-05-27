@@ -21,7 +21,9 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus;
+package kdr.game.theseus.model;
+
+import kdr.game.theseus.MapGenerator;
 
 /**
  * @author koldavid

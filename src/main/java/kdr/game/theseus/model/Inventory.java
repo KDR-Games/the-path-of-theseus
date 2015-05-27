@@ -23,6 +23,40 @@
 
 package kdr.game.theseus.model;
 
+/**
+ * This class is used to store the different {@link kdr.game.theseus.Item}s that the player can have.
+ */
 public class Inventory {
+	private Item[] items;
+	private int inventorySize;
+	
+	/**
+	 * @param inventorySize
+	 */
+	public Inventory(int inventorySize) {
+		super();
+		this.inventorySize = inventorySize;
+	}
 
+	/**
+	 * @return the items
+	 */
+	public Item[] getItems() {
+		return items;
+	}
+
+	/**
+	 * @return the inventorySize
+	 */
+	public int getInventorySize() {
+		return inventorySize;
+	}
+	
+	public Item getItemAt(int index) {
+		return items[index];
+	}
+	
+	public void setItemAt(Item item, int index) {
+		items[index] = item;
+	}
 }

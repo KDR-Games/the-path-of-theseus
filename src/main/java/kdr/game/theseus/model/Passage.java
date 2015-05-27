@@ -21,17 +21,48 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.view;
+package kdr.game.theseus.model;
 
 
-public class ViewController {
-	protected Main mainApp;
+/**
+ * @author koldavid
+ *
+ */
+public class Passage {
+	private Tile tile;
+	private boolean horizontal;
+	
+	public Passage(Tile tile, boolean horizontal) {
+		this.tile = tile;
+		this.horizontal = horizontal;
+	}
 
 	/**
-	 * @param mainApp the mainApp to set
+	 * @return the regionA
 	 */
-	public void setMainApp(Main mainApp) {
-		this.mainApp = mainApp;
+	public Region getRegionA() {
+		if(horizontal) {
+			return tile.getNeighbors().getLeft().getContainerRegion();
+		} else {
+			return tile.getNeighbors().getTop().getContainerRegion();
+		}
+	}
+
+	/**
+	 * @return the regionB
+	 */
+	public Region getRegionB() {
+		if(horizontal) {
+			return tile.getNeighbors().getRight().getContainerRegion();
+		} else {
+			return tile.getNeighbors().getBottom().getContainerRegion();
+		}
 	}
 	
+	/**
+	 * @return the tile
+	 */
+	public Tile getTile() {
+		return tile;
+	}
 }

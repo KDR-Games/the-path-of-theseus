@@ -23,6 +23,53 @@
 
 package kdr.game.theseus.model;
 
-public class Model {
 
+/**
+ * @author koldavid
+ *
+ */
+public class Neighbors {
+	private Tile top;
+	private Tile bottom;
+	private Tile left;
+	private Tile right;
+	
+	/**
+	 * @param top
+	 * @param bottom
+	 * @param left
+	 * @param right
+	 */
+	public Neighbors(Tile top, Tile bottom, Tile left, Tile right) {
+		super();
+		this.top = top;
+		this.bottom = bottom;
+		this.left = left;
+		this.right = right;
+	}
+	
+	/**
+	 * @return the top
+	 */
+	public Tile getTop() {
+		return top;
+	}
+	/**
+	 * @return the bottom
+	 */
+	public Tile getBottom() {
+		return bottom;
+	}
+	/**
+	 * @return the left
+	 */
+	public Tile getLeft() {
+		return left;
+	}
+	/**
+	 * @return the right
+	 */
+	public Tile getRight() {
+		return right;
+	}
 }

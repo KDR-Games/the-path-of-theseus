@@ -44,10 +44,10 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
-import kdr.game.theseus.Constants;
 import kdr.game.theseus.ObservableMap;
-import kdr.game.theseus.Player;
-import kdr.game.theseus.WorldMap;
+import kdr.game.theseus.model.Constants;
+import kdr.game.theseus.model.Player;
+import kdr.game.theseus.model.WorldMap;
 
 public class GameViewController extends ViewController {
 
@@ -185,21 +185,21 @@ public class GameViewController extends ViewController {
 			try {
 				inventoryBag.add((Button) node);
 			} catch(ClassCastException e) {
-				// where those this child come from?
+				// where does this child come from?
 			}
 		}
 		for(Node node : bag2.getChildren()) {
 			try {
 				inventoryBag.add((Button) node);
 			} catch(ClassCastException e) {
-				// where those this child come from?
+				// where does this child come from?
 			}
 		}
 		for(Node node : bag3.getChildren()) {
 			try {
 				inventoryBag.add((Button) node);
 			} catch(ClassCastException e) {
-				// where those this child come from?
+				// where does this child come from?
 			}
 		}
 	}
