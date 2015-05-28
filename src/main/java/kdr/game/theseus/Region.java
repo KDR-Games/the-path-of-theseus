@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.model;
+package kdr.game.theseus;
 
 import java.rmi.NoSuchObjectException;
 import java.util.ArrayList;

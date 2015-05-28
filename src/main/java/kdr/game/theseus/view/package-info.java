@@ -21,31 +21,9 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.model;
-
 /**
- * The difficulty of the game.
- * For now, the difficulties are different only in the way 
- * in which the {@link kdr.game.theseus.model.Visibility}
- * is calculated.
- * 
- * @see kdr.game.theseus.ObservableMap
+ * MVC - view. <br></br>
+ * This package contains all the view classes for the game
+ * "The path of Theseus".
  */
-public enum Difficulty {
-	/**
-	 * Easy difficulty. Everything is visible.
-	 */
-	Easy, 
-	
-	/**
-	 * Normal difficulty. Visibility based on exploring.
-	 * An explored, but not directly visible tile will be dimmed, but visible.
-	 */
-	Normal, 
-	
-	/**
-	 * Hard difficulty. Only the directly visible tiles 
-	 * are shown, everything else is black.
-	 */
-	Hard
-}
+package kdr.game.theseus.view;

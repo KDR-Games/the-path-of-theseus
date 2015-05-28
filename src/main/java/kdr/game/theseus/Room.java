@@ -21,12 +21,12 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.model;
+package kdr.game.theseus;
 
 
 /**
  * This class is only used in the generation of a new map,
- * it declares a new type of {@link kdr.game.theseus.model.Region},
+ * it declares a new type of {@link kdr.game.theseus.Region},
  * a rectangular one.
  * @see kdr.game.theseus.MapGenerator
  */

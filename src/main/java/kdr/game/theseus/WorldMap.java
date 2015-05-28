@@ -20,24 +20,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package kdr.game.theseus.model;
+
+package kdr.game.theseus;
+
 
 /**
- * ExitReachedException is triggered when the player 
- * reached the exit of the current map.
+ * Class representing a multilevel map with boss rooms and stuff.
+ * @see kdr.game.theseus.LevelMap
+ * @see kdr.game.theseus.MapGenerator
  */
-public class ExitReachedException extends Exception {
-
+public class WorldMap {
+	protected LevelMap firstLevel;
+	protected LevelMap firstBossLevel;
+	
 	/**
-	 * 
+	 * Generates a new, multilevel map.
 	 */
-	private static final long serialVersionUID = 9042960435466384673L;
-
-	/**
-	 * 
-	 */
-	public ExitReachedException() {
-		// TODO Auto-generated constructor stub
+	public WorldMap() {
+		super();
+		generateNew();
 	}
 
+	/**
+	 * @return the first
+	 */
+	public LevelMap getFirstLevel() {
+		return firstLevel;
+	}
+	
+	/**
+	 * @return the second
+	 */
+	public LevelMap getBossLevel() {
+		return firstBossLevel;
+	}
+	
+	private void generateNew() {
+		firstLevel = new LevelMap(Constants.MapSize);
+		firstBossLevel = new LevelMap(Constants.MapSizeBoss);
+	}
 }

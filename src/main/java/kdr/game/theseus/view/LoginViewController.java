@@ -30,7 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import kdr.game.theseus.model.Difficulty;
+import kdr.game.theseus.Difficulty;
 import kdr.game.theseus.model.Player;
 
 public class LoginViewController extends ViewController {

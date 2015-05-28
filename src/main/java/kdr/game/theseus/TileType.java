@@ -21,58 +21,55 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.model;
-
+package kdr.game.theseus;
 
 /**
- * The neighbors of a {@link kdr.game.theseus.model.Tile}.
- * This can be interpreted as a 4-way linked list.
- * 
- * @see kdr.game.theseus.model.Tile
+ * Different types that a {@link kdr.game.theseus.Tile} can have. Each tile can have 
+ * different role than wall or floor, so in order to let the map have an entrance
+ * or doors, these types are used.
  */
-public class Neighbors {
-	private Tile top;
-	private Tile bottom;
-	private Tile left;
-	private Tile right;
+public enum TileType {
 	
 	/**
-	 * Sets the neighbors of a {@link kdr.game.theseus.model.Tile}.
-	 * @param top - the upper neighbored tile
-	 * @param bottom - the bottom neighbored tile
-	 * @param left - the left neighbored tile
-	 * @param right - the right neighbored tile
+	 * You can freely walk on this, monsters can spawn here.
 	 */
-	public Neighbors(Tile top, Tile bottom, Tile left, Tile right) {
-		super();
-		this.top = top;
-		this.bottom = bottom;
-		this.left = left;
-		this.right = right;
-	}
+	Floor,
 	
 	/**
-	 * @return the top
+	 * The player can't pass through a wall, monsters can't spawn here. 
 	 */
-	public Tile getTop() {
-		return top;
-	}
+	Wall,
+	
 	/**
-	 * @return the bottom
+	 * Not implemented yet. Maybe it will do some bad things 
+	 * to the creatures which step on this tile.
 	 */
-	public Tile getBottom() {
-		return bottom;
-	}
+	Trap,
+	
 	/**
-	 * @return the left
+	 * Only for graphics for now.
 	 */
-	public Tile getLeft() {
-		return left;
-	}
+	Door,
+	
 	/**
-	 * @return the right
+	 * This is the margin of the map, nothing can happen here.
 	 */
-	public Tile getRight() {
-		return right;
-	}
+	Margin,
+	
+	/**
+	 * The player spawns here.
+	 */
+	Entrance,
+	
+	/**
+	 * This type is only used while generating the map, 
+	 * alongside with {@link kdr.game.theseus.Passage}
+	 */
+	PotentialDoor,
+	
+	/**
+	 * The exit of the map. If a player steps on this tile, a 
+	 * {@link kdr.game.theseus.ExitReachedException} is thrown.
+	 */
+	Exit
 }

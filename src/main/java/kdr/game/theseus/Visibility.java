@@ -21,55 +21,34 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.model;
+package kdr.game.theseus;
 
+import kdr.game.theseus.model.Player;
 
 /**
- * This type is only used in the generation of a map, by 
- * {@link kdr.game.theseus.MapGenerator}. It defines a possible passage
- * between two {@link kdr.game.theseus.model.Region}s.
+ * Visibility of the observable tiles from the player's point of view.
+ * Visibility is determined by the difficulty of the game.
+ * 
+ * @see kdr.game.theseus.ObservableMap
+ * @see kdr.game.theseus.model.Player
+ * @see kdr.game.theseus.Difficulty
  */
-public class Passage {
-	private Tile tile;
-	private boolean horizontal;
+public enum Visibility {
+	/**
+	 * The tile is fully visible.
+	 */
+	Visible, 
 	
 	/**
-	 * Creates a new possible passage. It is essential to know that
-	 * this passage is connecting two tiles horizontally or vertically.
-	 * @param tile - the tile
-	 * @param horizontal - it is horizontal or vertical
+	 * The tile was explored before, but monsters are not visible there.
+	 * Not too much functionality for now, but pretty.
 	 */
-	public Passage(Tile tile, boolean horizontal) {
-		this.tile = tile;
-		this.horizontal = horizontal;
-	}
-
-	/**
-	 * @return the regionA
-	 */
-	public Region getRegionA() {
-		if(horizontal) {
-			return tile.getNeighbors().getLeft().getContainerRegion();
-		} else {
-			return tile.getNeighbors().getTop().getContainerRegion();
-		}
-	}
-
-	/**
-	 * @return the regionB
-	 */
-	public Region getRegionB() {
-		if(horizontal) {
-			return tile.getNeighbors().getRight().getContainerRegion();
-		} else {
-			return tile.getNeighbors().getBottom().getContainerRegion();
-		}
-	}
+	Dim, 
 	
 	/**
-	 * @return the tile
+	 * This tile is not visible at all. At difficulty hard, 
+	 * there is no tile with {@link #Dim} visibility, 
+	 * only {@link #Visible} and {@link #NotVisible}.
 	 */
-	public Tile getTile() {
-		return tile;
-	}
+	NotVisible
 }

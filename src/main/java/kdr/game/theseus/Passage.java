@@ -21,41 +21,55 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.model;
+package kdr.game.theseus;
 
 
 /**
- * 
- * WorldMap
+ * This type is only used in the generation of a map, by 
+ * {@link kdr.game.theseus.MapGenerator}. It defines a possible passage
+ * between two {@link kdr.game.theseus.Region}s.
  */
-public class WorldMap {
-	protected LevelMap firstLevel;
-	protected LevelMap bossLevel;
+public class Passage {
+	private Tile tile;
+	private boolean horizontal;
 	
 	/**
-	 * Generates a new, multilevel map.
+	 * Creates a new possible passage. It is essential to know that
+	 * this passage is connecting two tiles horizontally or vertically.
+	 * @param tile - the tile
+	 * @param horizontal - it is horizontal or vertical
 	 */
-	public WorldMap() {
-		super();
-		generateNew();
+	public Passage(Tile tile, boolean horizontal) {
+		this.tile = tile;
+		this.horizontal = horizontal;
 	}
 
 	/**
-	 * @return the first
+	 * @return the regionA
 	 */
-	public LevelMap getFirstLevel() {
-		return firstLevel;
+	public Region getRegionA() {
+		if(horizontal) {
+			return tile.getNeighbors().getLeft().getContainerRegion();
+		} else {
+			return tile.getNeighbors().getTop().getContainerRegion();
+		}
+	}
+
+	/**
+	 * @return the regionB
+	 */
+	public Region getRegionB() {
+		if(horizontal) {
+			return tile.getNeighbors().getRight().getContainerRegion();
+		} else {
+			return tile.getNeighbors().getBottom().getContainerRegion();
+		}
 	}
 	
 	/**
-	 * @return the second
+	 * @return the tile
 	 */
-	public LevelMap getBossLevel() {
-		return bossLevel;
-	}
-	
-	private void generateNew() {
-		firstLevel = new LevelMap(Constants.MapSize);
-		bossLevel = new LevelMap(Constants.MapSizeBoss);
+	public Tile getTile() {
+		return tile;
 	}
 }

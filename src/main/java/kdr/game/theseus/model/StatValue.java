@@ -26,13 +26,19 @@ package kdr.game.theseus.model;
 /**
  * Stat values in a predefined order:<br>
  * {@code E < D < C < B < A < S}.<br>
- * This enum is mainly used by {@link kdr.game.theseus.model.Stats}.
  * 
  * @see kdr.game.theseus.model.Stats
+ * @see kdr.game.theseus.model.Proficiencies
  */
 public enum StatValue {
 	/**
-	 * Lowest possible value. Starting value for stats.
+	 * No value.
+	 */
+	None,
+	
+	/**
+	 * Lowest possible value, that has an effect. 
+	 * Starting value for stats.
 	 */
 	E, 
 	
@@ -86,7 +92,36 @@ public enum StatValue {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return true if this stat is at maximum level, 
+	 * else false.
+	 */
 	public boolean isMax() {
 		return this.equals(S);
+	}
+	
+	/**
+	 * A simple helper function to convert the {@link StatValue} to 
+	 * string.
+	 * Note: enums usually don't have <code>toString()</code> methods.
+	 */
+	public String toString() {
+		switch (this) {
+		case E:
+			return "E";
+		case D:
+			return "D";
+		case C:
+			return "C";
+		case B:
+			return "B";
+		case A:
+			return "A";
+		case S:
+			return "S";
+		default:
+			return "";
+		}
 	}
 }

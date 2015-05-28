@@ -32,7 +32,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import kdr.game.theseus.model.DamageType;
-import kdr.game.theseus.model.Monster;
 import kdr.game.theseus.model.OneHanded;
 import kdr.game.theseus.model.Weapon;
 

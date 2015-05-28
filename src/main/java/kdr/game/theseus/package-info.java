@@ -21,15 +21,9 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.model;
-
 /**
- * Constants used in the program to avoid "magic numbers".
- *
+ * MVC - controller. <br></br>
+ * This package contains all the controller classes for the game
+ * "The path of Theseus".
  */
-public class Constants {
-	public static final int ButtonSize = 48;
-	public static final int ObservableMapSize = 11;
-	public static final int MapSize = 64;
-	public static final int MapSizeBoss = 24;
-}
+package kdr.game.theseus;

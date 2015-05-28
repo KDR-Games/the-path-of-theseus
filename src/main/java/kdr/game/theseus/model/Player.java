@@ -23,6 +23,7 @@
 
 package kdr.game.theseus.model;
 
+import kdr.game.theseus.Difficulty;
 import kdr.game.theseus.ObservableMap;
 
 
@@ -59,6 +60,20 @@ public class Player extends Creature {
 	 */
 	public void setGhostMode(boolean ghostMode) {
 		this.ghostMode = ghostMode;
+	}
+
+	/**
+	 * @return the freePoints
+	 */
+	public int getFreePoints() {
+		return freePoints;
+	}
+
+	/**
+	 * @param freePoints - the freePoints to set
+	 */
+	public void setFreePoints(int freePoints) {
+		this.freePoints = freePoints;
 	}
 
 	/**
@@ -175,8 +190,8 @@ public class Player extends Creature {
 	 * this function upgrades it's slasing proficiency value.
 	 */
 	public void upgradeProficiencySlashing() {
-		if(freePoints > 0 && !stats.getStrength().isMax()) {
-			stats.upgradeStrength();
+		if(freePoints > 0 && !proficiencies.getSlashing().isMax()) {
+			proficiencies.upgradeSlashing();
 			freePoints--;
 		}
 	}
@@ -186,8 +201,8 @@ public class Player extends Creature {
 	 * this function upgrades it's piercing proficiency value.
 	 */
 	public void upgradeProficiencyPiercing() {
-		if(freePoints > 0 && !stats.getStrength().isMax()) {
-			stats.upgradeStrength();
+		if(freePoints > 0 && !proficiencies.getPiercing().isMax()) {
+			proficiencies.upgradePiercing();
 			freePoints--;
 		}
 	}
@@ -197,8 +212,8 @@ public class Player extends Creature {
 	 * this function upgrades it's blunt proficiency value.
 	 */
 	public void upgradeProficiencyBlunt() {
-		if(freePoints > 0 && !stats.getStrength().isMax()) {
-			stats.upgradeStrength();
+		if(freePoints > 0 && !proficiencies.getBlunt().isMax()) {
+			proficiencies.upgradeBlunt();
 			freePoints--;
 		}
 	}

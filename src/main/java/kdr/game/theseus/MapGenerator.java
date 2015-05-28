@@ -26,13 +26,6 @@ package kdr.game.theseus;
 import java.util.ArrayList;
 import java.util.Random;
 
-import kdr.game.theseus.model.Neighbors;
-import kdr.game.theseus.model.Passage;
-import kdr.game.theseus.model.Region;
-import kdr.game.theseus.model.Room;
-import kdr.game.theseus.model.Tile;
-import kdr.game.theseus.model.TileType;
-
 /**
  * A class, containing only static functions, which generate 
  * a randomized tile-based map.
@@ -166,7 +159,7 @@ public class MapGenerator {
 
 	/**
 	 * A recursive function to fill the connected tile with the same
-	 * {@link kdr.game.theseus.model.Region}.
+	 * {@link kdr.game.theseus.Region}.
 	 * @param region - the region
 	 * @param tile - the tile to fill
 	 */
@@ -416,7 +409,6 @@ public class MapGenerator {
 		do {
 			exitIndex = rd.nextInt(potentialEntrances.size());
 			exitTile = potentialEntrances.get(exitIndex);
-			System.out.println("asd");
 		} while((entranceTile.x() == exitTile.x()) || 
 				(entranceTile.y() == exitTile.y()));
 		potentialEntrances.get(exitIndex).setType(TileType.Exit);

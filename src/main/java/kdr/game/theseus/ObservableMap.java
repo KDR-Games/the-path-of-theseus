@@ -28,13 +28,6 @@ import java.util.ArrayList;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
-import kdr.game.theseus.model.Constants;
-import kdr.game.theseus.model.Difficulty;
-import kdr.game.theseus.model.ExitReachedException;
-import kdr.game.theseus.model.LevelMap;
-import kdr.game.theseus.model.Tile;
-import kdr.game.theseus.model.TileType;
-import kdr.game.theseus.model.Visibility;
 
 /**
  * This class is the controller of the character's movement and the
@@ -238,7 +231,7 @@ public class ObservableMap {
 	 * to the given coordinates.
 	 * @param x1 - the X coordinate of the tile
 	 * @param y1 - the Y coordinate of the tile
-	 * @return a list of {@link kdr.game.theseus.model.Tile} which represents the drawn line.
+	 * @return a list of {@link kdr.game.theseus.Tile} which represents the drawn line.
 	 */
 	private ArrayList<Tile> traceLineFromCenterTo(int x1, int y1) {
 		int x0 = 0;
@@ -579,7 +572,7 @@ public class ObservableMap {
 	/**
 	 * Check if {@code tile} is free. If the game is run in ghost mode,
 	 * then this function returns always true, except if the tile's
-	 * type is {@link kdr.game.theseus.model.TileType#Margin}.
+	 * type is {@link kdr.game.theseus.TileType#Margin}.
 	 * @param tile - the tile to check
 	 * @return true if it's a floor tile or other free tile,
 	 * else false.

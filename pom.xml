@@ -49,14 +49,14 @@
 		<resources>
 			<resource>
 				<targetPath>fxml</targetPath>
-				<directory>${basedir}/src/main/java/kdr/game/theseus/view/fxml</directory>
+				<directory>${basedir}/src/main/resources/fxml</directory>
 				<includes>
 					<include>*.fxml</include>
 				</includes>
 			</resource>
 			<resource>
 				<targetPath>css</targetPath>
-				<directory>${basedir}/src/main/java/kdr/game/theseus/view/css</directory>
+				<directory>${basedir}/src/main/resources/css</directory>
 				<includes>
 					<include>*.css</include>
 				</includes>

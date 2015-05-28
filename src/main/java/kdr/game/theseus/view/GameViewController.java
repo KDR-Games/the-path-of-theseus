@@ -31,8 +31,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -42,11 +42,13 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
+import kdr.game.theseus.Constants;
+import kdr.game.theseus.ExitReachedException;
 import kdr.game.theseus.ObservableMap;
-import kdr.game.theseus.model.Constants;
-import kdr.game.theseus.model.ExitReachedException;
+import kdr.game.theseus.WorldMap;
 import kdr.game.theseus.model.Player;
-import kdr.game.theseus.model.WorldMap;
+import kdr.game.theseus.model.StatValue;
+import kdr.game.theseus.model.Stats;
 
 public class GameViewController extends ViewController {
 
@@ -179,6 +181,8 @@ public class GameViewController extends ViewController {
 		player = mainApp.getPlayer();
 		world = new WorldMap();
 		player.setMap(map);
+		player.setStats(new Stats(150, StatValue.E, StatValue.E, StatValue.E));
+		updateHealthAndStaminaBar();
 		try {
 			map.setCurrentLevel(world.getFirstLevel());
 		} catch (ExitReachedException ex) {
@@ -231,41 +235,55 @@ public class GameViewController extends ViewController {
 	
 	@FXML
 	private void maxHealthUpgraded() {
-		
+		mainApp.getPlayer().upgradeMaxHealth();
+		playerMaxHealthLabel.setText("" + mainApp.getPlayer().getStats().getMaxHealth());
+		showUpgradePointsIfAvailable();
 	}
 	
 	@FXML
 	private void strengthUpgraded() {
-		
+		mainApp.getPlayer().upgradeStrength();
+		playerStrengthLabel.setText(mainApp.getPlayer().getStats().getStrength().toString());
+		showUpgradePointsIfAvailable();
 	}
 	
 	@FXML
 	private void agilityUpgraded() {
-		
+		mainApp.getPlayer().upgradeAgility();
+		playerAgilityLabel.setText(mainApp.getPlayer().getStats().getAgility().toString());
+		showUpgradePointsIfAvailable();
 	}
 	
 	@FXML
 	private void enduranceUpgraded() {
-		
+		mainApp.getPlayer().upgradeEndurance();
+		playerEnduranceLabel.setText(mainApp.getPlayer().getStats().getEndurance().toString());
+		showUpgradePointsIfAvailable();
 	}
 	
 	@FXML
 	private void slashingUpgraded() {
-		
+		mainApp.getPlayer().upgradeProficiencySlashing();
+		// playerSlashingLabel.setText(mainApp.getPlayer().get);
 	}
 	
 	@FXML
 	private void piercingUpgraded() {
-		
+		mainApp.getPlayer().upgradeProficiencyPiercing();
+		// playerPiercingLabel.setText(mainApp.getPlayer().get);
+		showUpgradePointsIfAvailable();
 	}
 	
 	@FXML
 	private void bluntUpgraded() {
-		
+		mainApp.getPlayer().upgradeProficiencyBlunt();
+		// playerBluntLabel.setText(mainApp.getPlayer().get);
+		showUpgradePointsIfAvailable();
 	}
 	
 	/**
 	 * A prompt pops up, with a congratulation text.
+	 * The current statistics are written in the database.
 	 * The high scores can be viewed now.
 	 */
 	private void gameOver() {
@@ -281,5 +299,23 @@ public class GameViewController extends ViewController {
 		if(result.get() == buttonYes) {
 			Platform.exit();
 		}
+	}
+	
+	private void showUpgradePointsIfAvailable() {
+		boolean hasFreePoints = mainApp.getPlayer().getFreePoints() > 0;
+		playerMaxHealthButton.setVisible(hasFreePoints);
+		playerStrengthButton.setVisible(hasFreePoints);
+		playerAgilityButton.setVisible(hasFreePoints);
+		playerEnduranceButton.setVisible(hasFreePoints);
+		playerSlashingButton.setVisible(hasFreePoints);
+		playerPiercingButton.setVisible(hasFreePoints);
+		playerBluntButton.setVisible(hasFreePoints);
+	}
+	
+	private void updateHealthAndStaminaBar(){
+		staminaProgressBar.setProgress((double)mainApp.getPlayer().getStamina() / 100.0);
+		currentStaminaLabel.setText("" + mainApp.getPlayer().getStamina());
+		healthProgressBar.setProgress(mainApp.getPlayer().getHealthInPercent());
+		currentHealthLabel.setText("" + mainApp.getPlayer().getHealth());
 	}
 }

@@ -34,6 +34,7 @@ public class Creature {
 	protected int health;
 	protected int stamina;
 	protected Stats stats;
+	protected Proficiencies proficiencies;
 	protected Equipment equipment;
 	protected int XP;
 
@@ -47,6 +48,7 @@ public class Creature {
 	protected Creature(String name) {
 		super();
 		this.name = name;
+		this.stamina = 100;
 		equipment = new Equipment();
 	}
 
@@ -116,6 +118,21 @@ public class Creature {
 	 */
 	public void setStats(Stats stats) {
 		this.stats = stats;
+		setHealthToMax();
+	}
+
+	/**
+	 * @return the proficiencies
+	 */
+	public Proficiencies getProficiencies() {
+		return proficiencies;
+	}
+
+	/**
+	 * @param proficiencies the proficiencies to set
+	 */
+	public void setProficiencies(Proficiencies proficiencies) {
+		this.proficiencies = proficiencies;
 	}
 
 	/**
