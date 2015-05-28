@@ -28,14 +28,13 @@ package kdr.game.theseus.model;
 public class HeadArmor extends Armor {
 
 	/**
-	 * @param name
-	 * @param image
-	 * @param speed
-	 * @param defense
+	 * @param name - name
+	 * @param image - image
+	 * @param speed - speed
+	 * @param defense - defense
 	 */
 	public HeadArmor(String name, String image, double speed, int defense) {
 		super(name, image, speed, defense);
 		this.armorType = ArmorType.Head;
 	}
-	
 }

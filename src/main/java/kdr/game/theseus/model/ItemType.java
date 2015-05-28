@@ -22,7 +22,18 @@
  */
 
 package kdr.game.theseus.model;
-
+/**
+ * Marks the different types an {@link kdr.game.theseus.model.Item} can have,
+ * which class needs to be inherited by classes that describe these different types. 
+ */
 public enum ItemType {
-	Wearable, Consumable
+	/**
+	 * Wearable type. These can be put on as equipment.
+	 */
+	Wearable,
+	
+	/**
+	 * Consumable type. These adds different buffs, but you can't use them as equipment.
+	 */
+	Consumable;
 }

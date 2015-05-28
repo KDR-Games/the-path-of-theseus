@@ -41,51 +41,56 @@ import org.xml.sax.SAXException;
  * ArmorsDAO 
  */
 public class ArmorsDAO {
-private String inputXml;
-	
+	private String inputXml;
+
 	/**
 	 * 
+	 * @param inputXml - the file name of the input XML
 	 */
 	public ArmorsDAO(String inputXml) {
 		this.inputXml = inputXml;
 	}
-	
+
+	/**
+	 * Reads {@link kdr.game.theseus.model.Armor}s from the input database.
+	 * @return the list of armors
+	 */
 	public ArrayList<Monster> getMonsters() {
 		ArrayList<Monster> monsters = new ArrayList<Monster>();
-		
+
 		try {
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dbBuilder;
-            dbBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dbBuilder.parse(this.getClass().getResourceAsStream(inputXml));
-            
-            NodeList nList = doc.getElementsByTagName("Monster");
-            for (int i = 0; i < nList.getLength(); i++) {
-                Node node = nList.item(i);
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element e = (Element) node;
-                    
-                    Monster monster = new Monster(e.getElementsByTagName("name").item(0).getTextContent());
-                    
-                    System.out.println("id: " + e.getAttribute("id"));
-                    System.out.println("name: " + e.getElementsByTagName("name").item(0).getTextContent());
-                    System.out.println("age: " + e.getElementsByTagName("age").item(0).getTextContent());
-                    System.out.println("gender: " + e.getElementsByTagName("gender").item(0).getTextContent());
-                    System.out.println("role: " + e.getElementsByTagName("role").item(0).getTextContent());
-                    
-                    monsters.add(monster);
-                }
-            }
-            
-            System.out.println(doc.getDocumentElement().getNodeName());
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-		
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dbBuilder;
+			dbBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dbBuilder.parse(this.getClass().getResourceAsStream(inputXml));
+
+			NodeList nList = doc.getElementsByTagName("Monster");
+			for (int i = 0; i < nList.getLength(); i++) {
+				Node node = nList.item(i);
+				if (node.getNodeType() == Node.ELEMENT_NODE) {
+					Element e = (Element) node;
+
+					Monster monster = new Monster(e.getElementsByTagName("name").item(0).getTextContent());
+
+					System.out.println("id: " + e.getAttribute("id"));
+					System.out.println("name: " + e.getElementsByTagName("name").item(0).getTextContent());
+					System.out.println("age: " + e.getElementsByTagName("age").item(0).getTextContent());
+					System.out.println("gender: " + e.getElementsByTagName("gender").item(0).getTextContent());
+					System.out.println("role: " + e.getElementsByTagName("role").item(0).getTextContent());
+
+					monsters.add(monster);
+				}
+			}
+
+			System.out.println(doc.getDocumentElement().getNodeName());
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		return monsters;
 	}
 }

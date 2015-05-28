@@ -37,8 +37,8 @@ import kdr.game.theseus.model.TileType;
 import kdr.game.theseus.model.Visibility;
 
 /**
- * @author koldavid
- *
+ * This class is the controller of the character's movement and the
+ * visibility of the map.
  */
 public class ObservableMap {
 	private LevelMap currentLevel;
@@ -49,6 +49,9 @@ public class ObservableMap {
 	private final int center = (int)(Constants.ObservableMapSize/2);
 	private boolean ghostMode;
 
+	/**
+	 * Creates a new instance of this class.
+	 */
 	public ObservableMap() {
 		super();
 		tiles = new Tile[Constants.ObservableMapSize][Constants.ObservableMapSize];
@@ -57,6 +60,10 @@ public class ObservableMap {
 		ghostMode = false;
 	}
 
+	/**
+	 * Updates the map and the buttons corresponding to the actual
+	 * location of the character({@code centerTile}).
+	 */
 	private void updateMap() {
 		for(int i = 0; i < Constants.ObservableMapSize; i++) {
 			for(int j = 0; j < Constants.ObservableMapSize; j++) {
@@ -69,6 +76,10 @@ public class ObservableMap {
 		updateButtons();
 	}
 
+	/**
+	 * Updates the styles of the buttons, corresponding to the 
+	 * type and visibility of the tile which it belongs to.
+	 */
 	private void updateButtons() {
 		for(int i = 0; i < Constants.ObservableMapSize; i++) {
 			for(int j = 0; j < Constants.ObservableMapSize; j++) {
@@ -131,6 +142,10 @@ public class ObservableMap {
 		}
 	}
 
+	/**
+	 * Calculates the visibility of the tiles, based on the location of the character
+	 * and the difficulty of the game.
+	 */
 	private void updateVisibility() {
 		for(int i = 0; i < Constants.ObservableMapSize; i++) {
 			for(int j = 0; j < Constants.ObservableMapSize; j++) {
@@ -218,6 +233,13 @@ public class ObservableMap {
 		}
 	}
 
+	/**
+	 * Draws a line with Bresanham's line algorithm from the location of the character,
+	 * to the given coordinates.
+	 * @param x1 - the X coordinate of the tile
+	 * @param y1 - the Y coordinate of the tile
+	 * @return a list of {@link kdr.game.theseus.model.Tile} which represents the drawn line.
+	 */
 	private ArrayList<Tile> traceLineFromCenterTo(int x1, int y1) {
 		int x0 = 0;
 		int y0 = 0;
@@ -295,6 +317,21 @@ public class ObservableMap {
 		return ret;
 	}
 
+	/**
+	 * Converts {@code p} from the given octant to octant zero.
+	 * Octants:
+	 * <pre>
+	 *  \2|1/
+	 *  3\|/0
+	 * ---+---
+	 *  4/|\7
+	 *  /5|6\
+	 * </pre>
+	 * @param octant - the octant from which to convert
+	 * @param p - the coordinates of the point
+	 * @return a {@link javafx.geometry.Point2D} object, which contains the 
+	 * coordinates of the transformed point
+	 */
 	private Point2D switchOctantToZeroFrom(int octant, Point2D p) {
 		int sw;
 		int x = (int)p.getX();
@@ -348,7 +385,22 @@ public class ObservableMap {
 
 		return new Point2D(x,y);
 	}
-
+	
+	/**
+	 * Converts {@code p} from octant zero to the given octant.
+	 * Octants:
+	 * <pre>
+	 *  \2|1/
+	 *  3\|/0
+	 * ---+---
+	 *  4/|\7
+	 *  /5|6\
+	 * </pre>
+	 * @param octant - the octant in which to convert
+	 * @param p - the coordinates of the point
+	 * @return a {@link javafx.geometry.Point2D} object, which contains the 
+	 * coordinates of the transformed point
+	 */
 	private Point2D switchOctantFromZeroTo(int octant, Point2D p) {
 		int sw;
 		int x = (int)p.getX();
@@ -411,8 +463,8 @@ public class ObservableMap {
 	}
 
 	/**
-	 * @param currentLevel the currentLevel to set
-	 * @throws ExitReachedException 
+	 * @param currentLevel - the currentLevel to set
+	 * @throws ExitReachedException - if the entrance overlaps with the exit(this shouldn't even happen)
 	 */
 	public void setCurrentLevel(LevelMap currentLevel) throws ExitReachedException {
 		this.currentLevel = currentLevel;
@@ -428,7 +480,8 @@ public class ObservableMap {
 	}
 
 	/**
-	 * @param buttons the buttons to set
+	 * This function is called from the view.
+	 * @param buttons - the buttons to set
 	 */
 	public void setButtons(Button[][] buttons) {
 		this.buttons = buttons;
@@ -438,19 +491,20 @@ public class ObservableMap {
 			}
 		}
 		buttons[center][center].setId("player");
-		// updateButtons();
 	}
 
 	/**
-	 * @return the centerTile
+	 * @return the centerTile, the location of the {@link kdr.game.theseus.model.Player}.
 	 */
 	public Tile getCenterTile() {
 		return centerTile;
 	}
 
 	/**
-	 * @param centerTile the centerTile to set
-	 * @throws ExitReachedException 
+	 * This is used to move the player. If the player reaches the exit tile, 
+	 * then an {@code ExitReachedException} is thrown.
+	 * @param centerTile - the centerTile to set
+	 * @throws ExitReachedException if {@code centerTile} is the exit
 	 */
 	public void setCenterTile(Tile centerTile) throws ExitReachedException {
 		this.centerTile = centerTile;
@@ -468,7 +522,8 @@ public class ObservableMap {
 	}
 
 	/**
-	 * @param difficulty the difficulty to set
+	 * Sets the difficultyof the map, which affects it's visibility.
+	 * @param difficulty - the difficulty to set
 	 */
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
@@ -498,6 +553,12 @@ public class ObservableMap {
 		updateMap();
 	}
 
+	/**
+	 * A helper function to determine if a player can move with the pressed key.
+	 * @param code - the code of the pressed key
+	 * @return true if the player can move in the given direction, 
+	 * false if he can't move or the pressed key is not set to move the character.
+	 */
 	public boolean canMove(KeyCode code) {		
 		switch (code) {
 		case LEFT:
@@ -515,6 +576,14 @@ public class ObservableMap {
 		return false;
 	}
 
+	/**
+	 * Check if {@code tile} is free. If the game is run in ghost mode,
+	 * then this function returns always true, except if the tile's
+	 * type is {@link kdr.game.theseus.model.TileType#Margin}.
+	 * @param tile - the tile to check
+	 * @return true if it's a floor tile or other free tile,
+	 * else false.
+	 */
 	private boolean isFreeTile(Tile tile) {
 		if(ghostMode && tile.getType() != TileType.Margin) {
 			return true;
@@ -530,6 +599,12 @@ public class ObservableMap {
 		}
 	}
 	
+	/**
+	 * Changes the ghost mode of the game.
+	 * @param ghostMode - if true, ghost mode is on, so
+	 * the player can move through obstacles and walls, 
+	 * if false then a normal game mode is set
+	 */
 	public void setGhostMode(boolean ghostMode) {
 		this.ghostMode = ghostMode;
 	}

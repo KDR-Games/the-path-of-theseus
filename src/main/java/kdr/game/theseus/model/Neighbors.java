@@ -25,8 +25,10 @@ package kdr.game.theseus.model;
 
 
 /**
- * @author koldavid
- *
+ * The neighbors of a {@link kdr.game.theseus.model.Tile}.
+ * This can be interpreted as a 4-way linked list.
+ * 
+ * @see kdr.game.theseus.model.Tile
  */
 public class Neighbors {
 	private Tile top;
@@ -35,10 +37,11 @@ public class Neighbors {
 	private Tile right;
 	
 	/**
-	 * @param top
-	 * @param bottom
-	 * @param left
-	 * @param right
+	 * Sets the neighbors of a {@link kdr.game.theseus.model.Tile}.
+	 * @param top - the upper neighbored tile
+	 * @param bottom - the bottom neighbored tile
+	 * @param left - the left neighbored tile
+	 * @param right - the right neighbored tile
 	 */
 	public Neighbors(Tile top, Tile bottom, Tile left, Tile right) {
 		super();

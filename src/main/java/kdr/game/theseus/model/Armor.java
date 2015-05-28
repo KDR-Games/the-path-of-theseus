@@ -23,24 +23,38 @@
 
 package kdr.game.theseus.model;
 
+/**
+ * The main class for armors. This class can't be used directly.
+ * Other classes are derived from this.
+ * @see kdr.game.theseus.model.HeadArmor
+ * @see kdr.game.theseus.model.ChestArmor
+ * @see kdr.game.theseus.model.LegArmor
+ * @see kdr.game.theseus.model.HandArmor
+ */
 public class Armor extends Wearable {
 	protected ArmorType armorType;
 	protected int defense;
-	
+
 	/**
-	 * @param name
-	 * @param image
-	 * @param speed
-	 * @param defense
+	 * The constructor is protected. You can't use this 
+	 * class directly. It is used only for type-casting.
+	 * @param name - the name
+	 * @param image - the image
+	 * @param speed - the speed
+	 * @param defense - the defense
+	 * @see kdr.game.theseus.model.HeadArmor
+	 * @see kdr.game.theseus.model.ChestArmor
+	 * @see kdr.game.theseus.model.LegArmor
+	 * @see kdr.game.theseus.model.HandArmor
 	 */
-	public Armor(String name, String image, double speed, int defense) {
+	protected Armor(String name, String image, double speed, int defense) {
 		super(name, image, speed);
 		this.defense = defense;
 		this.wearableType = WearableType.Armor;
 	}
 
 	/**
-	 * @return the type
+	 * @return the armor type
 	 */
 	public ArmorType getArmorType() {
 		return armorType;

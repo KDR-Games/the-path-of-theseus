@@ -24,7 +24,7 @@
 package kdr.game.theseus.model;
 
 /**
- * @author koldavid
+ * Constants used in the program to avoid "magic numbers".
  *
  */
 public class Constants {

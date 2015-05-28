@@ -23,8 +23,8 @@
 package kdr.game.theseus.model;
 
 /**
- * Marks the different types a {@link kdr.game.theseus.model.Consumable} can have.
- * This class needs to be inherited by classes that describe these different types. 
+ * Marks the different types a {@link kdr.game.theseus.model.Consumable} can have,
+ * which class needs to be inherited by classes that describe these different types. 
  */
 public enum ConsumableType {
 	/**

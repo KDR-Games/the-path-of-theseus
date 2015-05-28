@@ -23,12 +23,29 @@
 
 package kdr.game.theseus.model;
 
+/**
+ * The main class for weapons. This class can't be used directly.
+ * Other classes are derived from this.
+ * @see kdr.game.theseus.model.OneHanded
+ * @see kdr.game.theseus.model.TwoHanded
+ * @see kdr.game.theseus.model.Shield
+ * @see kdr.game.theseus.model.WeaponType
+ */
 public class Weapon extends Wearable {
 	protected WeaponType weaponType;
 	protected int damage;
-	
+
 	/**
-	 * @param name
+	 * The constructor is protected. You can't use this 
+	 * class directly. It is used only for type-casting.
+	 * @param name - name
+	 * @param image - image
+	 * @param damage - damage
+	 * @param speed - speed
+	 * @see kdr.game.theseus.model.OneHanded
+	 * @see kdr.game.theseus.model.TwoHanded
+	 * @see kdr.game.theseus.model.Shield
+	 * @see kdr.game.theseus.model.WeaponType
 	 */
 	protected Weapon(String name, String image, int damage, double speed) {
 		super(name, image, speed);
@@ -37,7 +54,7 @@ public class Weapon extends Wearable {
 	}
 
 	/**
-	 * @return the type
+	 * @return the weapon type
 	 */
 	public WeaponType getWeaponType() {
 		return weaponType;
@@ -49,5 +66,5 @@ public class Weapon extends Wearable {
 	public int getDamage() {
 		return damage;
 	}
-	
+
 }

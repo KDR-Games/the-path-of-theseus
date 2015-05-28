@@ -30,19 +30,21 @@ public class TwoHanded extends Weapon {
 	private DamageType damageType;
 	
 	/**
-	 * @param name
-	 * @param image
-	 * @param damage
-	 * @param speed
-	 * @param damageType
+	 * 
+	 * @param name - name
+	 * @param image - image
+	 * @param damage - damage
+	 * @param speed - speed
+	 * @param damageType - damage type
 	 */
 	public TwoHanded(String name, String image, int damage, double speed, DamageType damageType) {
 		super(name, image, damage, speed);
 		this.damageType = damageType;
 		this.weaponType = WeaponType.TwoHanded;
 	}
+	
 	/**
-	 * @return the damageType
+	 * @return the damage type
 	 */
 	public DamageType getDamageType() {
 		return damageType;

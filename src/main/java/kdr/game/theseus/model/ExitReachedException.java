@@ -23,7 +23,8 @@
 package kdr.game.theseus.model;
 
 /**
- * ExitReachedException 
+ * ExitReachedException is triggered when the player 
+ * reached the exit of the current map.
  */
 public class ExitReachedException extends Exception {
 

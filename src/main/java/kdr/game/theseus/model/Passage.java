@@ -25,13 +25,20 @@ package kdr.game.theseus.model;
 
 
 /**
- * @author koldavid
- *
+ * This type is only used in the generation of a map, by 
+ * {@link kdr.game.theseus.MapGenerator}. It defines a possible passage
+ * between two {@link kdr.game.theseus.model.Region}s.
  */
 public class Passage {
 	private Tile tile;
 	private boolean horizontal;
 	
+	/**
+	 * Creates a new possible passage. It is essential to know that
+	 * this passage is connecting two tiles horizontally or vertically.
+	 * @param tile - the tile
+	 * @param horizontal - it is horizontal or vertical
+	 */
 	public Passage(Tile tile, boolean horizontal) {
 		this.tile = tile;
 		this.horizontal = horizontal;

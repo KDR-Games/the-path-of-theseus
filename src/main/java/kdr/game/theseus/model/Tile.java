@@ -40,7 +40,10 @@ public class Tile {
 	private Visibility visibility;
 
 	/**
-	 * @param type
+	 * 
+	 * @param type - the type of the tile
+	 * @param posX - the X coordinate of the tile
+	 * @param posY - te Y coordinate of the tile
 	 */
 	public Tile(TileType type, int posX, int posY) {
 		super();
@@ -117,7 +120,7 @@ public class Tile {
 	}
 
 	/**
-	 * @param neighbours the neighbors to set
+	 * @param neighbors - the neighbors to set
 	 */
 	public void setNeighbors(Neighbors neighbors) {
 		this.neighbors = neighbors;
@@ -131,7 +134,7 @@ public class Tile {
 	}
 
 	/**
-	 * @param containerRegion the containerRegion to set
+	 * @param containerRegion - the containerRegion to set
 	 */
 	public void setContainerRegion(Region containerRegion) {
 		if(this.containerRegion != null || containerRegion == null) {
@@ -151,12 +154,16 @@ public class Tile {
 	}
 
 	/**
-	 * @param visibility the visibility to set
+	 * @param visibility - the visibility to set
 	 */
 	public void setVisibility(Visibility visibility) {
 		this.visibility = visibility;
 	}
 
+	/**
+	 * Determines the number of the neighboring walls to this tile.
+	 * @return a number between 0 and 4
+	 */
 	public int getNeighbourWallNum() {
 		int num = 0;
 		if(neighbors.getTop() != null) {

@@ -23,6 +23,28 @@
 
 package kdr.game.theseus.model;
 
+/**
+ * Marks the different types an {@link kdr.game.theseus.model.Armor} can have,
+ * which class needs to be inherited by classes that describe these different types. 
+ */
 public enum ArmorType {
-	Head, Chest, Leg, Hand
+	/**
+	 * Type name defining a {@link kdr.game.theseus.model.HeadArmor}.
+	 */
+	Head,
+	
+	/**
+	 * Type name defining a {@link kdr.game.theseus.model.ChestArmor}.
+	 */
+	Chest,
+	
+	/**
+	 * Type name defining a {@link kdr.game.theseus.model.LegArmor}.
+	 */
+	Leg,
+	
+	/**
+	 * Type name defining a {@link kdr.game.theseus.model.HandArmor}.
+	 */
+	Hand;
 }

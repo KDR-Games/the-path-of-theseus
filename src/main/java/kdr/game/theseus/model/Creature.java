@@ -23,6 +23,12 @@
 
 package kdr.game.theseus.model;
 
+/**
+ * The main class for creatures. This class can't be used directly.
+ * Other classes are derived from this.
+ * @see kdr.game.theseus.model.Monster
+ * @see kdr.game.theseus.model.Player
+ */
 public class Creature {
 	protected String name;
 	protected int health;
@@ -32,7 +38,11 @@ public class Creature {
 	protected int XP;
 
 	/**
-	 * @param name
+	 * The constructor is protected. You can't use this 
+	 * class directly. It is used only for type-casting.
+	 * @param name - the name
+	 * @see kdr.game.theseus.model.Monster
+	 * @see kdr.game.theseus.model.Player
 	 */
 	protected Creature(String name) {
 		super();
@@ -53,10 +63,19 @@ public class Creature {
 	public int getHealth() {
 		return health;
 	}
-
+	
+	/**
+	 * Sets the health to maximum.
+	 */
 	public void setHealthToMax() {
 		this.health = stats.getMaxHealth();
 	}
+	
+	/**
+	 * 
+	 * @param value - the value
+	 * @throws CreatureDeadException when this creature's health reaches zero or below	
+	 */
 	public void decreaseHealth(int value) throws CreatureDeadException {
 		health -= value;
 		if(health <= 0) {
@@ -72,12 +91,15 @@ public class Creature {
 	}
 
 	/**
-	 * @param stamina the stamina to set
+	 * Decreases the stamina with a calculated amount depending on endurance.
 	 */
 	public void decreaseStamina() {
 		
 	}
 	
+	/**
+	 * Increases the stamina with a calculated amount depending on endurance.
+	 */
 	public void increaseStamina() {
 		
 	}
@@ -90,7 +112,7 @@ public class Creature {
 	}
 
 	/**
-	 * @param stats the stats to set
+	 * @param stats - the stats
 	 */
 	public void setStats(Stats stats) {
 		this.stats = stats;
@@ -104,7 +126,7 @@ public class Creature {
 	}
 
 	/**
-	 * @param xP the xP to set
+	 * @param xP - the xP to set
 	 */
 	public void setXP(int xP) {
 		XP = xP;
@@ -132,7 +154,7 @@ public class Creature {
 	}
 
 	/**
-	 * @return the speed
+	 * @return the speed based on the burden of the equipment
 	 */
 	public double getSpeed() {
 		double speed = 16.0;
@@ -167,6 +189,10 @@ public class Creature {
 		return speed*stats.getSpeedModifier() - weaponBurden*2 - armorBurden;
 	}	
 
+	/**
+	 * 
+	 * @return the current health in percentage
+	 */
 	public double getHealthInPercent() {
 		return ((double)health / (double)stats.getMaxHealth()) * 100.0;
 	}

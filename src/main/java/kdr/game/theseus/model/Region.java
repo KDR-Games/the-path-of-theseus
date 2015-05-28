@@ -27,14 +27,15 @@ import java.rmi.NoSuchObjectException;
 import java.util.ArrayList;
 
 /**
- * @author koldavid
- *
+ * This class is only used in the generation of a new map.
+ * @see kdr.game.theseus.MapGenerator
  */
 public class Region {
 	private ArrayList<Tile> tiles;
 	
 	/**
-	 * 
+	 * Creates a new empty region. Tiles are added through the setter function 
+	 * {@link #addTile(Tile)}.
 	 */
 	public Region() {
 		super();
@@ -48,10 +49,20 @@ public class Region {
 		return tiles;
 	}
 	
+	/**
+	 * Adds a new tile to the list.
+	 * @param tile - the tile to add
+	 */
 	public void addTile(Tile tile) {
 		tiles.add(tile);
 	}
 	
+	/**
+	 * Removes a tile from the given coordinates.
+	 * @param x - the x coordinate of the tile
+	 * @param y - the y coordinate of the tile
+	 * @throws NoSuchObjectException if there is no tile at the given coordinates
+	 */
 	public void removeTileAt(int x, int y) throws NoSuchObjectException {
 		Tile tileToRemove = null;
 		for(Tile tile : tiles) {

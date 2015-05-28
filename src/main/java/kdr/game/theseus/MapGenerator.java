@@ -33,68 +33,102 @@ import kdr.game.theseus.model.Room;
 import kdr.game.theseus.model.Tile;
 import kdr.game.theseus.model.TileType;
 
+/**
+ * A class, containing only static functions, which generate 
+ * a randomized tile-based map.
+ */
 public class MapGenerator {
 
+	/**
+	 * Set this number to change the number of the rooms generated.
+	 * Note: this number is NOT the number of how many rooms will be generated,
+	 * this marks only the attempts of room generations, so if a room overlaps 
+	 * another, then that room is dropped and a new attempt to put down a room will be used.
+	 */
 	static public int roomAttempts = 200;
+	
+	/**
+	 * The number of free tiles to leave in which the character can move.
+	 * Use this to control the sparseness of the map.
+	 * {@code rows*cols - tilesToLeave - numberOfGeneratedWalls} 
+	 * of dead ends will be deleted.
+	 */
 	static public int tilesToLeave = 1000;
 
-	private enum Neighbour {
+	/**
+	 * Marks the different types of neighbors a tile can have.
+	 */
+	private enum NeighborWallType {
 		Top, Left, Bottom, Right, Margin
 	}
 
-	static private ArrayList<Neighbour> getNeighbourWalls(Tile[][] map, int posX, int posY) {
-		ArrayList<Neighbour> neighbors = new ArrayList<Neighbour>();
+	/**
+	 * A helper function to get the neighboring walls of a Tile.
+	 * @param map - the matrix of tiles
+	 * @param posX - the X coordinate of the tile which is checked
+	 * @param posY - the Y coordinate of the tile which is checked
+	 * @return a list of the neighbored walls. An empty list is return if the tile has no neighbored walls.
+	 */
+	static private ArrayList<NeighborWallType> getNeighboredWalls(Tile[][] map, int posX, int posY) {
+		ArrayList<NeighborWallType> neighbors = new ArrayList<NeighborWallType>();
 		if((posY > 0) && (posY < map.length-1)) {
 			if(map[posY+1][posX].getType() == TileType.Wall) {
-				neighbors.add(Neighbour.Bottom);
+				neighbors.add(NeighborWallType.Bottom);
 			}
 			if(map[posY-1][posX].getType() == TileType.Wall) {
-				neighbors.add(Neighbour.Top);
+				neighbors.add(NeighborWallType.Top);
 			}			
 		} else {
-			neighbors.add(Neighbour.Margin);
+			neighbors.add(NeighborWallType.Margin);
 		}
 		if((posX > 0) && (posX < map[posY].length-1)) {
 			if(map[posY][posX+1].getType() == TileType.Wall) {
-				neighbors.add(Neighbour.Right);
+				neighbors.add(NeighborWallType.Right);
 			}
 			if(map[posY][posX-1].getType() == TileType.Wall) {
-				neighbors.add(Neighbour.Left);
+				neighbors.add(NeighborWallType.Left);
 			}			
 		} else {
-			neighbors.add(Neighbour.Margin);
+			neighbors.add(NeighborWallType.Margin);
 		}
 
 		return neighbors;
 	}
 
+	/**
+	 * A recursive function to generate a simple labyrinth.
+	 * @param labyrinth - a new region
+	 * @param map - the matrix of the tiles
+	 * @param posX - current position X
+	 * @param posY - current position Y
+	 */
 	static private void generateLabyrinth(Region labyrinth, Tile[][] map, int posX, int posY) {
 		map[posY][posX].setType(TileType.Floor);
 		map[posY][posX].setContainerRegion(labyrinth);
-		ArrayList<Neighbour> potentialNext = new ArrayList<Neighbour>();
+		ArrayList<NeighborWallType> potentialNext = new ArrayList<NeighborWallType>();
 		Random rd = new Random();
 		do {
 			potentialNext.clear();
-			for(Neighbour n : getNeighbourWalls(map, posX, posY)) {
+			for(NeighborWallType n : getNeighboredWalls(map, posX, posY)) {
 				switch (n) {
 				case Top:
-					if (getNeighbourWalls(map, posX, posY-1).size() == 3) {
-						potentialNext.add(Neighbour.Top);
+					if (getNeighboredWalls(map, posX, posY-1).size() == 3) {
+						potentialNext.add(NeighborWallType.Top);
 					}
 					break;
 				case Left:
-					if (getNeighbourWalls(map, posX-1, posY).size() == 3) {
-						potentialNext.add(Neighbour.Left);
+					if (getNeighboredWalls(map, posX-1, posY).size() == 3) {
+						potentialNext.add(NeighborWallType.Left);
 					}
 					break;
 				case Bottom:
-					if (getNeighbourWalls(map, posX, posY+1).size() == 3) {
-						potentialNext.add(Neighbour.Bottom);
+					if (getNeighboredWalls(map, posX, posY+1).size() == 3) {
+						potentialNext.add(NeighborWallType.Bottom);
 					}
 					break;
 				case Right:
-					if (getNeighbourWalls(map, posX+1, posY).size() == 3) {
-						potentialNext.add(Neighbour.Right);
+					if (getNeighboredWalls(map, posX+1, posY).size() == 3) {
+						potentialNext.add(NeighborWallType.Right);
 					}
 					break;
 
@@ -130,6 +164,12 @@ public class MapGenerator {
 		} while(!potentialNext.isEmpty());
 	}
 
+	/**
+	 * A recursive function to fill the connected tile with the same
+	 * {@link kdr.game.theseus.model.Region}.
+	 * @param region - the region
+	 * @param tile - the tile to fill
+	 */
 	static private void floodFill(Region region, Tile tile) {
 		tile.setContainerRegion(region);
 		if(tile.getNeighbors().getTop() != null)
@@ -165,6 +205,12 @@ public class MapGenerator {
 		}
 	}
 
+	/**
+	 * Static function which generates a new, randomized map.
+	 * @param rows - the height of the map
+	 * @param cols - the width of the map
+	 * @return the newly generated map.
+	 */
 	static public Tile[][] getNewMap(int rows, int cols) {
 		Tile[][] map = new Tile[rows][cols];
 

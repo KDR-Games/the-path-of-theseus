@@ -38,7 +38,7 @@ public class Player extends Creature {
 	private boolean ghostMode;
 	
 	/**
-	 * @param name
+	 * @param name - the name of the character
 	 */
 	public Player(String name) {
 		super(name);
@@ -126,9 +126,80 @@ public class Player extends Creature {
 		return level;
 	}
 	
+	/**
+	 * If the player has unspent points, 
+	 * this function upgrades it's strength value.
+	 */
 	public void upgradeStrength() {
-		if(freePoints > 0) {
+		if(freePoints > 0 && !stats.getStrength().isMax()) {
 			stats.upgradeStrength();
+			freePoints--;
+		}
+	}
+	
+	/**
+	 * If the player has unspent points, 
+	 * this function upgrades it's agility value.
+	 */
+	public void upgradeAgility() {
+		if(freePoints > 0 && !stats.getAgility().isMax()) {
+			stats.upgradeAgility();
+			freePoints--;
+		}
+	}
+	
+	/**
+	 * If the player has unspent points, 
+	 * this function upgrades it's endurance value.
+	 */
+	public void upgradeEndurance() {
+		if(freePoints > 0 && !stats.getEndurance().isMax()) {
+			stats.upgradeEndurance();
+			freePoints--;
+		}
+	}
+	
+	/**
+	 * If the player has unspent points, 
+	 * this function upgrades it's maximum health value.
+	 */
+	public void upgradeMaxHealth() {
+		if(freePoints > 0) {
+			stats.upgradeMaxHealth();
+			freePoints--;
+		}
+	}
+	
+	/**
+	 * If the player has unspent points, 
+	 * this function upgrades it's slasing proficiency value.
+	 */
+	public void upgradeProficiencySlashing() {
+		if(freePoints > 0 && !stats.getStrength().isMax()) {
+			stats.upgradeStrength();
+			freePoints--;
+		}
+	}
+	
+	/**
+	 * If the player has unspent points, 
+	 * this function upgrades it's piercing proficiency value.
+	 */
+	public void upgradeProficiencyPiercing() {
+		if(freePoints > 0 && !stats.getStrength().isMax()) {
+			stats.upgradeStrength();
+			freePoints--;
+		}
+	}
+	
+	/**
+	 * If the player has unspent points, 
+	 * this function upgrades it's blunt proficiency value.
+	 */
+	public void upgradeProficiencyBlunt() {
+		if(freePoints > 0 && !stats.getStrength().isMax()) {
+			stats.upgradeStrength();
+			freePoints--;
 		}
 	}
 }

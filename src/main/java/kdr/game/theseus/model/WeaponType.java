@@ -23,6 +23,26 @@
 
 package kdr.game.theseus.model;
 
+/**
+ * Marks the main types of weapon in the game.
+ * @see kdr.game.theseus.model.Weapon
+ */
 public enum WeaponType {
-	OneHanded, TwoHanded, Shield
+	/**
+	 * It can be equipped in the main hand and off hand too.
+	 * @see kdr.game.theseus.model.OneHanded
+	 */
+	OneHanded, 
+	
+	/**
+	 * It takes each hand to use. You can't use another weapon in the off hand.
+	 * @see kdr.game.theseus.model.TwoHanded
+	 */
+	TwoHanded, 
+	
+	/**
+	 * It can be equipped only in the off hand. You can't use a two-handed weapon with a shield.
+	 * @see kdr.game.theseus.model.Shield
+	 */
+	Shield
 }

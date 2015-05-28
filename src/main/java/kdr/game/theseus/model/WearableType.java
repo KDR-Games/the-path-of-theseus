@@ -24,9 +24,19 @@
 package kdr.game.theseus.model;
 
 /**
- * @author koldavid
- *
+ * Marks the different types of wearable {@link kdr.game.theseus.model.Item}s.
+ * @see kdr.game.theseus.model.Wearable
  */
 public enum WearableType {
-	Armor, Weapon
+	/**
+	 * Does not have damage. Mainly used for defense.
+	 * @see kdr.game.theseus.model.Armor
+	 */
+	Armor, 
+	
+	/**
+	 * Mainly used for offense.
+	 * @see kdr.game.theseus.model.Weapon
+	 */
+	Weapon
 }

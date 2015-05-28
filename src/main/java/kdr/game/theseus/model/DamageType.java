@@ -23,8 +23,22 @@
 package kdr.game.theseus.model;
 
 /**
- * DamageType 
+ * Marks the different types of damage,
+ * a {@link kdr.game.theseus.model.Weapon} can have.
  */
 public enum DamageType {
-	Slashing, Piercing, Blunt
+	/**
+	 * Slashing damage, usually swords and axes.
+	 */
+	Slashing, 
+	
+	/**
+	 * Piercing damage, usually spears and daggers.
+	 */
+	Piercing, 
+	
+	/**
+	 * Blunt damage, usually clubs and hammers.
+	 */
+	Blunt
 }

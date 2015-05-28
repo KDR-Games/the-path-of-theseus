@@ -47,11 +47,16 @@ public class MonstersDAO {
 	
 	/**
 	 * 
+	 * @param inputXml - the file name of the input XML
 	 */
 	public MonstersDAO(String inputXml) {
 		this.inputXml = inputXml;
 	}
 	
+	/**
+	 * Reads {@link kdr.game.theseus.model.Monster}s from the input database.
+	 * @return the list of monsters
+	 */
 	public ArrayList<Monster> getMonsters() {
 		ArrayList<Monster> monsters = new ArrayList<Monster>();
 		

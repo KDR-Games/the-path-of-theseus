@@ -76,6 +76,9 @@ public class LoginViewController extends ViewController {
 		}
 	}
 
+	/**
+	 * The login is okay, setting up the player, switching to game window.
+	 */
 	private void done() {
 		Player currentPlayer = new Player(name.getText());
 		// TODO: set up new character stats

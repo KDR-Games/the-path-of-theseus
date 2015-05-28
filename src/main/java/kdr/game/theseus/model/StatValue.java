@@ -31,12 +31,41 @@ package kdr.game.theseus.model;
  * @see kdr.game.theseus.model.Stats
  */
 public enum StatValue {
-	E, D, C, B, A, S;
+	/**
+	 * Lowest possible value. Starting value for stats.
+	 */
+	E, 
+	
+	/**
+	 * A little better then E.
+	 */
+	D, 
+	
+	/**
+	 * Higher than E and D.
+	 */
+	C, 
+	
+	/**
+	 * Higher than E, D and C.
+	 */
+	B,
+	
+	/**
+	 * Higher than E, D, C and B.
+	 */
+	A, 
+	
+	/**
+	 * The highest possible value for now. 
+	 * Maybe an SS and SSS will be introduced in the future.
+	 */
+	S;
 	
 	/**
 	 * Static helper function to determine the next value of a stat,
 	 * depending on this enum. It doesn't wrap around, so if <br>{@code stat == StatValue.S}<br> then 
-	 * {@link StatValue#S} is returned.
+	 * the highest value is returned.
 	 * @param stat - the stat value
 	 * @return the next stat value
 	 */
@@ -55,5 +84,9 @@ public enum StatValue {
 		default:
 			return StatValue.S;
 		}
+	}
+	
+	public boolean isMax() {
+		return this.equals(S);
 	}
 }

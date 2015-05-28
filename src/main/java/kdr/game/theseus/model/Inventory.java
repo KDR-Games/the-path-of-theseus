@@ -24,22 +24,27 @@
 package kdr.game.theseus.model;
 
 /**
- * This class is used to store the different {@link kdr.game.theseus.Item}s that the player can have.
+ * This class is used to store the different {@link kdr.game.theseus.model.Item}s that the player can have.
  */
 public class Inventory {
 	private Item[] items;
 	private int inventorySize;
 	
 	/**
-	 * @param inventorySize
+	 * @param inventorySize - the size of the inventory. 
+	 * This can't be changed later on and strongly depends on the user interface.
 	 */
 	public Inventory(int inventorySize) {
 		super();
 		this.inventorySize = inventorySize;
+		items = new Item[inventorySize];
+		for (int i = 0; i < items.length; i++) {
+			items[i] = null;
+		}
 	}
 
 	/**
-	 * @return the items
+	 * @return the items in the inventory
 	 */
 	public Item[] getItems() {
 		return items;
@@ -52,10 +57,20 @@ public class Inventory {
 		return inventorySize;
 	}
 	
+	/**
+	 * 
+	 * @param index - the index
+	 * @return the item from the given index
+	 */
 	public Item getItemAt(int index) {
 		return items[index];
 	}
 	
+	/**
+	 * Adds an item to the given index.
+	 * @param item - the item
+	 * @param index - the index
+	 */
 	public void setItemAt(Item item, int index) {
 		items[index] = item;
 	}

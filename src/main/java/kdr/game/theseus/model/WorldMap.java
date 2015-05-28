@@ -24,12 +24,17 @@
 package kdr.game.theseus.model;
 
 
-
+/**
+ * 
+ * WorldMap
+ */
 public class WorldMap {
-	private LevelMap firstLevel;
-	private LevelMap bossLevel;
+	protected LevelMap firstLevel;
+	protected LevelMap bossLevel;
 	
-	
+	/**
+	 * Generates a new, multilevel map.
+	 */
 	public WorldMap() {
 		super();
 		generateNew();

@@ -25,8 +25,10 @@ package kdr.game.theseus.model;
 
 
 /**
- * @author koldavid
- *
+ * This class is only used in the generation of a new map,
+ * it declares a new type of {@link kdr.game.theseus.model.Region},
+ * a rectangular one.
+ * @see kdr.game.theseus.MapGenerator
  */
 public class Room extends Region{
 	private int top;
@@ -39,10 +41,13 @@ public class Room extends Region{
 	private int height;
 			
 	/**
-	 * @param top
-	 * @param left
-	 * @param bottom
-	 * @param right
+	 * Creates a new instance of {@code Room} with the given parameters.
+	 * Additional information are calculated, such as the center coordinate,
+	 * the bottom and right edges.
+	 * @param top - Y coordinate of the upper-left corner
+	 * @param left - X coordinate of the upper-left corner
+	 * @param width - the width of the room
+	 * @param height - the height of the room
 	 */
 	public Room(int top, int left, int width, int height) {
 		super();
@@ -111,7 +116,12 @@ public class Room extends Region{
 	public int getHeight() {
 		return height;
 	}
-
+	
+	/**
+	 * Checks if this room overlaps another one.
+	 * @param room - the other room
+	 * @return true if overlaps, otherwise false.
+	 */
 	public boolean overlaps(Room room) {
 		double minDistY = this.height/2.0 + room.getHeight()/2.0;
 		double mindistX = this.width/2.0 + room.getWidth()/2.0;

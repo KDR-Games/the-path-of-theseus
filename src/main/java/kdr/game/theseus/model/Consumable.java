@@ -22,20 +22,19 @@
  */
 
 package kdr.game.theseus.model;
+
 /**
- * 
- * Consumable
+ * The main class for consumables. This class can't be used directly.
+ * Other classes are derived from this.
  */
 public class Consumable extends Item {
-	/**
-	 * The type of the class derived from this class. Used for type-casting.
-	 * This variable needs to be set by the constructor of the derived class.
-	 */
 	protected ConsumableType consumableType;
 	
 	/**
-	 * @param name 
-	 * @param image
+	 * The constructor is protected. You can't use this 
+	 * class directly. It is used only for type-casting.
+	 * @param name - name
+	 * @param image - image
 	 */
 	protected Consumable(String name, String image) {
 		super(name, image);

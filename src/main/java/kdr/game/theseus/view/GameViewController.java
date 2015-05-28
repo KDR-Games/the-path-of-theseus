@@ -172,6 +172,9 @@ public class GameViewController extends ViewController {
 		map.setButtons(buttons);
 	}
 
+	/**
+	 * A helper function, called right after this controller is instantiated.
+	 */
 	public void setUp() {
 		player = mainApp.getPlayer();
 		world = new WorldMap();
@@ -261,6 +264,10 @@ public class GameViewController extends ViewController {
 		
 	}
 	
+	/**
+	 * A prompt pops up, with a congratulation text.
+	 * The high scores can be viewed now.
+	 */
 	private void gameOver() {
 		Alert exitPrompt = new Alert(AlertType.CONFIRMATION);
 		exitPrompt.setTitle("Congratulations!");

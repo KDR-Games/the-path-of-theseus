@@ -28,10 +28,10 @@ package kdr.game.theseus.model;
 public class LegArmor extends Armor {
 
 	/**
-	 * @param name
-	 * @param image
-	 * @param speed
-	 * @param defense
+	 * @param name - name
+	 * @param image - image
+	 * @param speed - speed
+	 * @param defense - defense
 	 */
 	public LegArmor(String name, String image, double speed, int defense) {
 		super(name, image, speed, defense);

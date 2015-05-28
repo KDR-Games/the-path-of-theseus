@@ -35,12 +35,18 @@ public class CreatureDeadException extends Exception {
 	private Creature creature;
 	
 	/**
-	 * 
+	 * Creates a new instance of this exception, with 
+	 * {@code creature} as parameter, which health reached zero or below.
+	 * @param creature - the creature
 	 */
 	public CreatureDeadException(Creature creature) {
 		this.creature = creature;
 	}
 	
+	/**
+	 * 
+	 * @return the creature which triggered this exception.
+	 */
 	public Creature getCreature() {
 		return creature;
 	}

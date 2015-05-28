@@ -50,11 +50,17 @@ private String inputXml;
 	
 	/**
 	 * 
+	 * @param inputXml - the file name of the input XML
 	 */
 	public WeaponsDAO(String inputXml) {
 		this.inputXml = inputXml;
 	}
 	
+	/**
+	 * Reads {@link kdr.game.theseus.model.OneHanded}
+	 * weapons from the input database.
+	 * @return the list of one-handed weapons
+	 */
 	public Map<String, OneHanded> getOneHandedWeapons() {
 		Map<String, OneHanded> weapons = new HashMap<String, OneHanded>();
 		
@@ -129,6 +135,10 @@ private String inputXml;
 		return weapons;
 	}
 	
+	/**
+	 * Reads {@link kdr.game.theseus.model.Weapon}s from the input database.
+	 * @return the list of weapons
+	 */
 	public ArrayList<Weapon> getWeapons() {
 		ArrayList<Weapon> weapons = new ArrayList<Weapon>();
 		

@@ -24,9 +24,29 @@
 package kdr.game.theseus.model;
 
 /**
- * @author koldavid
- *
+ * Visibility of the observable tiles from the player's point of view.
+ * Visibility is determined by the difficulty of the game.
+ * 
+ * @see kdr.game.theseus.ObservableMap
+ * @see kdr.game.theseus.model.Player
+ * @see kdr.game.theseus.model.Difficulty
  */
 public enum Visibility {
-	Visible, Dim, NotVisible
+	/**
+	 * The tile is fully visible.
+	 */
+	Visible, 
+	
+	/**
+	 * The tile was explored before, but monsters are not visible there.
+	 * Not too much functionality for now, but pretty.
+	 */
+	Dim, 
+	
+	/**
+	 * This tile is not visible at all. At difficulty hard, 
+	 * there is no tile with {@link #Dim} visibility, 
+	 * only {@link #Visible} and {@link #NotVisible}.
+	 */
+	NotVisible
 }

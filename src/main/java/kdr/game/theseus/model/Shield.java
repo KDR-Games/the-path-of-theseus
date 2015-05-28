@@ -31,11 +31,11 @@ public class Shield extends Weapon {
 	
 	
 	/**
-	 * @param name
-	 * @param image
-	 * @param speed
-	 * @param shieldType
-	 * @param defense
+	 * @param name - name
+	 * @param image - image
+	 * @param speed - speed
+	 * @param shieldType - the type of the shield
+	 * @param defense - defense
 	 */
 	public Shield(String name, String image, double speed,
 			ShieldType shieldType, int defense) {
@@ -43,12 +43,14 @@ public class Shield extends Weapon {
 		this.shieldType = shieldType;
 		this.defense = defense;
 	}
+	
 	/**
 	 * @return the shieldType
 	 */
 	public ShieldType getShieldType() {
 		return shieldType;
 	}
+	
 	/**
 	 * @return the defense
 	 */

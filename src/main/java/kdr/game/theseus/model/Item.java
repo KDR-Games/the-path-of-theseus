@@ -23,32 +23,44 @@
 
 package kdr.game.theseus.model;
 
+/**
+ * The main class for items. This class can't be used directly.
+ * Other classes are derived from this.
+ * @see kdr.game.theseus.model.Wearable
+ * @see kdr.game.theseus.model.Consumable
+ * @see kdr.game.theseus.model.ItemType
+ */
 public class Item {
-	
-	/**
-	 * It will be set by this class's children.
-	 */
 	protected ItemType itemType;
 	protected String name;
 	protected String image;
 	
+	/**
+	 * The constructor is protected. You can't use this 
+	 * class directly. It is used only for type-casting.
+	 * @param name - the name
+	 * @param image - the image
+	 */
 	protected Item(String name, String image) {
 		super();
 		this.name = name;
 		this.image = image;
 	}
+	
 	/**
-	 * @return the itemType
+	 * @return the item type
 	 */
 	public ItemType getItemType() {
 		return itemType;
 	}
+	
 	/**
 	 * @return the name
 	 */
 	public String getName() {
 		return name;
 	}
+	
 	/**
 	 * @return the image
 	 */

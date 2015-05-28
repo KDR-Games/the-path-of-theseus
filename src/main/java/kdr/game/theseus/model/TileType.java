@@ -33,33 +33,43 @@ public enum TileType {
 	/**
 	 * You can freely walk on this, monsters can spawn here.
 	 */
-	Floor, 
+	Floor,
+	
 	/**
 	 * The player can't pass through a wall, monsters can't spawn here. 
 	 */
-	Wall, 
+	Wall,
+	
 	/**
-	 * Not implemented yet.
+	 * Not implemented yet. Maybe it will do some bad things 
+	 * to the creatures which step on this tile.
 	 */
-	Trap, 
+	Trap,
+	
 	/**
-	 * Not implemented yet.
+	 * Only for graphics for now.
 	 */
-	Door, 
+	Door,
+	
 	/**
 	 * This is the margin of the map, nothing can happen here.
 	 */
-	Margin, 
+	Margin,
+	
 	/**
 	 * The player spawns here.
 	 */
-	Entrance, 
+	Entrance,
+	
 	/**
-	 * This type is only used while generating the map.
+	 * This type is only used while generating the map, 
+	 * alongside with {@link kdr.game.theseus.model.Passage}
 	 */
-	PotentialDoor, 
+	PotentialDoor,
+	
 	/**
-	 * End of the map.
+	 * The exit of the map. If a player steps on this tile, a 
+	 * {@link kdr.game.theseus.model.ExitReachedException} is thrown.
 	 */
 	Exit
 }

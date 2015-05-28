@@ -23,12 +23,17 @@
 package kdr.game.theseus.model;
 
 /**
- * Monster 
+ * Monsters dont't have additional functionality over 
+ * {@link kdr.game.theseus.model.Creature}s, only that it's 
+ * constructor is public, so it can be declared and used directly.
+ * 
+ * @see kdr.game.theseus.model.Creature
+ * @see kdr.game.theseus.model.Player
  */
 public class Monster extends Creature {
 
 	/**
-	 * @param name
+	 * @param name - the name of the monster
 	 */
 	public Monster(String name) {
 		super(name);

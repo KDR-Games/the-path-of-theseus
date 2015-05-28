@@ -59,6 +59,9 @@ public class Main extends Application {
         showLogin();
     }
     
+	/**
+	 * Shows the login window.
+	 */
     public void showLogin() {
     	try {
             FXMLLoader loader = new FXMLLoader();
@@ -78,6 +81,9 @@ public class Main extends Application {
         }
     }
     
+    /**
+     * Shows the game window. A character needs to be set up properly for this.
+     */
     public void showGame() {
     	try {
             FXMLLoader loader = new FXMLLoader();

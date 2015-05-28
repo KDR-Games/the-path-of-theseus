@@ -103,7 +103,7 @@ public class Stats {
 	/**
 	 * The <b>endurance</b> stat is used to determine and modify the 
 	 * <b>maximum health</b> and the <b>decrease value of the stamina</b>
-	 * (higher endurance -> higher increase in stamina, lower decrease).
+	 * (higher endurance - higher increase in stamina, lower decrease).
 	 * @return the endurance
 	 * @see kdr.game.theseus.model.Creature#getStamina()
 	 * @see #getMaxHealth()

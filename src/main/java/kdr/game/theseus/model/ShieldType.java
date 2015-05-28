@@ -23,8 +23,21 @@
 package kdr.game.theseus.model;
 
 /**
- * ShieldType 
+ * Marks the different types a {@link kdr.game.theseus.model.Shield} can have.
  */
 public enum ShieldType {
-	Small, Medium, Tower
+	/**
+	 * Fast, but with lower defense value.
+	 */
+	Small,
+	
+	/**
+	 * Medium shields have balanced defense and speed value.
+	 */
+	Medium,
+	
+	/**
+	 * Very high defense value, but slow.
+	 */
+	Tower
 }
