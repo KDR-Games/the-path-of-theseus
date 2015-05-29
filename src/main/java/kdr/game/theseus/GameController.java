@@ -25,12 +25,13 @@ package kdr.game.theseus;
 import java.util.Map;
 
 import kdr.game.theseus.model.Armor;
+import kdr.game.theseus.model.Weapon;
 import kdr.game.theseus.view.GameViewController;
 import kdr.game.theseus.view.Main;
 import static kdr.game.theseus.view.Main.logger;
 
 /**
- * GameController 
+ * The main controller class. This holds everything. 
  */
 public class GameController {
 	private GameViewController view;
@@ -39,7 +40,13 @@ public class GameController {
 	private WorldMap world;
 	private ObservableMap map;
 	private Map<String, Armor> armors;
+	private Map<String, Weapon> weapons;
 	
+	/**
+	 * 
+	 * @param mainApp - reference to {@link kdr.game.theseus.view.Main}
+	 * @param player - reference to the player 
+	 */
 	public GameController(Main mainApp, Player player) {
 		this.mainApp = mainApp;
 		this.player = player;
@@ -53,6 +60,7 @@ public class GameController {
 		player.setMap(map);
 		
 		armors = new ArmorsDAO("/xml/Armors.xml").getArmors();
+		weapons = new WeaponsDAO("/xml/Weapons.xml").getWeapons();
 		logger.info("GameController succesfully created.");
 	}
 
@@ -63,6 +71,9 @@ public class GameController {
 		return player;
 	}
 	
+	/**
+	 * @param view - reference to the JavaFx view-controller
+	 */
 	public void setView(GameViewController view) {
 		this.view = view;
 		player.setView(view);

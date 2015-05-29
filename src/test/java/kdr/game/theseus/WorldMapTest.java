@@ -20,10 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/**
- * MVC - controller. <br>
- * This package contains all the controller classes for the game
- * "The path of Theseus".
- */
 package kdr.game.theseus;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class WorldMapTest {
+	
+	@Test
+	public void testWorldMapConstructor() {
+		WorldMap world = new WorldMap();
+		LevelMap level = world.getFirstLevel();
+		
+		assertEquals(Constants.MapSize, level.getSize());
+	}
+}

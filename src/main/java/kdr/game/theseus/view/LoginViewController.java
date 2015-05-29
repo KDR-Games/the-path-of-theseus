@@ -32,9 +32,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import kdr.game.theseus.Difficulty;
 import kdr.game.theseus.Player;
+import kdr.game.theseus.StatValue;
+import kdr.game.theseus.Stats;
 import kdr.game.theseus.model.Proficiencies;
-import kdr.game.theseus.model.StatValue;
-import kdr.game.theseus.model.Stats;
 
 public class LoginViewController extends ViewController {
 

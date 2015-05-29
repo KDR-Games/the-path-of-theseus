@@ -365,6 +365,9 @@ public class MapGenerator {
 				}
 			}
 			
+			if(passagesToMainRegion.isEmpty()) {
+				break;
+			}
 			int randIndex = rd.nextInt(passagesToMainRegion.size());
 			Passage passage = passagesToMainRegion.get(randIndex);
 			Tile door = passagesToMainRegion.get(randIndex).getTile();
@@ -416,13 +419,13 @@ public class MapGenerator {
 		
 		// look for an entrance and exit
 		ArrayList<Tile> potentialEntrances = new ArrayList<Tile>();
-		int k = 0;
+		int k = 1;
 		while(potentialEntrances.isEmpty()) {
 			for(int i = 0; i < map.length; i++) {
 				for (int j = 0; j < map[i].length; j++) {
 					if(i == k || i == map.length-1-k || j==k || j==map[i].length-1-k)
 					{
-						if((map[i][j].getType() == TileType.Floor) && (map[i][j].getNeighbourWallNum() == 1)) {
+						if((map[i][j].getType() == TileType.Floor) && (map[i][j].getNeighbourWallNum() == 0)) {
 							potentialEntrances.add(map[i][j]);						
 						}
 					}

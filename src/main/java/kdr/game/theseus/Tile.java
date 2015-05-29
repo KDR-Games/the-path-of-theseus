@@ -145,6 +145,8 @@ public class Tile {
 		if(containerRegion != null) {
 			this.containerRegion = containerRegion;
 			containerRegion.addTile(this);			
+		} else {
+			this.containerRegion = null;
 		}
 	}
 

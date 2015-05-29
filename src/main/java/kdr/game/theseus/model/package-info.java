@@ -22,7 +22,7 @@
  */
 
 /**
- * MVC - model. <br></br>
+ * MVC - model. <br>
  * This package contains all the model classes for the game
  * "The path of Theseus".
  */

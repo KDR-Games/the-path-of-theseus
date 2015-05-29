@@ -21,13 +21,15 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.model;
+package kdr.game.theseus;
+
+import kdr.game.theseus.model.Proficiencies;
 
 /**
  * Stat values in a predefined order:<br>
  * {@code E < D < C < B < A < S}.<br>
  * 
- * @see kdr.game.theseus.model.Stats
+ * @see kdr.game.theseus.Stats
  * @see kdr.game.theseus.model.Proficiencies
  */
 public enum StatValue {

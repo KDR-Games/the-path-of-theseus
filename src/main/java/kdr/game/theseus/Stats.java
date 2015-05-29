@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.model;
+package kdr.game.theseus;
 
 /**
  * This class holds different attributes of a {@link kdr.game.theseus.Creature},
@@ -102,10 +102,8 @@ public class Stats {
 
 	/**
 	 * The <b>endurance</b> stat is used to determine and modify the 
-	 * <b>maximum health</b> and the <b>decrease value of the stamina</b>
-	 * (higher endurance - higher increase in stamina, lower decrease).
+	 * <b>maximum health</b>.
 	 * @return the endurance
-	 * @see kdr.game.theseus.Creature#getStamina()
 	 * @see #getMaxHealth()
 	 */
 	public StatValue getEndurance() {

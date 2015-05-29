@@ -22,7 +22,7 @@
  */
 
 /**
- * MVC - view. <br></br>
+ * MVC - view. <br>
  * This package contains all the view classes for the game
  * "The path of Theseus".
  */

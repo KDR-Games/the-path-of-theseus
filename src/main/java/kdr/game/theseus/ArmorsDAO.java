@@ -45,13 +45,14 @@ import org.xml.sax.SAXException;
 import static kdr.game.theseus.view.Main.logger;
 
 /**
- * ArmorsDAO 
+ * A parser for {@link kdr.game.theseus.model.Armor} from
+ * an XML database.
  */
 public class ArmorsDAO {
 	private String inputXml;
 
 	/**
-	 * 
+	 * Creates a new instance of this parser, with the specified database as parameter.
 	 * @param inputXml - the file name of the input XML
 	 */
 	public ArmorsDAO(String inputXml) {
@@ -64,6 +65,17 @@ public class ArmorsDAO {
 	 */
 	public Map<String, Armor> getArmors() {
 		Map<String, Armor> armors = new HashMap<String, Armor>();
+		
+		armors.putAll(getHeadArmors());
+		armors.putAll(getChestArmors());
+		armors.putAll(getLegArmors());
+		armors.putAll(getHandArmors());
+		
+		return armors;
+	}
+	
+	public Map<String, HeadArmor> getHeadArmors() {
+		Map<String, HeadArmor> armors = new HashMap<String, HeadArmor>();
 		logger.info("Reading from database Armors.xml.");
 
 		try {
@@ -98,11 +110,35 @@ public class ArmorsDAO {
 					}
 				}
 			}
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-			logger.info("Chest armors.");
-			NodeList chestArmors = doc.getElementsByTagName("chest");
-			for (int i = 0; i < chestArmors.getLength(); i++) {
-				Node node = chestArmors.item(i);
+		logger.info("Database Armors.xml succsefully parsed.");
+		return armors;
+	}
+	
+	public Map<String, ChestArmor> getChestArmors() {
+		Map<String, ChestArmor> armors = new HashMap<String, ChestArmor>();
+		logger.info("Reading from database Armors.xml.");
+
+		try {
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			dbFactory.setNamespaceAware(true);
+			dbFactory.setValidating(false);
+			DocumentBuilder dbBuilder;
+			dbBuilder = dbFactory.newDocumentBuilder();
+			dbBuilder.setEntityResolver(new EntityManager());
+			Document doc = dbBuilder.parse(this.getClass().getResourceAsStream(inputXml));
+
+			logger.info("Head armors.");
+			NodeList headArmors = doc.getElementsByTagName("chest");
+			for (int i = 0; i < headArmors.getLength(); i++) {
+				Node node = headArmors.item(i);
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
 					Element e = (Element) node;
 					
@@ -122,11 +158,35 @@ public class ArmorsDAO {
 					}
 				}
 			}
-			
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		logger.info("Database Armors.xml succsefully parsed.");
+		return armors;
+	}
+	
+	public Map<String, LegArmor> getLegArmors() {
+		Map<String, LegArmor> armors = new HashMap<String, LegArmor>();
+		logger.info("Reading from database Armors.xml.");
+
+		try {
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			dbFactory.setNamespaceAware(true);
+			dbFactory.setValidating(false);
+			DocumentBuilder dbBuilder;
+			dbBuilder = dbFactory.newDocumentBuilder();
+			dbBuilder.setEntityResolver(new EntityManager());
+			Document doc = dbBuilder.parse(this.getClass().getResourceAsStream(inputXml));
+
 			logger.info("Leg armors.");
-			NodeList legArmors = doc.getElementsByTagName("leg");
-			for (int i = 0; i < legArmors.getLength(); i++) {
-				Node node = legArmors.item(i);
+			NodeList headArmors = doc.getElementsByTagName("leg");
+			for (int i = 0; i < headArmors.getLength(); i++) {
+				Node node = headArmors.item(i);
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
 					Element e = (Element) node;
 					
@@ -140,17 +200,41 @@ public class ArmorsDAO {
 							double speed = Double.parseDouble(armor.getElementsByTagName("speed").item(0).getTextContent());
 							
 							armors.put(name, new LegArmor(name, image, speed, defense));
-
+							
 							logger.info("New armor added:\n" + name + " " + image + " " + speed + " " + defense);
 						}
 					}
 				}
 			}
-			
-			logger.info("Hand armors.");
-			NodeList handArmors = doc.getElementsByTagName("hand");
-			for (int i = 0; i < handArmors.getLength(); i++) {
-				Node node = handArmors.item(i);
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		logger.info("Database Armors.xml succsefully parsed.");
+		return armors;
+	}
+	
+	public Map<String, HandArmor> getHandArmors() {
+		Map<String, HandArmor> armors = new HashMap<String, HandArmor>();
+		logger.info("Reading from database Armors.xml.");
+
+		try {
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			dbFactory.setNamespaceAware(true);
+			dbFactory.setValidating(false);
+			DocumentBuilder dbBuilder;
+			dbBuilder = dbFactory.newDocumentBuilder();
+			dbBuilder.setEntityResolver(new EntityManager());
+			Document doc = dbBuilder.parse(this.getClass().getResourceAsStream(inputXml));
+
+			logger.info("Head armors.");
+			NodeList headArmors = doc.getElementsByTagName("hand");
+			for (int i = 0; i < headArmors.getLength(); i++) {
+				Node node = headArmors.item(i);
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
 					Element e = (Element) node;
 					
@@ -164,7 +248,7 @@ public class ArmorsDAO {
 							double speed = Double.parseDouble(armor.getElementsByTagName("speed").item(0).getTextContent());
 							
 							armors.put(name, new HandArmor(name, image, speed, defense));
-
+							
 							logger.info("New armor added:\n" + name + " " + image + " " + speed + " " + defense);
 						}
 					}

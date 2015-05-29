@@ -158,6 +158,7 @@ public class GameViewController extends ViewController {
 
 	/**
 	 * A helper function, called right after this controller is instantiated.
+	 * @param controller - the controller to set
 	 */
 	public void setController(GameController controller) {
 		this.controller = controller;

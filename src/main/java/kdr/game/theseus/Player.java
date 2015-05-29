@@ -29,6 +29,9 @@ import kdr.game.theseus.view.GameViewController;
 
 import static kdr.game.theseus.view.Main.logger;
 
+/**
+ * This is the main controller for input and player interaction.
+ */
 public class Player extends Creature {
 	
 	private GameViewController view;
@@ -45,7 +48,11 @@ public class Player extends Creature {
 	private int distanceTravelled;
 	
 	/**
-	 * @param name - the name of the character
+	 * Creates a new player with the given parameters.
+	 * Stats and proficiencies are added later.
+	 * @param name - the name of the player
+	 * @param difficulty - the difficulty of the game
+	 * @param ghostMode - whether ghost mode is turned on or not
 	 */
 	public Player(String name, Difficulty difficulty, boolean ghostMode) {
 		super(name);
@@ -54,12 +61,12 @@ public class Player extends Creature {
 		experience = 0;
 		kills = 0;
 		distanceTravelled = 0;
-		this.difficulty = difficulty;
+		this.difficulty = ((difficulty != null) ? difficulty : Difficulty.Normal);
 		this.ghostMode = ghostMode;
 		
 		logger.info("New player created." + 
 		"\nName: " + name + 
-		"\nDifficulty: " + difficulty.toString() + 
+		"\nDifficulty: " + this.difficulty.toString() + 
 		"\nGhost mode: " + (ghostMode ? "true" : "false"));
 	}
 	
@@ -90,7 +97,7 @@ public class Player extends Creature {
 	}
 
 	/**
-	 * @param ghostMode the ghostMode to set
+	 * @param ghostMode - the ghostMode to set
 	 */
 	public void setGhostMode(boolean ghostMode) {
 		this.ghostMode = ghostMode;
@@ -118,7 +125,7 @@ public class Player extends Creature {
 	}
 
 	/**
-	 * @param experience the experience to set
+	 * @param xp - added to the experience points
 	 */
 	public void addToExperience(int xp) {
 		this.experience += xp;
@@ -158,7 +165,7 @@ public class Player extends Creature {
 	}
 
 	/**
-	 * @param difficulty the difficulty to set
+	 * @param difficulty - the difficulty to set
 	 */
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
@@ -264,6 +271,11 @@ public class Player extends Creature {
 		}
 	}
 	
+	/**
+	 * Moves the player(the map?) in the given direction.
+	 * @param code - the code of the button which is pressed.
+	 * @throws ExitReachedException throws this if the exit is reached.
+	 */
 	public void move(KeyCode code) throws ExitReachedException {
 		switch (code) {
 		case LEFT:

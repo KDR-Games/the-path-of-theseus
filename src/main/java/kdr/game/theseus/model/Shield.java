@@ -37,11 +37,12 @@ public class Shield extends Weapon {
 	 * @param shieldType - the type of the shield
 	 * @param defense - defense
 	 */
-	public Shield(String name, String image, double speed,
-			ShieldType shieldType, int defense) {
+	public Shield(String name, String image, ShieldType shieldType,
+			int defense, double speed) {
 		super(name, image, 0, speed);
 		this.shieldType = shieldType;
 		this.defense = defense;
+		this.weaponType = WeaponType.Shield;
 	}
 	
 	/**

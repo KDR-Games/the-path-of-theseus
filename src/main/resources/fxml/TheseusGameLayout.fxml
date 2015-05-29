@@ -55,7 +55,7 @@
 						<Insets />
 					</HBox.margin>
                <children>
-                  <TextArea fx:id="smallMessageTextArea" editable="false" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" text="adsadsadsa&#10;" wrapText="true" />
+                  <TextArea fx:id="smallMessageTextArea" editable="false" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" text="Follow the path of Theseus, the greek hero, who defeated the Minotaur!" wrapText="true" />
                </children>
 				</VBox>
 			</children>
@@ -451,7 +451,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextArea fx:id="bigMessageTextArea" editable="false" layoutX="29.0" layoutY="165.0" prefHeight="529.0" prefWidth="255.0" text="Follow the path of Theseus!&#10;" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TextArea fx:id="bigMessageTextArea" editable="false" layoutX="29.0" layoutY="165.0" prefHeight="529.0" prefWidth="255.0" text="Follow the path of Theseus, the greek hero, who defeated the Minotaur!&#10;" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font name="Monospaced Regular" size="13.0" />
                            </font>

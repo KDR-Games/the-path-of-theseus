@@ -23,7 +23,7 @@
 package kdr.game.theseus.model;
 
 /**
- * OneHanded 
+ * Class representing a one-handed weapon. 
  */
 public class OneHanded extends Weapon {
 	private DamageType damageType;
@@ -32,14 +32,14 @@ public class OneHanded extends Weapon {
 	 * 
 	 * @param name - name
 	 * @param image - image
+	 * @param damageType - damage type
 	 * @param damage - damage
 	 * @param speed - speed
-	 * @param damageType - damage type
 	 */
-	public OneHanded(String name, String image, int damage, int speed, DamageType damageType) {
+	public OneHanded(String name, String image, DamageType damageType, int damage, double speed) {
 		super(name, image, damage, speed);
-		this.weaponType = WeaponType.OneHanded;
 		this.damageType = damageType;
+		this.weaponType = WeaponType.OneHanded;
 	}
 	
 	/**
