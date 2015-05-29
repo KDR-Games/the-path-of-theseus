@@ -20,11 +20,98 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-.wrong_user_or_pass {
+.border-pane {
+	-fx-background-color: rgb(171,171,171);
+	-fx-focus-color: rgb(150,0,0);
+}
+ 
+.wrong_user {
 	-fx-text-box-border: red;
+	-fx-focus-color: red;
 }
 
-.wrong_user_or_pass:focused {
+.wrong_user:focused {
 	-fx-focus-color: red;
+}
+
+#welcome-text {
+  	-fx-text-fill: rgb(40,40,40);
+	-fx-font-size: 15;
+}
+
+.label {
+    -fx-font-family: "Arial Black";
+  	-fx-text-fill: rgb(60,60,60);
+   	-fx-effect: innershadow( three-pass-box , 
+   		rgba(150, 150, 150, 0.7) , 
+   		6, 0.0 , 
+   		0 , 2 );
+}
+
+.button {
+	-fx-background-color: radial-gradient( 
+		focus-angle 0.0deg, 
+		focus-distance 0.0%, 
+		center 50.0% 50.0%, 
+		radius 180.0%, 
+		rgb(179,179,179) 0.0, 
+		rgb(0,0,0) 100.0
+	);
+	-fx-border-color: rgb(50,50,50);
+	-fx-border-radius: 3;
+	-fx-padding: 3;
+	-fx-font-family: "Arial Black";
+  	-fx-text-fill: rgb(60,60,60);
+   	-fx-effect: innershadow( three-pass-box , 
+   		rgba(150, 150, 150, 0.7) , 
+   		6, 0.0 , 
+   		0 , 2 );
+}
+
+.button:hover {
+	-fx-opacity: 90%;
+}
+
+.button:focused {
+	-fx-border-color: rgb(90,0,0);
+}
+
+.button:armed {
+	-fx-background-color: radial-gradient( 
+		focus-angle 0.0deg, 
+		focus-distance 0.0%, 
+		center 50.0% 50.0%, 
+		radius 100.0%, 
+		rgb(255,255,255) 0.0, 
+		rgb(0,0,0) 100.0
+	);
+	-fx-border-color: rgb(150,0,0);
+}
+
+.check-box {
+	-fx-padding: 3;
+	-fx-font-family: "Arial Black";
+  	-fx-text-fill: rgb(60,60,60);
+   	-fx-effect: innershadow( three-pass-box , 
+   		rgba(150, 150, 150, 0.7) , 
+   		6, 0.0 , 
+   		0 , 2 );
+}
+
+.check-box:hover {
+  	-fx-text-fill: rgb(100, 100, 100);
+}
+
+.radio-button {
+	-fx-padding: 3;
+	-fx-font-family: "Arial Black";
+  	-fx-text-fill: rgb(60,60,60);
+   	-fx-effect: innershadow( three-pass-box , 
+   		rgba(150, 150, 150, 0.7) , 
+   		6, 0.0 , 
+   		0 , 2 );
+}
+
+.radio-button:hover {
+  	-fx-text-fill: rgb(100, 100, 100);
 }

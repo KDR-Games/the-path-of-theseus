@@ -16,7 +16,7 @@
 				<Insets top="1.0" />
 			</BorderPane.margin>
 			<children>
-				<VBox prefHeight="40.0" prefWidth="78.0" styleClass="vbox">
+				<VBox prefHeight="40.0" prefWidth="91.0" styleClass="vbox">
 					<HBox.margin>
 						<Insets />
 					</HBox.margin>
@@ -25,7 +25,7 @@
                      <padding>
                         <Insets left="4.0" />
                      </padding></Label>
-						<Label prefHeight="20.0" text="Stamina">
+						<Label prefHeight="19.0" prefWidth="89.0" text="Experience">
                      <padding>
                         <Insets left="4.0" />
                      </padding></Label>
@@ -34,7 +34,7 @@
 				<VBox prefHeight="40.0" prefWidth="306.0">
 					<children>
 						<ProgressBar fx:id="healthProgressBar" prefWidth="800.0" progress="1.0" styleClass="health-bar" />
-						<ProgressBar fx:id="staminaProgressBar" prefWidth="800.0" progress="1.0" styleClass="stamina-bar" />
+						<ProgressBar prefWidth="800.0" progress="0.0" styleClass="stamina-bar" fx:id="xpProgressBar" />
 					</children>
 				</VBox>
 				<VBox prefHeight="32.0" prefWidth="144.0" styleClass="vbox">
@@ -44,7 +44,7 @@
                         <Insets left="4.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="currentStaminaLabel" prefHeight="20.0" text="current_stamina">
+                  <Label fx:id="currentXpLabel" prefHeight="20.0" text="current_experience">
                      <padding>
                         <Insets left="4.0" />
                      </padding>
@@ -84,7 +84,7 @@
 		</TilePane>
 	</left>
 	<center>
-		<TabPane focusTraversable="false" prefHeight="540.0" prefWidth="260.0" side="RIGHT" stylesheets="@../css/TheseusGameLayout-Informations.css" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+		<TabPane focusTraversable="false" prefHeight="529.0" prefWidth="299.0" side="RIGHT" stylesheets="@../css/TheseusGameLayout-Informations.css" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
 			<tabs>
 				<Tab closable="false" text="Character">
                <content>
@@ -92,9 +92,9 @@
                      <children>
                         <TitledPane fx:id="playerInformationContainer" collapsible="false" focusTraversable="false" prefHeight="307.0" prefWidth="258.0" text="Playername">
                            <content>
-                              <AnchorPane prefWidth="200.0">
+                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="300.0" styleClass="anchor-pane">
                                  <children>
-                                    <VBox layoutX="11.0" layoutY="14.0" prefHeight="238.0" prefWidth="277.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <VBox layoutX="40.0" layoutY="67.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="342.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <HBox>
                                              <children>
@@ -108,7 +108,7 @@
                                                 <Insets bottom="5.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <GridPane layoutX="32.0" layoutY="36.0" prefHeight="90.0" prefWidth="200.0">
+                                          <GridPane layoutX="32.0" layoutY="36.0" maxHeight="70.0" maxWidth="200.0" minHeight="70.0" minWidth="200.0" prefHeight="70.0" prefWidth="200.0">
                                              <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" />
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
@@ -140,7 +140,7 @@
                                           </GridPane>
                                           <HBox style="-fx-border-width: 1 0 0 0; -fx-border-color: gray;">
                                              <children>
-                                                <Label layoutX="11.0" layoutY="144.0" text="Proficiencys">
+                                                <Label layoutX="11.0" layoutY="144.0" text="Proficiencies">
                                                    <font>
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
@@ -153,7 +153,7 @@
                                                 <Insets top="10.0" />
                                              </padding>
                                           </HBox>
-                                          <GridPane layoutX="27.0" layoutY="167.0" prefHeight="60.0" prefWidth="200.0">
+                                          <GridPane layoutX="27.0" layoutY="167.0" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" prefHeight="50.0" prefWidth="200.0">
                                              <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" />
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
@@ -197,7 +197,7 @@
                                                 <Insets top="10.0" />
                                              </padding>
                                           </HBox>
-                                          <GridPane prefHeight="60.0" prefWidth="200.0">
+                                          <GridPane maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" prefHeight="50.0" prefWidth="200.0">
                                              <children>
                                                 <Label fx:id="playerArmorLabel" layoutX="128.0" layoutY="190.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label fx:id="playerSpeedLabel" layoutX="128.0" layoutY="212.0" text="16.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -230,7 +230,7 @@
                            </content></TitledPane>
                         <TitledPane fx:id="enemyInformationContainer" collapsible="false" focusTraversable="false" layoutX="10.0" layoutY="10.0" prefHeight="226.0" prefWidth="258.0" text="Enemy">
                            <content>
-                              <AnchorPane prefWidth="200.0">
+                              <AnchorPane styleClass="anchor-pane">
                                  <children>
                                     <VBox layoutX="11.0" layoutY="14.0" prefHeight="238.0" prefWidth="277.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
@@ -246,7 +246,7 @@
                                                 <Insets bottom="5.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <GridPane layoutX="32.0" layoutY="36.0" prefHeight="90.0" prefWidth="200.0">
+                                          <GridPane layoutX="32.0" layoutY="36.0" maxHeight="70.0" maxWidth="200.0" minHeight="70.0" minWidth="200.0" prefHeight="70.0" prefWidth="200.0">
                                              <children>
                                                 <Label layoutX="32.0" layoutY="89.0" text="Agility:" GridPane.rowIndex="2" />
                                                 <Label layoutX="32.0" layoutY="112.0" text="Endurance:" GridPane.rowIndex="3" />
@@ -278,7 +278,7 @@
                                           </GridPane>
                                           <HBox style="-fx-border-width: 1 0 0 0; -fx-border-color: gray;">
                                              <children>
-                                                <Label layoutX="11.0" layoutY="144.0" text="Proficiencys">
+                                                <Label layoutX="11.0" layoutY="144.0" text="Proficiencies">
                                                    <font>
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
@@ -291,7 +291,7 @@
                                                 <Insets bottom="5.0" top="5.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <GridPane layoutX="27.0" layoutY="167.0" prefHeight="60.0" prefWidth="200.0">
+                                          <GridPane layoutX="27.0" layoutY="167.0" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" prefHeight="50.0" prefWidth="200.0">
                                              <children>
                                                 <Label fx:id="enemyPiercingLabel" layoutX="128.0" layoutY="190.0" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label fx:id="enemyBluntLabel" layoutX="128.0" layoutY="212.0" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -332,15 +332,15 @@
                      <children>
                         <TitledPane fx:id="equipmentContainer" animated="false" collapsible="false" focusTraversable="false" text="PlayerName">
                            <content>
-                              <AnchorPane maxHeight="270.0" maxWidth="250.0" minHeight="270.0" minWidth="250.0" prefHeight="270.0" prefWidth="250.0">
+                              <AnchorPane styleClass="anchor-pane">
                                  <children>
-                                    <Button fx:id="headArmorButton" focusTraversable="false" layoutX="100.0" layoutY="14.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" />
-                                    <Button fx:id="handArmorButton" focusTraversable="false" layoutX="22.0" layoutY="187.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" />
-                                    <Button fx:id="chestArmorButton" focusTraversable="false" layoutX="100.0" layoutY="98.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" />
-                                    <Button fx:id="rightHandWeaponButton" focusTraversable="false" layoutX="22.0" layoutY="98.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" />
-                                    <Button fx:id="leftHandWeaponButton" focusTraversable="false" layoutX="178.0" layoutY="98.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" />
-                                    <Button fx:id="legArmorButton" focusTraversable="false" layoutX="100.0" layoutY="187.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" />
-                                    <Button fx:id="deleteButton" focusTraversable="false" layoutX="210.0" layoutY="219.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" />
+                                    <Button id="head-armor" fx:id="headArmorButton" focusTraversable="false" layoutX="100.0" layoutY="14.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" />
+                                    <Button id="hand-armor" fx:id="handArmorButton" focusTraversable="false" layoutX="22.0" layoutY="187.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" />
+                                    <Button id="chest-armor" fx:id="chestArmorButton" focusTraversable="false" layoutX="100.0" layoutY="98.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" />
+                                    <Button id="mainhand-weapon" fx:id="rightHandWeaponButton" focusTraversable="false" layoutX="22.0" layoutY="98.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" />
+                                    <Button id="offhand-weapon" fx:id="leftHandWeaponButton" focusTraversable="false" layoutX="178.0" layoutY="98.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" />
+                                    <Button id="leg-armor" fx:id="legArmorButton" focusTraversable="false" layoutX="100.0" layoutY="187.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" />
+                                    <Button id="delete-item" fx:id="deleteButton" focusTraversable="false" layoutX="210.0" layoutY="219.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" />
                                  </children>
                               </AnchorPane>
                            </content>
@@ -451,7 +451,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextArea fx:id="bigMessageTextArea" editable="false" layoutX="29.0" layoutY="165.0" prefHeight="529.0" prefWidth="258.0" text="Follow the path of Theseus!&#10;" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TextArea fx:id="bigMessageTextArea" editable="false" layoutX="29.0" layoutY="165.0" prefHeight="529.0" prefWidth="255.0" text="Follow the path of Theseus!&#10;" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font name="Monospaced Regular" size="13.0" />
                            </font>
@@ -461,7 +461,7 @@
             </Tab>
 			</tabs>
 			<BorderPane.margin>
-				<Insets left="1.0" />
+				<Insets />
 			</BorderPane.margin>
 		</TabPane>
 	</center>

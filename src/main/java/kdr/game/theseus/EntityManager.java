@@ -20,24 +20,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package kdr.game.theseus;
 
+import java.io.IOException;
+
+import org.xml.sax.EntityResolver;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
+import static kdr.game.theseus.view.Main.logger;
+
 /**
- * Constants used in the program to avoid "magic numbers".
- *
+ * EntityManager 
  */
-public class Constants {
-	public static final int ButtonSize = 48;
-	public static final int ObservableMapSize = 11;
-	public static final int MapSize = 64;
-	public static final int MapSizeBoss = 24;
-	public static final int XpLevels[] = 
-		{50, 75, 100, 140, 180, 
-		 225, 280, 350, 430, 525,
-		 625, 750, 875, 1000, 1150,
-		 1300, 1500, 1700, 1950, 2200,
-		 2500, 3000, 4000, 5000, 6000,
-		 7000, 8000, 9000, 10000, 11000,
-		 12000, 13000, 14000, 15000, 16000};
+public class EntityManager implements EntityResolver {
+
+	/* (non-Javadoc)
+	 * @see org.xml.sax.EntityResolver#resolveEntity(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public InputSource resolveEntity(String publicId, String systemId)
+			throws SAXException, IOException {
+		String[] s = systemId.split("/");
+		String src = this.getClass().getResource("/xml/"+s[s.length-1]).toExternalForm();
+		
+		logger.info("Resolving entity:\nsystem id: " + systemId + "\nto: " + src);
+		
+		return new InputSource(src);
+	}
+
 }

@@ -25,7 +25,6 @@ package kdr.game.theseus;
 
 import java.util.ArrayList;
 
-import kdr.game.theseus.model.Creature;
 import kdr.game.theseus.model.Item;
 
 /**

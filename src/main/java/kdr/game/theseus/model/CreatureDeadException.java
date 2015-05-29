@@ -22,6 +22,8 @@
  */
 package kdr.game.theseus.model;
 
+import kdr.game.theseus.Creature;
+
 /**
  * CreatureDeadException 
  */

@@ -21,31 +21,65 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.model;
+package kdr.game.theseus;
 
-import kdr.game.theseus.Difficulty;
-import kdr.game.theseus.ObservableMap;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import kdr.game.theseus.view.GameViewController;
 
+import static kdr.game.theseus.view.Main.logger;
 
 public class Player extends Creature {
 	
+	private GameViewController view;
+	
 	private ObservableMap map;
+	private Difficulty difficulty;
+	private boolean ghostMode;
+
+	private int level;
+	private int freePoints;
+	private int experience;
 	
 	private int kills;
 	private int distanceTravelled;
-	private Difficulty difficulty;
-	private int level;
-	private int freePoints;
-	private boolean ghostMode;
 	
 	/**
 	 * @param name - the name of the character
 	 */
-	public Player(String name) {
+	public Player(String name, Difficulty difficulty, boolean ghostMode) {
 		super(name);
 		level = 0;
 		freePoints = 1;
-		setGhostMode(false);
+		experience = 0;
+		kills = 0;
+		distanceTravelled = 0;
+		this.difficulty = difficulty;
+		this.ghostMode = ghostMode;
+		
+		logger.info("New player created." + 
+		"\nName: " + name + 
+		"\nDifficulty: " + difficulty.toString() + 
+		"\nGhost mode: " + (ghostMode ? "true" : "false"));
+	}
+	
+	public void setView(GameViewController view) {
+		this.view = view;
+		for(int i = 0; i < Constants.ObservableMapSize; i++) {
+			for(int j = 0; j < Constants.ObservableMapSize; j++) {
+				view.getButtons()[i][j].setOnKeyPressed((KeyEvent ke) -> {
+					if(map.canMove(ke.getCode())) {
+						try {
+							move(ke.getCode());
+						} catch (ExitReachedException e) {
+							view.gameOver();
+						}
+					}
+				});
+			}
+		}
+		map.setButtons(view.getButtons());
+		logger.info("Map set up properly.");
 	}
 	
 	/**
@@ -70,10 +104,29 @@ public class Player extends Creature {
 	}
 
 	/**
-	 * @param freePoints - the freePoints to set
+	 * @return the experience
 	 */
-	public void setFreePoints(int freePoints) {
-		this.freePoints = freePoints;
+	public int getExperience() {
+		return experience;
+	}
+	
+	/**
+	 * @return the experience
+	 */
+	public double getExperienceInPercent() {
+		return (double)experience / (double)Constants.XpLevels[level];
+	}
+
+	/**
+	 * @param experience the experience to set
+	 */
+	public void addToExperience(int xp) {
+		this.experience += xp;
+		while(this.experience > Constants.XpLevels[level]) {
+			freePoints++;
+			level++;
+			logger.info("Level up! New level: " + level + ".");
+		}
 	}
 
 	/**
@@ -84,10 +137,10 @@ public class Player extends Creature {
 	}
 	
 	/**
-	 * @param kills the kills to set
+	 * The player killed a monster.
 	 */
-	public void setKills(int kills) {
-		this.kills = kills;
+	public void incrementKills() {
+		kills++;
 	}
 	
 	/**
@@ -95,29 +148,6 @@ public class Player extends Creature {
 	 */
 	public int getDistanceTravelled() {
 		return distanceTravelled;
-	}
-	
-	/**
-	 * @param distanceTravelled the distanceTravelled to set
-	 */
-	public void setDistanceTravelled(int distanceTravelled) {
-		this.distanceTravelled = distanceTravelled;
-	}
-	
-	/**
-	 * @return the map
-	 */
-	public ObservableMap getMap() {
-		return map;
-	}
-
-	/**
-	 * @param map the map to set
-	 */
-	public void setMap(ObservableMap map) {
-		this.map = map;
-		map.setDifficulty(difficulty);
-		map.setGhostMode(ghostMode);
 	}
 
 	/**
@@ -135,6 +165,15 @@ public class Player extends Creature {
 	}
 
 	/**
+	 * @param map the map to set
+	 */
+	public void setMap(ObservableMap map) {
+		this.map = map;
+		map.setDifficulty(difficulty);
+		map.setGhostMode(ghostMode);
+	}
+
+	/**
 	 * @return the level
 	 */
 	public int getLevel() {
@@ -149,6 +188,7 @@ public class Player extends Creature {
 		if(freePoints > 0 && !stats.getStrength().isMax()) {
 			stats.upgradeStrength();
 			freePoints--;
+			logger.info("Strength upgraded.");
 		}
 	}
 	
@@ -160,6 +200,7 @@ public class Player extends Creature {
 		if(freePoints > 0 && !stats.getAgility().isMax()) {
 			stats.upgradeAgility();
 			freePoints--;
+			logger.info("Agility upgraded.");
 		}
 	}
 	
@@ -171,6 +212,7 @@ public class Player extends Creature {
 		if(freePoints > 0 && !stats.getEndurance().isMax()) {
 			stats.upgradeEndurance();
 			freePoints--;
+			logger.info("Endurance upgraded.");
 		}
 	}
 	
@@ -182,6 +224,7 @@ public class Player extends Creature {
 		if(freePoints > 0) {
 			stats.upgradeMaxHealth();
 			freePoints--;
+			logger.info("Maximum health upgraded.");
 		}
 	}
 	
@@ -193,6 +236,7 @@ public class Player extends Creature {
 		if(freePoints > 0 && !proficiencies.getSlashing().isMax()) {
 			proficiencies.upgradeSlashing();
 			freePoints--;
+			logger.info("Slashing upgraded.");
 		}
 	}
 	
@@ -204,6 +248,7 @@ public class Player extends Creature {
 		if(freePoints > 0 && !proficiencies.getPiercing().isMax()) {
 			proficiencies.upgradePiercing();
 			freePoints--;
+			logger.info("Piercing upgraded.");
 		}
 	}
 	
@@ -215,6 +260,39 @@ public class Player extends Creature {
 		if(freePoints > 0 && !proficiencies.getBlunt().isMax()) {
 			proficiencies.upgradeBlunt();
 			freePoints--;
+			logger.info("Blunt upgraded.");
 		}
+	}
+	
+	public void move(KeyCode code) throws ExitReachedException {
+		switch (code) {
+		case LEFT:
+			logger.info("Move LEFT.");
+			map.setCenterTile(map.getCenterTile().getNeighbors().getLeft());
+			distanceTravelled++;
+			break;
+
+		case RIGHT:
+			logger.info("Move RIGHT.");
+			map.setCenterTile(map.getCenterTile().getNeighbors().getRight());
+			distanceTravelled++;
+			break;
+
+		case UP:
+			logger.info("Move UP.");
+			map.setCenterTile(map.getCenterTile().getNeighbors().getTop());
+			distanceTravelled++;
+			break;
+
+		case DOWN:
+			logger.info("Move DOWN.");
+			map.setCenterTile(map.getCenterTile().getNeighbors().getBottom());
+			distanceTravelled++;
+			break;
+
+		default:
+			break;
+		}
+		map.updateMap();
 	}
 }

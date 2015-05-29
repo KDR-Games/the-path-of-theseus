@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!ELEMENT Armors (head, chest, legs, arms)>
+<!ELEMENT Armors (head, chest, leg, hand)>
 
 <!ELEMENT head (light, medium, heavy)>
 <!ELEMENT chest (light, medium, heavy)>
-<!ELEMENT legs (light, medium, heavy)>
-<!ELEMENT arms (light, medium, heavy)>
+<!ELEMENT leg (light, medium, heavy)>
+<!ELEMENT hand (light, medium, heavy)>
 
 <!ELEMENT light (armor)+>
 <!ELEMENT medium (armor)+>
@@ -14,7 +14,7 @@
 <!ELEMENT armor (name, image, defense, speed)>
 
 <!ELEMENT name (#PCDATA)>
-<!ELEMENT image (full, tile)>
+<!ELEMENT image (#PCDATA)>
 <!ELEMENT defense (#PCDATA)>
 <!ELEMENT speed (#PCDATA)>
 

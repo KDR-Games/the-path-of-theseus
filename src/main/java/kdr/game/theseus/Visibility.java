@@ -23,14 +23,13 @@
 
 package kdr.game.theseus;
 
-import kdr.game.theseus.model.Player;
 
 /**
  * Visibility of the observable tiles from the player's point of view.
  * Visibility is determined by the difficulty of the game.
  * 
  * @see kdr.game.theseus.ObservableMap
- * @see kdr.game.theseus.model.Player
+ * @see kdr.game.theseus.Player
  * @see kdr.game.theseus.Difficulty
  */
 public enum Visibility {

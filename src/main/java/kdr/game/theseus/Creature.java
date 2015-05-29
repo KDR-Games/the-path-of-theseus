@@ -21,34 +21,36 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus.model;
+package kdr.game.theseus;
+
+import kdr.game.theseus.model.CreatureDeadException;
+import kdr.game.theseus.model.Equipment;
+import kdr.game.theseus.model.Proficiencies;
+import kdr.game.theseus.model.Stats;
 
 /**
  * The main class for creatures. This class can't be used directly.
  * Other classes are derived from this.
- * @see kdr.game.theseus.model.Monster
- * @see kdr.game.theseus.model.Player
+ * @see kdr.game.theseus.Enemy
+ * @see kdr.game.theseus.Player
  */
 public class Creature {
 	protected String name;
 	protected int health;
-	protected int stamina;
 	protected Stats stats;
 	protected Proficiencies proficiencies;
 	protected Equipment equipment;
-	protected int XP;
 
 	/**
 	 * The constructor is protected. You can't use this 
 	 * class directly. It is used only for type-casting.
 	 * @param name - the name
-	 * @see kdr.game.theseus.model.Monster
-	 * @see kdr.game.theseus.model.Player
+	 * @see kdr.game.theseus.Enemy
+	 * @see kdr.game.theseus.Player
 	 */
 	protected Creature(String name) {
 		super();
 		this.name = name;
-		this.stamina = 100;
 		equipment = new Equipment();
 	}
 
@@ -86,27 +88,6 @@ public class Creature {
 	}
 
 	/**
-	 * @return the stamina
-	 */
-	public int getStamina() {
-		return stamina;
-	}
-
-	/**
-	 * Decreases the stamina with a calculated amount depending on endurance.
-	 */
-	public void decreaseStamina() {
-		
-	}
-	
-	/**
-	 * Increases the stamina with a calculated amount depending on endurance.
-	 */
-	public void increaseStamina() {
-		
-	}
-
-	/**
 	 * @return the stats
 	 */
 	public Stats getStats() {
@@ -134,21 +115,7 @@ public class Creature {
 	public void setProficiencies(Proficiencies proficiencies) {
 		this.proficiencies = proficiencies;
 	}
-
-	/**
-	 * @return the xP
-	 */
-	public int getXP() {
-		return XP;
-	}
-
-	/**
-	 * @param xP - the xP to set
-	 */
-	public void setXP(int xP) {
-		XP = xP;
-	}
-
+	
 	/**
 	 * @return the equipment
 	 */

@@ -30,8 +30,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import kdr.game.theseus.model.Monster;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -54,11 +52,11 @@ public class MonstersDAO {
 	}
 	
 	/**
-	 * Reads {@link kdr.game.theseus.model.Monster}s from the input database.
+	 * Reads {@link kdr.game.theseus.Enemy}s from the input database.
 	 * @return the list of monsters
 	 */
-	public ArrayList<Monster> getMonsters() {
-		ArrayList<Monster> monsters = new ArrayList<Monster>();
+	public ArrayList<Enemy> getMonsters() {
+		ArrayList<Enemy> monsters = new ArrayList<Enemy>();
 		
 		try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -72,7 +70,7 @@ public class MonstersDAO {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element e = (Element) node;
                     
-                    Monster monster = new Monster(e.getElementsByTagName("name").item(0).getTextContent());
+                    Enemy monster = new Enemy(e.getElementsByTagName("name").item(0).getTextContent());
                     
                     System.out.println("id: " + e.getAttribute("id"));
                     System.out.println("name: " + e.getElementsByTagName("name").item(0).getTextContent());

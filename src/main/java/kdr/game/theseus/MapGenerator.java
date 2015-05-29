@@ -26,6 +26,8 @@ package kdr.game.theseus;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static kdr.game.theseus.view.Main.logger;
+
 /**
  * A class, containing only static functions, which generate 
  * a randomized tile-based map.
@@ -205,7 +207,12 @@ public class MapGenerator {
 	 * @return the newly generated map.
 	 */
 	static public Tile[][] getNewMap(int rows, int cols) {
+		long startupTime = System.nanoTime();
+		logger.info("Generating new map..." +
+				"\nWidth: " + cols +
+				"\nHeight: " + rows);
 		Tile[][] map = new Tile[rows][cols];
+		long startTime = System.nanoTime();
 
 		for(int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
@@ -243,10 +250,13 @@ public class MapGenerator {
 				}
 			}
 		}
-
-		ArrayList<Region> regions = new ArrayList<Region>();
+		
+		long endTime = System.nanoTime();
+		logger.info("Map initialized. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+		startTime = System.nanoTime();
 
 		// Generate rooms
+		ArrayList<Region> regions = new ArrayList<Region>();
 		Random rd = new Random();
 		ArrayList<Room> rooms = new ArrayList<Room>();
 		Room mainRoom = null;
@@ -287,6 +297,11 @@ public class MapGenerator {
 			}
 		}
 
+		endTime = System.nanoTime();
+		logger.info("Rooms added. "  + ((double)(endTime - startTime)/1000000.0) + "ms" + 
+				"\nNumber of rooms: " + rooms.size());
+		startTime = System.nanoTime();
+		
 		// Generate labyrinths
 		boolean foundNext = false;
 		do {
@@ -311,9 +326,12 @@ public class MapGenerator {
 			regions.add(labyrinth);
 		} while(foundNext);
 
-		ArrayList<Passage> passages = new ArrayList<Passage>();
+		endTime = System.nanoTime();
+		logger.info("Remaining walls carved into labyrinths. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+		startTime = System.nanoTime();
 
 		// Look for potential doors and mark them
+		ArrayList<Passage> passages = new ArrayList<Passage>();
 		for (int i = 1; i < rows - 1; i++) {
 			for (int j = 1; j < cols - 1; j++) {
 				if ((map[i][j].getType() == TileType.Wall)) {
@@ -332,8 +350,11 @@ public class MapGenerator {
 			}
 		}
 
-		// Connect regions
+		endTime = System.nanoTime();
+		logger.info("Possible doors found. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+		startTime = System.nanoTime();
 		
+		// Connect regions
 		Region mainRegion = mainRoom;
 		while(!passages.isEmpty()) {
 			ArrayList<Passage> passagesToMainRegion = new ArrayList<Passage>();
@@ -364,7 +385,11 @@ public class MapGenerator {
 				passages.remove(p);
 			}
 		}
-
+		
+		endTime = System.nanoTime();
+		logger.info("Regions connected. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+		startTime = System.nanoTime();
+		
 		// delete some of the dead ends
 		for(int k = 0; k < rows*cols - tilesToLeave; k++) {
 			ArrayList<Tile> deadEnds = new ArrayList<Tile>();
@@ -385,6 +410,10 @@ public class MapGenerator {
 			}
 		}
 		
+		endTime = System.nanoTime();
+		logger.info("Dead ends uncarved. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+		startTime = System.nanoTime();
+		
 		// look for an entrance and exit
 		ArrayList<Tile> potentialEntrances = new ArrayList<Tile>();
 		int k = 0;
@@ -404,14 +433,25 @@ public class MapGenerator {
 		int entranceIndex = rd.nextInt(potentialEntrances.size());
 		potentialEntrances.get(entranceIndex).setType(TileType.Entrance);
 		Tile entranceTile = potentialEntrances.get(entranceIndex);
+		
+		endTime = System.nanoTime();
+		logger.info("Entrance found. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+		startTime = System.nanoTime();
+		
 		int exitIndex = 0;
 		Tile exitTile = null;
 		do {
+			logger.info("Looking for exit...");
 			exitIndex = rd.nextInt(potentialEntrances.size());
 			exitTile = potentialEntrances.get(exitIndex);
 		} while((entranceTile.x() == exitTile.x()) || 
 				(entranceTile.y() == exitTile.y()));
 		potentialEntrances.get(exitIndex).setType(TileType.Exit);
+		
+		endTime = System.nanoTime();
+		logger.info("Exit found. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+		logger.info("Map is succesfully generated." + 
+				"\nElapsed time: " + ((double)(endTime - startupTime)/1000000.0) + "ms");
 
 		return map;
 	}

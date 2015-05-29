@@ -100,28 +100,4 @@ public enum StatValue {
 	public boolean isMax() {
 		return this.equals(S);
 	}
-	
-	/**
-	 * A simple helper function to convert the {@link StatValue} to 
-	 * string.
-	 * Note: enums usually don't have <code>toString()</code> methods.
-	 */
-	public String toString() {
-		switch (this) {
-		case E:
-			return "E";
-		case D:
-			return "D";
-		case C:
-			return "C";
-		case B:
-			return "B";
-		case A:
-			return "A";
-		case S:
-			return "S";
-		default:
-			return "";
-		}
-	}
 }

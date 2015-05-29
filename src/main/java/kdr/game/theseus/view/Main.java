@@ -30,12 +30,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import kdr.game.theseus.model.Player;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import kdr.game.theseus.GameController;
+import kdr.game.theseus.Player;
 
 public class Main extends Application {
 
 	private Stage primaryStage;
     private Player player;
+    
+    public static Logger logger = LoggerFactory.getLogger(Main.class);
 
     /**
 	 * @return the player
@@ -69,13 +76,14 @@ public class Main extends Application {
             BorderPane loginLayout = (BorderPane) loader.load();
             
             LoginViewController controller = loader.getController();
-            controller.setMainApp(this);   
+            controller.setMainApp(this);
             
             Scene scene = new Scene(loginLayout);
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.centerOnScreen();
             primaryStage.show();
+            logger.info("Login screen set up and shown.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,21 +98,24 @@ public class Main extends Application {
             loader.setLocation(this.getClass().getResource("/fxml/TheseusGameLayout.fxml"));
             BorderPane gameLayout = (BorderPane) loader.load();            
 
+            GameController game = new GameController(this, player);
             GameViewController controller = loader.getController();
             controller.setMainApp(this);
-            controller.setUp();
+            controller.setController(game);
             
             Scene scene = new Scene(gameLayout);
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.centerOnScreen();
             primaryStage.show();
+            logger.info("Game screen set up and shown.");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
 	public static void main(String[] args) {
+		logger.info("Application started.");
 		launch(args);
 	}
 }

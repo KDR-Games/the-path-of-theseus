@@ -29,6 +29,8 @@ import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 
+import static kdr.game.theseus.view.Main.logger;
+
 /**
  * This class is the controller of the character's movement and the
  * visibility of the map.
@@ -57,7 +59,7 @@ public class ObservableMap {
 	 * Updates the map and the buttons corresponding to the actual
 	 * location of the character({@code centerTile}).
 	 */
-	private void updateMap() {
+	public void updateMap() {
 		for(int i = 0; i < Constants.ObservableMapSize; i++) {
 			for(int j = 0; j < Constants.ObservableMapSize; j++) {
 				int col = centerTile.x() - center + j;
@@ -67,6 +69,7 @@ public class ObservableMap {
 		}
 		updateVisibility();
 		updateButtons();
+		logger.info("Map updated.");
 	}
 
 	/**
@@ -133,6 +136,7 @@ public class ObservableMap {
 				buttons[i][j].applyCss();
 			}
 		}
+		logger.info("Tiles updated");
 	}
 
 	/**
@@ -462,7 +466,7 @@ public class ObservableMap {
 	public void setCurrentLevel(LevelMap currentLevel) throws ExitReachedException {
 		this.currentLevel = currentLevel;
 		setCenterTile(currentLevel.getEntrance());
-		updateMap();
+		logger.info("New level set.");
 	}
 
 	/**
@@ -484,10 +488,11 @@ public class ObservableMap {
 			}
 		}
 		buttons[center][center].setId("player");
+		logger.info("Buttons set.");
 	}
 
 	/**
-	 * @return the centerTile, the location of the {@link kdr.game.theseus.model.Player}.
+	 * @return the centerTile, the location of the {@link kdr.game.theseus.Player}.
 	 */
 	public Tile getCenterTile() {
 		return centerTile;
@@ -503,6 +508,7 @@ public class ObservableMap {
 		this.centerTile = centerTile;
 		if(this.centerTile.getType() == TileType.Exit) {
 			updateMap();
+			logger.info("Exit reached!");
 			throw new ExitReachedException();
 		}
 	}
@@ -515,36 +521,14 @@ public class ObservableMap {
 	}
 
 	/**
-	 * Sets the difficultyof the map, which affects it's visibility.
+	 * Sets the difficulty of the map, which affects it's visibility.
 	 * @param difficulty - the difficulty to set
 	 */
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
 	}
 
-	public void move(KeyCode code) throws ExitReachedException {
-		switch (code) {
-		case LEFT:
-			setCenterTile(centerTile.getNeighbors().getLeft());
-			break;
-
-		case RIGHT:
-			setCenterTile(centerTile.getNeighbors().getRight());
-			break;
-
-		case UP:
-			setCenterTile(centerTile.getNeighbors().getTop());
-			break;
-
-		case DOWN:
-			setCenterTile(centerTile.getNeighbors().getBottom());
-			break;
-
-		default:
-			break;
-		}
-		updateMap();
-	}
+	
 
 	/**
 	 * A helper function to determine if a player can move with the pressed key.

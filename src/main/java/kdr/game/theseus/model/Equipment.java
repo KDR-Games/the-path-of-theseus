@@ -34,7 +34,7 @@ public class Equipment {
 	private HandArmor handArmor;
 	
 	/**
-	 * Every {@link kdr.game.theseus.model.Creature} starts
+	 * Every {@link kdr.game.theseus.Creature} starts
 	 * with an empty equipment. {@link kdr.game.theseus.model.Wearable}s
 	 * are added later through the setter functions.
 	 */

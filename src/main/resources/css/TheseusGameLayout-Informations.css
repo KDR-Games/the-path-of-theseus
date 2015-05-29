@@ -21,17 +21,50 @@
  * THE SOFTWARE.
  */
  
+ .tab-pane {
+    -fx-background-color: #CCCCCC;
+	-fx-focus-color: rgb(0,0,0,0.0);
+ }
+ 
+ .anchor-pane {
+    -fx-background-color: #CCCCCC;
+	-fx-focus-color: rgb(0,0,0,0.0);
+ }
+ 
  .tab {
  	-fx-focus-traversable: false;
- 	/* TODO */
+	-fx-background-color: radial-gradient( 
+		focus-angle 0.0deg, 
+		focus-distance 0.0%, 
+		center 50.0% 50.0%, 
+		radius 180.0%, 
+		rgb(179,179,179) 0.0, 
+		rgb(0,0,0) 100.0
+	);
+	-fx-border-color: rgb(50,50,50);
+	-fx-padding: 2;
+	-fx-font-family: "Arial Black";
+  	-fx-text-fill: rgb(60,60,60);
+   	-fx-effect: innershadow( three-pass-box , 
+   		rgba(150, 150, 150, 0.7) , 
+   		6, 0.0 , 
+   		0 , 2 );
  }
  
  .tab:hover {
- 	/* TODO */
+	-fx-opacity: 90%;
  }
  
  .tab:selected {
- 	/* TODO */
+	-fx-background-color: radial-gradient( 
+		focus-angle 0.0deg, 
+		focus-distance 0.0%, 
+		center 50.0% 50.0%, 
+		radius 100.0%, 
+		rgb(255,255,255) 0.0, 
+		rgb(0,0,0) 100.0
+	);
+	-fx-border-color: rgb(90,0,0);
  }
  
   /* Character tab */
@@ -52,6 +85,39 @@
  
  .bag-slot:focused {
 	-fx-effect: innershadow( gaussian , rgba(150,150,150,0.4) , 20,0,0,0 );
+ }
+ 
+ #head-armor {
+ 	-fx-focus-traversable: false;
+ 	-fx-background-image: url("../image/head-armor.png");
+ }
+ 
+ #chest-armor {
+ 	-fx-focus-traversable: false;
+ 	-fx-background-image: url("../image/chest-armor.png");
+
+ }
+ 
+ #leg-armor {
+ 	-fx-focus-traversable: false;
+ 	-fx-background-image: url("../image/leg-armor.png");
+
+ }
+ 
+ #hand-armor {
+ 	-fx-focus-traversable: false;
+ 	-fx-background-image: url("../image/hand-armor.png");
+
+ }
+ 
+ #mainhand-weapon {
+ 	-fx-focus-traversable: false;
+ 	-fx-background-image: url("../image/mainhand-weapon.png");
+ }
+ 
+ #offhand-weapon {
+ 	-fx-focus-traversable: false;
+ 	-fx-background-image: url("../image/offhand-weapon.png");
  }
  
  /* Messages tab */

@@ -31,7 +31,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import kdr.game.theseus.Difficulty;
-import kdr.game.theseus.model.Player;
+import kdr.game.theseus.Player;
+import kdr.game.theseus.model.Proficiencies;
+import kdr.game.theseus.model.StatValue;
+import kdr.game.theseus.model.Stats;
 
 public class LoginViewController extends ViewController {
 
@@ -48,7 +51,7 @@ public class LoginViewController extends ViewController {
 	@FXML
 	private Label difficultyLabel;
 	@FXML
-	private ToggleGroup difficulty;
+	private ToggleGroup difficultyToggleGroup;
 	@FXML
 	private CheckBox ghostModeCheckBox;
 
@@ -80,18 +83,20 @@ public class LoginViewController extends ViewController {
 	 * The login is okay, setting up the player, switching to game window.
 	 */
 	private void done() {
-		Player currentPlayer = new Player(name.getText());
-		// TODO: set up new character stats
-		if (difficulty.getSelectedToggle().equals(difficultyEasy)) {
-			currentPlayer.setDifficulty(Difficulty.Easy);
-		} else if (difficulty.getSelectedToggle().equals(difficultyNormal)) {
-			currentPlayer.setDifficulty(Difficulty.Normal);
-		} else if (difficulty.getSelectedToggle().equals(difficultyHard)) {
-			currentPlayer.setDifficulty(Difficulty.Hard);
+		Difficulty difficulty = Difficulty.Normal;
+		if (difficultyToggleGroup.getSelectedToggle().equals(difficultyEasy)) {
+			difficulty = Difficulty.Easy;
+		} else if (difficultyToggleGroup.getSelectedToggle().equals(difficultyNormal)) {
+			difficulty = Difficulty.Normal;
+		} else if (difficultyToggleGroup.getSelectedToggle().equals(difficultyHard)) {
+			difficulty = Difficulty.Hard;
 		}
-		if(ghostModeCheckBox.isSelected()) {
-			currentPlayer.setGhostMode(true);
-		}
+		boolean ghostMode = ghostModeCheckBox.isSelected();
+		
+		Player currentPlayer = new Player(name.getText(), difficulty, ghostMode);
+		currentPlayer.setStats(new Stats(150, StatValue.E, StatValue.E, StatValue.E));
+		currentPlayer.setProficiencies(new Proficiencies(StatValue.E, StatValue.E, StatValue.E));
+
 		mainApp.setPlayer(currentPlayer);
 		mainApp.showGame();
 	}

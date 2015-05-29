@@ -7,41 +7,41 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="215.0" maxWidth="400.0" minHeight="160.0" minWidth="400.0" prefHeight="160.0" prefWidth="400.0" stylesheets="@../css/TheseusLoginLayout.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kdr.game.theseus.view.LoginViewController">
+<BorderPane maxHeight="215.0" maxWidth="400.0" minHeight="160.0" minWidth="400.0" prefHeight="160.0" prefWidth="400.0" styleClass="border-pane" stylesheets="@../css/TheseusLoginLayout.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kdr.game.theseus.view.LoginViewController">
    <center>
       <AnchorPane prefHeight="130.0" prefWidth="373.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="name" layoutX="169.0" layoutY="53.0" prefHeight="25.0" prefWidth="182.0">
+            <TextField fx:id="name" layoutX="169.0" layoutY="53.0" prefHeight="25.0" prefWidth="209.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <Label layoutX="21.0" layoutY="57.0" text="Character name">
+            <Label layoutX="29.0" layoutY="56.0" styleClass="text-login" text="Character name">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </Label>
-            <Label fx:id="welcomeLabel" layoutX="75.0" layoutY="14.0" text="Prepare to follow the path of Theseus!" />
+            <Label id="welcome-text" fx:id="welcomeLabel" layoutX="43.0" layoutY="14.0" styleClass="text-login" text="Prepare to follow the path of Theseus!" />
             <HBox layoutX="169.0" layoutY="93.0">
                <children>
-                  <RadioButton fx:id="difficultyEasy" layoutX="169.0" layoutY="146.0" mnemonicParsing="false" text="Easy">
+                  <RadioButton fx:id="difficultyEasy" layoutX="169.0" layoutY="146.0" mnemonicParsing="false" styleClass="text-login" text="Easy">
                      <toggleGroup>
-                        <ToggleGroup fx:id="difficulty" />
+                        <ToggleGroup fx:id="difficultyToggleGroup" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="difficultyNormal" layoutX="233.0" layoutY="146.0" mnemonicParsing="false" selected="true" text="Normal" toggleGroup="$difficulty" />
-                  <RadioButton fx:id="difficultyHard" layoutX="313.0" layoutY="146.0" mnemonicParsing="false" text="Hard" toggleGroup="$difficulty" />
+                  <RadioButton fx:id="difficultyNormal" layoutX="233.0" layoutY="146.0" mnemonicParsing="false" selected="true" styleClass="text-login" text="Normal" toggleGroup="$difficultyToggleGroup" />
+                  <RadioButton fx:id="difficultyHard" layoutX="313.0" layoutY="146.0" mnemonicParsing="false" styleClass="text-login" text="Hard" toggleGroup="$difficultyToggleGroup" />
                </children>
             </HBox>
-            <Label fx:id="difficultyLabel" layoutX="21.0" layoutY="94.0" text="Difficulty" />
+            <Label fx:id="difficultyLabel" layoutX="29.0" layoutY="96.0" styleClass="text-login" text="Difficulty" />
          </children>
       </AnchorPane>
    </center>
    <bottom>
       <AnchorPane prefHeight="30.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="2.0" mnemonicParsing="false" onAction="#check" text="Start!" textAlignment="CENTER" />
-            <CheckBox fx:id="ghostModeCheckBox" layoutX="283.0" layoutY="6.0" mnemonicParsing="false" text="Ghost mode" />
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="177.0" layoutY="1.0" mnemonicParsing="false" onAction="#check" styleClass="button-start" text="Start!" textAlignment="CENTER" />
+            <CheckBox fx:id="ghostModeCheckBox" layoutX="270.0" layoutY="1.0" mnemonicParsing="false" styleClass="text-login" text="Ghost mode" />
          </children>
       </AnchorPane>
    </bottom>

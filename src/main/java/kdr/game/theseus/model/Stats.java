@@ -24,12 +24,12 @@
 package kdr.game.theseus.model;
 
 /**
- * This class holds different attributes of a {@link kdr.game.theseus.model.Creature},
+ * This class holds different attributes of a {@link kdr.game.theseus.Creature},
  * based on it's level.
  * 
- * @see kdr.game.theseus.model.Creature
- * @see kdr.game.theseus.model.Player
- * @see kdr.game.theseus.model.Monster
+ * @see kdr.game.theseus.Creature
+ * @see kdr.game.theseus.Player
+ * @see kdr.game.theseus.Enemy
  */
 public class Stats {
 	/**
@@ -69,10 +69,10 @@ public class Stats {
 	
 	/**
 	 * The <b>maximum health</b> is an upper limit of the health 
-	 * points of a {@link kdr.game.theseus.model.Creature}.
+	 * points of a {@link kdr.game.theseus.Creature}.
 	 * This is mostly determined by the <b>endurance</b> stat.
 	 * @return the maximum health
-	 * @see kdr.game.theseus.model.Creature#getHealth()
+	 * @see kdr.game.theseus.Creature#getHealth()
 	 * @see #getEndurance()
 	 * @see #getMaxHealthNextValue()
 	 */
@@ -82,7 +82,7 @@ public class Stats {
 	
 	/**
 	 * The <b>strength</b> stat is used to determine and modify the <b>damage</b> of a 
-	 * {@link kdr.game.theseus.model.Creature}, which is an essential attribute
+	 * {@link kdr.game.theseus.Creature}, which is an essential attribute
 	 * in combat.
 	 * @return the strength
 	 */
@@ -92,7 +92,7 @@ public class Stats {
 	
 	/**
 	 * The <b>agility</b> stat is used to determine and modify the <b>speed</b> of a 
-	 * {@link kdr.game.theseus.model.Creature}, which is an essential attribute
+	 * {@link kdr.game.theseus.Creature}, which is an essential attribute
 	 * in combat.
 	 * @return the agility
 	 */
@@ -105,7 +105,7 @@ public class Stats {
 	 * <b>maximum health</b> and the <b>decrease value of the stamina</b>
 	 * (higher endurance - higher increase in stamina, lower decrease).
 	 * @return the endurance
-	 * @see kdr.game.theseus.model.Creature#getStamina()
+	 * @see kdr.game.theseus.Creature#getStamina()
 	 * @see #getMaxHealth()
 	 */
 	public StatValue getEndurance() {
@@ -114,7 +114,7 @@ public class Stats {
 	
 	/**
 	 * Depending on <b>agility</b>, it calculates the speed modifier
-	 * used to determine the combat speed of a {@link kdr.game.theseus.model.Creature}.
+	 * used to determine the combat speed of a {@link kdr.game.theseus.Creature}.
 	 * @return the speed modifier, depending on agility
 	 */
 	public double getSpeedModifier() {

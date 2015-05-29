@@ -20,24 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package kdr.game.theseus;
 
 /**
- * Constants used in the program to avoid "magic numbers".
- *
+ * FightController 
  */
-public class Constants {
-	public static final int ButtonSize = 48;
-	public static final int ObservableMapSize = 11;
-	public static final int MapSize = 64;
-	public static final int MapSizeBoss = 24;
-	public static final int XpLevels[] = 
-		{50, 75, 100, 140, 180, 
-		 225, 280, 350, 430, 525,
-		 625, 750, 875, 1000, 1150,
-		 1300, 1500, 1700, 1950, 2200,
-		 2500, 3000, 4000, 5000, 6000,
-		 7000, 8000, 9000, 10000, 11000,
-		 12000, 13000, 14000, 15000, 16000};
+public class FightController {
+
 }

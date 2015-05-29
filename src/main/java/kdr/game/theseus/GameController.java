@@ -20,24 +20,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package kdr.game.theseus.model;
+package kdr.game.theseus;
+
+import java.util.Map;
+
+import kdr.game.theseus.model.Armor;
+import kdr.game.theseus.view.GameViewController;
+import kdr.game.theseus.view.Main;
+import static kdr.game.theseus.view.Main.logger;
 
 /**
- * Monsters dont't have additional functionality over 
- * {@link kdr.game.theseus.model.Creature}s, only that it's 
- * constructor is public, so it can be declared and used directly.
- * 
- * @see kdr.game.theseus.model.Creature
- * @see kdr.game.theseus.model.Player
+ * GameController 
  */
-public class Monster extends Creature {
+public class GameController {
+	private GameViewController view;
+	private Main mainApp;
+	private Player player;
+	private WorldMap world;
+	private ObservableMap map;
+	private Map<String, Armor> armors;
+	
+	public GameController(Main mainApp, Player player) {
+		this.mainApp = mainApp;
+		this.player = player;
+		world = new WorldMap();
+		map = new ObservableMap();
+		try {
+			map.setCurrentLevel(world.getFirstLevel());
+		} catch (ExitReachedException e) {
+			e.printStackTrace();
+		}
+		player.setMap(map);
+		
+		armors = new ArmorsDAO("/xml/Armors.xml").getArmors();
+		logger.info("GameController succesfully created.");
+	}
 
 	/**
-	 * @param name - the name of the monster
+	 * @return the player
 	 */
-	public Monster(String name) {
-		super(name);
-		// TODO Auto-generated constructor stub
+	public Player getPlayer() {
+		return player;
+	}
+	
+	public void setView(GameViewController view) {
+		this.view = view;
+		player.setView(view);
+		map.updateMap();
 	}
 
 }

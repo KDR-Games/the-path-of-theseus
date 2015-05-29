@@ -39,23 +39,16 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import kdr.game.theseus.Constants;
-import kdr.game.theseus.ExitReachedException;
-import kdr.game.theseus.ObservableMap;
-import kdr.game.theseus.WorldMap;
-import kdr.game.theseus.model.Player;
-import kdr.game.theseus.model.StatValue;
-import kdr.game.theseus.model.Stats;
+import kdr.game.theseus.GameController;
 
 public class GameViewController extends ViewController {
 
+	private GameController controller;
+	
 	private Button[][] buttons;
-	private WorldMap world;
-	private ObservableMap map;
-	private Player player;
 	private ArrayList<Button> inventoryBag;
 	
 	@FXML
@@ -63,11 +56,11 @@ public class GameViewController extends ViewController {
 	@FXML
 	private ProgressBar healthProgressBar;
 	@FXML
-	private ProgressBar staminaProgressBar;
+	private ProgressBar xpProgressBar;
 	@FXML
 	private Label currentHealthLabel;
 	@FXML 
-	private Label currentStaminaLabel;
+	private Label currentXpLabel;
 	@FXML
 	private TextArea smallMessageTextArea;
 	@FXML
@@ -146,7 +139,6 @@ public class GameViewController extends ViewController {
 	
 	
 	public void initialize() {
-		map = new ObservableMap();
 		buttons = new Button[Constants.ObservableMapSize][Constants.ObservableMapSize];
 		pane.setPrefSize(Constants.ButtonSize * Constants.ObservableMapSize, 
 				Constants.ButtonSize * Constants.ObservableMapSize);
@@ -159,37 +151,19 @@ public class GameViewController extends ViewController {
 				Button b = new Button("");
 				b.setPrefSize(Constants.ButtonSize, Constants.ButtonSize);
 				buttons[i][j] = b;
-				buttons[i][j].setOnKeyPressed((KeyEvent ke) -> {
-					if(map.canMove(ke.getCode())) {
-						try {
-							map.move(ke.getCode());
-						} catch (ExitReachedException e) {
-							gameOver();
-						}
-					}
-				});
 				pane.getChildren().add(b);
 			}
 		}
-		map.setButtons(buttons);
 	}
 
 	/**
 	 * A helper function, called right after this controller is instantiated.
 	 */
-	public void setUp() {
-		player = mainApp.getPlayer();
-		world = new WorldMap();
-		player.setMap(map);
-		player.setStats(new Stats(150, StatValue.E, StatValue.E, StatValue.E));
-		updateHealthAndStaminaBar();
-		try {
-			map.setCurrentLevel(world.getFirstLevel());
-		} catch (ExitReachedException ex) {
-			ex.printStackTrace();
-		}
-		playerInformationContainer.setText(player.getName());
-		equipmentContainer.setText(player.getName());
+	public void setController(GameController controller) {
+		this.controller = controller;
+		controller.setView(this);
+		updateHealthAndXpBar();
+		showUpgradePointsIfAvailable();
 		GridPane bag1 = (GridPane) bagTabPane.getTabs().get(0).getContent();
 		GridPane bag2 = (GridPane) bagTabPane.getTabs().get(1).getContent();
 		GridPane bag3 = (GridPane) bagTabPane.getTabs().get(2).getContent();
@@ -217,6 +191,13 @@ public class GameViewController extends ViewController {
 		}
 	}
 	
+	/**
+	 * @return the buttons
+	 */
+	public Button[][] getButtons() {
+		return buttons;
+	}
+
 	@FXML
 	private void close() {
 		Alert exitPrompt = new Alert(AlertType.CONFIRMATION);
@@ -235,49 +216,50 @@ public class GameViewController extends ViewController {
 	
 	@FXML
 	private void maxHealthUpgraded() {
-		mainApp.getPlayer().upgradeMaxHealth();
-		playerMaxHealthLabel.setText("" + mainApp.getPlayer().getStats().getMaxHealth());
+		controller.getPlayer().upgradeMaxHealth();
+		playerMaxHealthLabel.setText("" + controller.getPlayer().getStats().getMaxHealth());
 		showUpgradePointsIfAvailable();
 	}
 	
 	@FXML
 	private void strengthUpgraded() {
-		mainApp.getPlayer().upgradeStrength();
-		playerStrengthLabel.setText(mainApp.getPlayer().getStats().getStrength().toString());
+		controller.getPlayer().upgradeStrength();
+		playerStrengthLabel.setText(controller.getPlayer().getStats().getStrength().toString());
 		showUpgradePointsIfAvailable();
 	}
 	
 	@FXML
 	private void agilityUpgraded() {
-		mainApp.getPlayer().upgradeAgility();
-		playerAgilityLabel.setText(mainApp.getPlayer().getStats().getAgility().toString());
+		controller.getPlayer().upgradeAgility();
+		playerAgilityLabel.setText(controller.getPlayer().getStats().getAgility().toString());
 		showUpgradePointsIfAvailable();
 	}
 	
 	@FXML
 	private void enduranceUpgraded() {
-		mainApp.getPlayer().upgradeEndurance();
-		playerEnduranceLabel.setText(mainApp.getPlayer().getStats().getEndurance().toString());
+		controller.getPlayer().upgradeEndurance();
+		playerEnduranceLabel.setText(controller.getPlayer().getStats().getEndurance().toString());
 		showUpgradePointsIfAvailable();
 	}
 	
 	@FXML
 	private void slashingUpgraded() {
-		mainApp.getPlayer().upgradeProficiencySlashing();
-		// playerSlashingLabel.setText(mainApp.getPlayer().get);
+		controller.getPlayer().upgradeProficiencySlashing();
+		playerSlashingLabel.setText(controller.getPlayer().getProficiencies().getSlashing().toString());
+		showUpgradePointsIfAvailable();
 	}
 	
 	@FXML
 	private void piercingUpgraded() {
-		mainApp.getPlayer().upgradeProficiencyPiercing();
-		// playerPiercingLabel.setText(mainApp.getPlayer().get);
+		controller.getPlayer().upgradeProficiencyPiercing();
+		playerPiercingLabel.setText(controller.getPlayer().getProficiencies().getPiercing().toString());
 		showUpgradePointsIfAvailable();
 	}
 	
 	@FXML
 	private void bluntUpgraded() {
-		mainApp.getPlayer().upgradeProficiencyBlunt();
-		// playerBluntLabel.setText(mainApp.getPlayer().get);
+		controller.getPlayer().upgradeProficiencyBlunt();
+		playerBluntLabel.setText(controller.getPlayer().getProficiencies().getBlunt().toString());
 		showUpgradePointsIfAvailable();
 	}
 	
@@ -286,7 +268,7 @@ public class GameViewController extends ViewController {
 	 * The current statistics are written in the database.
 	 * The high scores can be viewed now.
 	 */
-	private void gameOver() {
+	public void gameOver() {
 		Alert exitPrompt = new Alert(AlertType.CONFIRMATION);
 		exitPrompt.setTitle("Congratulations!");
 		exitPrompt.setHeaderText("You reached the exit!");
@@ -302,20 +284,48 @@ public class GameViewController extends ViewController {
 	}
 	
 	private void showUpgradePointsIfAvailable() {
-		boolean hasFreePoints = mainApp.getPlayer().getFreePoints() > 0;
+		boolean hasFreePoints = controller.getPlayer().getFreePoints() > 0;
 		playerMaxHealthButton.setVisible(hasFreePoints);
-		playerStrengthButton.setVisible(hasFreePoints);
-		playerAgilityButton.setVisible(hasFreePoints);
-		playerEnduranceButton.setVisible(hasFreePoints);
-		playerSlashingButton.setVisible(hasFreePoints);
-		playerPiercingButton.setVisible(hasFreePoints);
-		playerBluntButton.setVisible(hasFreePoints);
+		if(!controller.getPlayer().getStats().getStrength().isMax()) {
+			playerStrengthButton.setVisible(hasFreePoints);
+		} else {
+			playerStrengthButton.setVisible(false);
+		}
+		if(!controller.getPlayer().getStats().getAgility().isMax()) {
+			playerAgilityButton.setVisible(hasFreePoints);
+		} else {
+			playerAgilityButton.setVisible(false);
+		}
+		if(!controller.getPlayer().getStats().getEndurance().isMax()) {
+			playerEnduranceButton.setVisible(hasFreePoints);
+		} else {
+			playerEnduranceButton.setVisible(false);
+		}
+		if(!controller.getPlayer().getProficiencies().getSlashing().isMax()) {
+			playerSlashingButton.setVisible(hasFreePoints);
+		} else {
+			playerSlashingButton.setVisible(false);
+		}
+		if(!controller.getPlayer().getProficiencies().getPiercing().isMax()) {
+			playerPiercingButton.setVisible(hasFreePoints);
+		} else {
+			playerPiercingButton.setVisible(false);
+		}
+		if(!controller.getPlayer().getProficiencies().getBlunt().isMax()) {
+			playerBluntButton.setVisible(hasFreePoints);
+		} else {
+			playerBluntButton.setVisible(false);
+		}
+
+		playerInformationContainer.setText(controller.getPlayer().getName() + " - Level " + controller.getPlayer().getLevel());
+		equipmentContainer.setText(controller.getPlayer().getName() + " - Level " + controller.getPlayer().getLevel());
 	}
 	
-	private void updateHealthAndStaminaBar(){
-		staminaProgressBar.setProgress((double)mainApp.getPlayer().getStamina() / 100.0);
-		currentStaminaLabel.setText("" + mainApp.getPlayer().getStamina());
-		healthProgressBar.setProgress(mainApp.getPlayer().getHealthInPercent());
-		currentHealthLabel.setText("" + mainApp.getPlayer().getHealth());
+	private void updateHealthAndXpBar(){
+		xpProgressBar.setProgress(controller.getPlayer().getExperienceInPercent());
+		currentXpLabel.setText(controller.getPlayer().getExperience() + 
+				"/" + Constants.XpLevels[controller.getPlayer().getLevel()]);
+		healthProgressBar.setProgress(controller.getPlayer().getHealthInPercent());
+		currentHealthLabel.setText("" + controller.getPlayer().getHealth());
 	}
 }
