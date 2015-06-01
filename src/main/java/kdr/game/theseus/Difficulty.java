@@ -29,7 +29,7 @@ package kdr.game.theseus;
  * in which the {@link kdr.game.theseus.Visibility}
  * is calculated.
  * 
- * @see kdr.game.theseus.ObservableMap
+ * @see kdr.game.theseus.view.ObservableMap
  */
 public enum Difficulty {
 	/**

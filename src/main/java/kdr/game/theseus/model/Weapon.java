@@ -23,6 +23,8 @@
 
 package kdr.game.theseus.model;
 
+import javafx.scene.image.Image;
+
 /**
  * The main class for weapons. This class can't be used directly.
  * Other classes are derived from this.
@@ -47,7 +49,7 @@ public class Weapon extends Wearable {
 	 * @see kdr.game.theseus.model.Shield
 	 * @see kdr.game.theseus.model.WeaponType
 	 */
-	protected Weapon(String name, String image, int damage, double speed) {
+	protected Weapon(String name, Image image, int damage, double speed) {
 		super(name, image, speed);
 		this.damage = damage;
 		this.wearableType = WearableType.Weapon;

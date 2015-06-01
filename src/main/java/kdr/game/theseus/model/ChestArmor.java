@@ -22,6 +22,8 @@
  */
 package kdr.game.theseus.model;
 
+import javafx.scene.image.Image;
+
 /**
  * ChestArmor 
  */
@@ -33,7 +35,7 @@ public class ChestArmor extends Armor {
 	 * @param speed - speed
 	 * @param defense - defense
 	 */
-	public ChestArmor(String name, String image, double speed, int defense) {
+	public ChestArmor(String name, Image image, double speed, int defense) {
 		super(name, image, speed, defense);
 		this.armorType = ArmorType.Chest;
 	}

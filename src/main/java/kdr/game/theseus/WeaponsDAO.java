@@ -28,6 +28,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javafx.scene.image.Image;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -99,7 +101,8 @@ private String inputXml;
                     Element weapon = (Element)oneHanded.item(i);
 
 					String name = weapon.getElementsByTagName("name").item(0).getTextContent();
-					String image = weapon.getElementsByTagName("image").item(0).getTextContent();
+					String imageSrc = Constants.weaponsLocation + weapon.getElementsByTagName("image").item(0).getTextContent();
+					logger.info(imageSrc);
 					String type = weapon.getElementsByTagName("damage-type").item(0).getTextContent();
 					DamageType damageType = null;
 					switch (type) {
@@ -118,7 +121,8 @@ private String inputXml;
 					}
 					int damage = Integer.parseInt(weapon.getElementsByTagName("damage").item(0).getTextContent());
 					double speed = Double.parseDouble(weapon.getElementsByTagName("speed").item(0).getTextContent());
-                	
+                	Image image = new Image(this.getClass().getResourceAsStream(imageSrc));
+					
                 	weapons.put(name, new OneHanded(name, image, damageType, damage, speed));
                 	logger.info("New weapon added:\n" + 
                 	name + " " + image + " " + damageType.toString() + " "+ speed + " " + damage);
@@ -161,7 +165,8 @@ private String inputXml;
                     Element weapon = (Element)twoHanded.item(i);
 
 					String name = weapon.getElementsByTagName("name").item(0).getTextContent();
-					String image = weapon.getElementsByTagName("image").item(0).getTextContent();
+					String imageSrc = Constants.weaponsLocation + weapon.getElementsByTagName("image").item(0).getTextContent();
+					logger.info(imageSrc);
 					String type = weapon.getElementsByTagName("damage-type").item(0).getTextContent();
 					DamageType damageType = null;
 					switch (type) {
@@ -180,7 +185,8 @@ private String inputXml;
 					}
 					int damage = Integer.parseInt(weapon.getElementsByTagName("damage").item(0).getTextContent());
 					double speed = Double.parseDouble(weapon.getElementsByTagName("speed").item(0).getTextContent());
-                	
+					Image image = new Image(this.getClass().getResourceAsStream(imageSrc));
+					
                 	weapons.put(name, new TwoHanded(name, image, damageType, damage, speed));
                 	logger.info("New weapon added:\n" + 
                 	name + " " + image + " " + damageType.toString() + " "+ speed + " " + damage);
@@ -223,7 +229,8 @@ private String inputXml;
                     Element shield = (Element)shieldList.item(i);
 
 					String name = shield.getElementsByTagName("name").item(0).getTextContent();
-					String image = shield.getElementsByTagName("image").item(0).getTextContent();
+					String imageSrc = Constants.shieldsLocation + shield.getElementsByTagName("image").item(0).getTextContent();
+					logger.info(imageSrc);
 					String type = shield.getElementsByTagName("defense-type").item(0).getTextContent();
 					ShieldType defenseType = null;
 					switch (type) {
@@ -242,7 +249,8 @@ private String inputXml;
 					}
 					int defense = Integer.parseInt(shield.getElementsByTagName("defense").item(0).getTextContent());
 					double speed = Double.parseDouble(shield.getElementsByTagName("speed").item(0).getTextContent());
-                	
+					Image image = new Image(this.getClass().getResourceAsStream(imageSrc));
+					
                 	shields.put(name, new Shield(name, image, defenseType, defense, speed));
                 	logger.info("New shield added:\n" + 
                 	name + " " + image + " " + defenseType.toString() + " "+ speed + " " + defense);

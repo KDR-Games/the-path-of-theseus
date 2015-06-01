@@ -22,6 +22,8 @@
  */
 package kdr.game.theseus.model;
 
+import javafx.scene.image.Image;
+
 /**
  * HeadArmor 
  */
@@ -33,7 +35,7 @@ public class HeadArmor extends Armor {
 	 * @param speed - speed
 	 * @param defense - defense
 	 */
-	public HeadArmor(String name, String image, double speed, int defense) {
+	public HeadArmor(String name, Image image, double speed, int defense) {
 		super(name, image, speed, defense);
 		this.armorType = ArmorType.Head;
 	}

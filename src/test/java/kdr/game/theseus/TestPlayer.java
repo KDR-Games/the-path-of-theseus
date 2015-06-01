@@ -32,7 +32,7 @@ public class TestPlayer {
 	
 	@Test
 	public void testPlayerConstructor() {
-		Player player = new Player("name", null, true);
+		Player player = new Player("name", null, null, true);
 		player.setDifficulty(Difficulty.Hard);
 		player.setGhostMode(false);
 		player.setStats(new Stats(100, StatValue.E, StatValue.E, StatValue.S));

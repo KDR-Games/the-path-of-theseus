@@ -22,6 +22,8 @@
  */
 package kdr.game.theseus.model;
 
+import javafx.scene.image.Image;
+
 /**
  * LegArmor 
  */
@@ -33,7 +35,7 @@ public class LegArmor extends Armor {
 	 * @param speed - speed
 	 * @param defense - defense
 	 */
-	public LegArmor(String name, String image, double speed, int defense) {
+	public LegArmor(String name, Image image, double speed, int defense) {
 		super(name, image, speed, defense);
 		this.armorType = ArmorType.Leg;
 	}

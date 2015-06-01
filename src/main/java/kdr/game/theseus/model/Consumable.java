@@ -23,6 +23,8 @@
 
 package kdr.game.theseus.model;
 
+import javafx.scene.image.Image;
+
 /**
  * The main class for consumables. This class can't be used directly.
  * Other classes are derived from this.
@@ -36,7 +38,7 @@ public class Consumable extends Item {
 	 * @param name - name
 	 * @param image - image
 	 */
-	protected Consumable(String name, String image) {
+	protected Consumable(String name, Image image) {
 		super(name, image);
 		this.itemType = ItemType.Consumable;
 	}

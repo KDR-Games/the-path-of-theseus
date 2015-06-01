@@ -202,4 +202,15 @@ public class Tile {
 		return num;
 	}
 
+	/**
+	 * Check if this {@code Tile} is free. If the game is run in ghost mode,
+	 * then this function returns always true, except if the tile's
+	 * type is {@link kdr.game.theseus.TileType#Margin}.
+	 * Change this function if you want to add more free tiles to the list.
+	 * @return true if it's a floor tile or other free tile,
+	 * else false.
+	 */
+	public boolean isFreeTile() {
+		return type.isFree();
+	}
 }

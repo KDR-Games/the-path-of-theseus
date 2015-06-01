@@ -58,6 +58,7 @@ public class LevelMap {
 					tiles[i][j] = new Tile(map[i-marginSize][j-marginSize].getType(), j, i);
 					if(tiles[i][j].getType() == TileType.Entrance) {
 						entrance = tiles[i][j];
+						logger.info("Entrance found.");
 					}
 				}
 			}

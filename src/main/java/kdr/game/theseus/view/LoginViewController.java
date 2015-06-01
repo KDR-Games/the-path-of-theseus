@@ -30,6 +30,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import kdr.game.theseus.Constants;
 import kdr.game.theseus.Difficulty;
 import kdr.game.theseus.Player;
 import kdr.game.theseus.StatValue;
@@ -55,50 +57,31 @@ public class LoginViewController extends ViewController {
 	@FXML
 	private CheckBox ghostModeCheckBox;
 
-	@SuppressWarnings("unused") // TODO: remove this
 	@FXML
 	private void check() {
-		boolean ok = false;
-
 		if (name.getText().length() < 3) {
 			name.getStyleClass().add("wrong_user");
 		} else {
-			name.getStyleClass().remove("wrong_user");
-			if (true) { // TODO: check character from database
-				name.getStyleClass().remove("wrong_user");
-				ok = true;
+			if(game.checkPlayerName(name.getText())) {
+				Difficulty difficulty = Difficulty.Normal;
+				if (difficultyToggleGroup.getSelectedToggle().equals(difficultyEasy)) {
+					difficulty = Difficulty.Easy;
+				} else if (difficultyToggleGroup.getSelectedToggle().equals(difficultyNormal)) {
+					difficulty = Difficulty.Normal;
+				} else if (difficultyToggleGroup.getSelectedToggle().equals(difficultyHard)) {
+					difficulty = Difficulty.Hard;
+				}
+				boolean ghostMode = ghostModeCheckBox.isSelected();
+				
+				Image playerImage = new Image(this.getClass().getResourceAsStream("/image/" + Constants.playerImage));
+				Player player = new Player(name.getText(), playerImage, difficulty, ghostMode);
+				
+				game.initializePlayer(player);
+				game.startGame();
 			} else {
 				name.getStyleClass().add("wrong_user");
 			}
 		}
-
-		if (ok) {
-			done();	
-		} else { // TODO: this is only for development
-			done();
-		}
-	}
-
-	/**
-	 * The login is okay, setting up the player, switching to game window.
-	 */
-	private void done() {
-		Difficulty difficulty = Difficulty.Normal;
-		if (difficultyToggleGroup.getSelectedToggle().equals(difficultyEasy)) {
-			difficulty = Difficulty.Easy;
-		} else if (difficultyToggleGroup.getSelectedToggle().equals(difficultyNormal)) {
-			difficulty = Difficulty.Normal;
-		} else if (difficultyToggleGroup.getSelectedToggle().equals(difficultyHard)) {
-			difficulty = Difficulty.Hard;
-		}
-		boolean ghostMode = ghostModeCheckBox.isSelected();
-		
-		Player currentPlayer = new Player(name.getText(), difficulty, ghostMode);
-		currentPlayer.setStats(new Stats(150, StatValue.E, StatValue.E, StatValue.E));
-		currentPlayer.setProficiencies(new Proficiencies(StatValue.E, StatValue.E, StatValue.E));
-
-		mainApp.setPlayer(currentPlayer);
-		mainApp.showGame();
 	}
 
 	@FXML

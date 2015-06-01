@@ -25,9 +25,11 @@ package kdr.game.theseus;
 import java.util.Map;
 
 import kdr.game.theseus.model.Armor;
+import kdr.game.theseus.model.Proficiencies;
 import kdr.game.theseus.model.Weapon;
 import kdr.game.theseus.view.GameViewController;
 import kdr.game.theseus.view.Main;
+import kdr.game.theseus.view.ObservableMap;
 import static kdr.game.theseus.view.Main.logger;
 
 /**
@@ -45,11 +47,42 @@ public class GameController {
 	/**
 	 * 
 	 * @param mainApp - reference to {@link kdr.game.theseus.view.Main}
-	 * @param player - reference to the player 
 	 */
-	public GameController(Main mainApp, Player player) {
+	public GameController(Main mainApp) {
 		this.mainApp = mainApp;
+	}
+
+	/**
+	 * @return the player
+	 */
+	public Player getPlayer() {
+		return player;
+	}
+	
+	/**
+	 * 
+	 * @param player - the player to set
+	 */
+	public void initializePlayer(Player player) {
 		this.player = player;
+		player.setStats(new Stats(150, StatValue.E, StatValue.E, StatValue.E));
+		player.setProficiencies(new Proficiencies(StatValue.E, StatValue.E, StatValue.E));
+	}
+	
+	public boolean checkPlayerName(String name) {
+		return true;
+	}
+
+	/**
+	 * @param view - reference to the JavaFx view-controller
+	 */
+	public void setView(GameViewController view) {
+		this.view = view;
+		player.setView(view);
+		map.updateMap();
+	}
+	
+	public void startGame() {
 		world = new WorldMap();
 		map = new ObservableMap();
 		try {
@@ -61,23 +94,9 @@ public class GameController {
 		
 		armors = new ArmorsDAO("/xml/Armors.xml").getArmors();
 		weapons = new WeaponsDAO("/xml/Weapons.xml").getWeapons();
-		logger.info("GameController succesfully created.");
-	}
-
-	/**
-	 * @return the player
-	 */
-	public Player getPlayer() {
-		return player;
-	}
-	
-	/**
-	 * @param view - reference to the JavaFx view-controller
-	 */
-	public void setView(GameViewController view) {
-		this.view = view;
-		player.setView(view);
-		map.updateMap();
+		logger.info("Nem game started.");
+		
+		mainApp.showGame();
 	}
 
 }

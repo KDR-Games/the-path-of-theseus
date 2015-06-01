@@ -40,4 +40,8 @@ public class Constants {
 		 2500, 3000, 4000, 5000, 6000,
 		 7000, 8000, 9000, 10000, 11000,
 		 12000, 13000, 14000, 15000, 16000};
+	public static final String playerImage = "player.png";
+	public static final String armorsLocation = "/image/armors/";
+	public static final String weaponsLocation = "/image/weapons/";
+	public static final String shieldsLocation = "/image/weapons/shields/";
 }

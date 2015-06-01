@@ -23,6 +23,8 @@
 
 package kdr.game.theseus.model;
 
+import javafx.scene.image.Image;
+
 /**
  * The main class for armors. This class can't be used directly.
  * Other classes are derived from this.
@@ -44,7 +46,7 @@ public class Wearable extends Item {
 	 * @see kdr.game.theseus.model.Armor
 	 * @see kdr.game.theseus.model.WearableType
 	 */
-	protected Wearable(String name, String image, double speed) {
+	protected Wearable(String name, Image image, double speed) {
 		super(name, image);
 		this.itemType = ItemType.Wearable;
 		this.speed = speed;

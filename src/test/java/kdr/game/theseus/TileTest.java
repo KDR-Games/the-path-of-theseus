@@ -51,18 +51,18 @@ public class TileTest {
 		tile.setVisibility(Visibility.Visible);
 		assertEquals(Visibility.Visible, tile.getVisibility());
 		
-		Creature player = new Player("asd", Difficulty.Easy, false);
+		Creature player = new Player("asd",null, Difficulty.Easy, false);
 		tile.setCreature(player);
 		assertEquals(player, tile.getCreature());
 		
-		Shield shield = new Shield("shield", "shield.png", ShieldType.Medium, 1, 1.0);
-		OneHanded oneHanded = new OneHanded("one-handed", "one-handed.png", DamageType.Slashing, 1, 1.0);
-		TwoHanded twoHanded = new TwoHanded("two-handed", "two-handed.png", DamageType.Blunt, 1, 1.0);
+		Shield shield = new Shield("shield", null, ShieldType.Medium, 1, 1.0);
+		OneHanded oneHanded = new OneHanded("one-handed", null, DamageType.Slashing, 1, 1.0);
+		TwoHanded twoHanded = new TwoHanded("two-handed", null, DamageType.Blunt, 1, 1.0);
 		
-		HeadArmor head = new HeadArmor("helmet", "helmet.png", 1.0, 1);
-		ChestArmor chest = new ChestArmor("chest", "chest.png", 1.0, 1);
-		LegArmor leg = new LegArmor("leggings", "leggings.png", 1.0, 1);
-		HandArmor hand = new HandArmor("gloves", "gloves.png", 1.0, 1);
+		HeadArmor head = new HeadArmor("helmet", null, 1.0, 1);
+		ChestArmor chest = new ChestArmor("chest", null, 1.0, 1);
+		LegArmor leg = new LegArmor("leggings", null, 1.0, 1);
+		HandArmor hand = new HandArmor("gloves", null, 1.0, 1);
 		
 		ArrayList<Item> items = new ArrayList<Item>();
 		items.add(shield);

@@ -22,6 +22,8 @@
  */
 package kdr.game.theseus;
 
+import javafx.scene.image.Image;
+
 /**
  * Enemies can drop xp, when they die.
  * 
@@ -35,8 +37,8 @@ public class Enemy extends Creature {
 	/**
 	 * @param name - the name of the monster
 	 */
-	public Enemy(String name) {
-		super(name);
+	public Enemy(String name, Image image) {
+		super(name, image);
 		// TODO Auto-generated constructor stub
 	}
 	

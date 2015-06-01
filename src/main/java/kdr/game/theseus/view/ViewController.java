@@ -23,19 +23,21 @@
 
 package kdr.game.theseus.view;
 
+import kdr.game.theseus.GameController;
+
 /**
  * JavaFX controllers for different windows are derived from this class.
  */
 public class ViewController {
-	protected Main mainApp;
+	protected GameController game;
 
 	/**
 	 * This method is crucial in order for the controllers to
 	 * communicate with each other.
 	 * @param mainApp - the mainApp to set
 	 */
-	public void setMainApp(Main mainApp) {
-		this.mainApp = mainApp;
+	public void setGameController(GameController game) {
+		this.game = game;
 	}
 	
 }

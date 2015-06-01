@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javafx.scene.image.Image;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -86,7 +88,7 @@ public class ArmorsDAO {
 			dbBuilder = dbFactory.newDocumentBuilder();
 			dbBuilder.setEntityResolver(new EntityManager());
 			Document doc = dbBuilder.parse(this.getClass().getResourceAsStream(inputXml));
-
+			
 			logger.info("Head armors.");
 			NodeList headArmors = doc.getElementsByTagName("head");
 			for (int i = 0; i < headArmors.getLength(); i++) {
@@ -99,13 +101,16 @@ public class ArmorsDAO {
 						if (node.getNodeType() == Node.ELEMENT_NODE) {
 							Element armor = (Element) nList.item(j);
 							String name = armor.getElementsByTagName("name").item(0).getTextContent();
-							String image = armor.getElementsByTagName("image").item(0).getTextContent();
+							String imageSrc = Constants.armorsLocation + armor.getElementsByTagName("image").item(0).getTextContent();
+							logger.info(imageSrc);
 							int defense = Integer.parseInt(armor.getElementsByTagName("defense").item(0).getTextContent());
 							double speed = Double.parseDouble(armor.getElementsByTagName("speed").item(0).getTextContent());
+							Image image = new Image(this.getClass().getResourceAsStream(imageSrc));
 							
 							armors.put(name, new HeadArmor(name, image, speed, defense));
 							
-							logger.info("New armor added:\n" + name + " " + image + " " + speed + " " + defense);
+							logger.info("New armor added:\n" + 
+							name + " " + imageSrc + " " + speed + " " + defense);
 						}
 					}
 				}
@@ -147,9 +152,11 @@ public class ArmorsDAO {
 						if (node.getNodeType() == Node.ELEMENT_NODE) {
 							Element armor = (Element) nList.item(j);
 							String name = armor.getElementsByTagName("name").item(0).getTextContent();
-							String image = armor.getElementsByTagName("image").item(0).getTextContent();
+							String imageSrc = Constants.armorsLocation + armor.getElementsByTagName("image").item(0).getTextContent();
+							logger.info(imageSrc);
 							int defense = Integer.parseInt(armor.getElementsByTagName("defense").item(0).getTextContent());
 							double speed = Double.parseDouble(armor.getElementsByTagName("speed").item(0).getTextContent());
+							Image image = new Image(this.getClass().getResourceAsStream(imageSrc));
 							
 							armors.put(name, new ChestArmor(name, image, speed, defense));
 							
@@ -195,9 +202,11 @@ public class ArmorsDAO {
 						if (node.getNodeType() == Node.ELEMENT_NODE) {
 							Element armor = (Element) nList.item(j);
 							String name = armor.getElementsByTagName("name").item(0).getTextContent();
-							String image = armor.getElementsByTagName("image").item(0).getTextContent();
+							String imageSrc = Constants.armorsLocation + armor.getElementsByTagName("image").item(0).getTextContent();
+							logger.info(imageSrc);
 							int defense = Integer.parseInt(armor.getElementsByTagName("defense").item(0).getTextContent());
 							double speed = Double.parseDouble(armor.getElementsByTagName("speed").item(0).getTextContent());
+							Image image = new Image(this.getClass().getResourceAsStream(imageSrc));
 							
 							armors.put(name, new LegArmor(name, image, speed, defense));
 							
@@ -243,9 +252,11 @@ public class ArmorsDAO {
 						if (node.getNodeType() == Node.ELEMENT_NODE) {
 							Element armor = (Element) nList.item(j);
 							String name = armor.getElementsByTagName("name").item(0).getTextContent();
-							String image = armor.getElementsByTagName("image").item(0).getTextContent();
+							String imageSrc = Constants.armorsLocation + armor.getElementsByTagName("image").item(0).getTextContent();
+							logger.info(imageSrc);
 							int defense = Integer.parseInt(armor.getElementsByTagName("defense").item(0).getTextContent());
 							double speed = Double.parseDouble(armor.getElementsByTagName("speed").item(0).getTextContent());
+							Image image = new Image(this.getClass().getResourceAsStream(imageSrc));
 							
 							armors.put(name, new HandArmor(name, image, speed, defense));
 							

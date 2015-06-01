@@ -23,10 +23,11 @@
 
 package kdr.game.theseus;
 
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import kdr.game.theseus.view.GameViewController;
-
+import kdr.game.theseus.view.ObservableMap;
 import static kdr.game.theseus.view.Main.logger;
 
 /**
@@ -51,12 +52,13 @@ public class Player extends Creature {
 	 * Creates a new player with the given parameters.
 	 * Stats and proficiencies are added later.
 	 * @param name - the name of the player
+	 * @param image - the image of the character
 	 * @param difficulty - the difficulty of the game
 	 * @param ghostMode - whether ghost mode is turned on or not
 	 */
-	public Player(String name, Difficulty difficulty, boolean ghostMode) {
-		super(name);
-		level = 0;
+	public Player(String name, Image image, Difficulty difficulty, boolean ghostMode) {
+		super(name, image);
+		level = 1;
 		freePoints = 1;
 		experience = 0;
 		kills = 0;
@@ -72,10 +74,11 @@ public class Player extends Creature {
 	
 	public void setView(GameViewController view) {
 		this.view = view;
+		setContainerTile(map.getCenterTile());
 		for(int i = 0; i < Constants.ObservableMapSize; i++) {
 			for(int j = 0; j < Constants.ObservableMapSize; j++) {
-				view.getButtons()[i][j].setOnKeyPressed((KeyEvent ke) -> {
-					if(map.canMove(ke.getCode())) {
+				view.getMapButtons()[i][j].setOnKeyPressed((KeyEvent ke) -> {
+					if(canMove(ke.getCode())) {
 						try {
 							move(ke.getCode());
 						} catch (ExitReachedException e) {
@@ -85,7 +88,8 @@ public class Player extends Creature {
 				});
 			}
 		}
-		map.setButtons(view.getButtons());
+		map.setButtons(view.getMapButtons());
+		map.getCenterTile().setCreature(this);
 		logger.info("Map set up properly.");
 	}
 	
@@ -176,8 +180,8 @@ public class Player extends Creature {
 	 */
 	public void setMap(ObservableMap map) {
 		this.map = map;
+		setContainerTile(map.getCenterTile());
 		map.setDifficulty(difficulty);
-		map.setGhostMode(ghostMode);
 	}
 
 	/**
@@ -280,25 +284,29 @@ public class Player extends Creature {
 		switch (code) {
 		case LEFT:
 			logger.info("Move LEFT.");
-			map.setCenterTile(map.getCenterTile().getNeighbors().getLeft());
+			map.setCenterTile(containerTile.getNeighbors().getLeft());
+			setContainerTile(map.getCenterTile());
 			distanceTravelled++;
 			break;
 
 		case RIGHT:
 			logger.info("Move RIGHT.");
-			map.setCenterTile(map.getCenterTile().getNeighbors().getRight());
+			map.setCenterTile(containerTile.getNeighbors().getRight());
+			setContainerTile(map.getCenterTile());
 			distanceTravelled++;
 			break;
 
 		case UP:
 			logger.info("Move UP.");
-			map.setCenterTile(map.getCenterTile().getNeighbors().getTop());
+			map.setCenterTile(containerTile.getNeighbors().getTop());
+			setContainerTile(map.getCenterTile());
 			distanceTravelled++;
 			break;
 
 		case DOWN:
 			logger.info("Move DOWN.");
-			map.setCenterTile(map.getCenterTile().getNeighbors().getBottom());
+			map.setCenterTile(containerTile.getNeighbors().getBottom());
+			setContainerTile(map.getCenterTile());
 			distanceTravelled++;
 			break;
 
@@ -306,5 +314,32 @@ public class Player extends Creature {
 			break;
 		}
 		map.updateMap();
+	}
+	
+	/**
+	 * A helper function to determine if a player can move with the pressed key.
+	 * @param code - the code of the pressed key
+	 * @return true if the player can move in the given direction, 
+	 * false if he can't move or the pressed key is not set to move the character.
+	 */
+	public boolean canMove(KeyCode code) {
+		Tile left = containerTile.getNeighbors().getLeft();
+		Tile right = containerTile.getNeighbors().getRight();
+		Tile up = containerTile.getNeighbors().getTop();
+		Tile down = containerTile.getNeighbors().getBottom();
+		switch (code) {
+		case LEFT:
+			return (left.isFreeTile() || ghostMode) && left.getType() != TileType.Margin;
+		case RIGHT:
+			return (right.isFreeTile() || ghostMode) && right.getType() != TileType.Margin;
+		case UP:
+			return (up.isFreeTile() || ghostMode) && up.getType() != TileType.Margin;
+		case DOWN:
+			return (down.isFreeTile() || ghostMode) && down.getType() != TileType.Margin;
+		default:
+			break;
+		}
+
+		return false;
 	}
 }

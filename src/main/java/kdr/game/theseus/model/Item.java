@@ -23,6 +23,8 @@
 
 package kdr.game.theseus.model;
 
+import javafx.scene.image.Image;
+
 /**
  * The main class for items. This class can't be used directly.
  * Other classes are derived from this.
@@ -33,7 +35,7 @@ package kdr.game.theseus.model;
 public class Item {
 	protected ItemType itemType;
 	protected String name;
-	protected String image;
+	protected Image image;
 	
 	/**
 	 * The constructor is protected. You can't use this 
@@ -41,7 +43,7 @@ public class Item {
 	 * @param name - the name
 	 * @param image - the image
 	 */
-	protected Item(String name, String image) {
+	protected Item(String name, Image image) {
 		super();
 		this.name = name;
 		this.image = image;
@@ -64,7 +66,7 @@ public class Item {
 	/**
 	 * @return the image
 	 */
-	public String getImage() {
+	public Image getImage() {
 		return image;
 	}
 }

@@ -70,7 +70,7 @@ public class MonstersDAO {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element e = (Element) node;
                     
-                    Enemy monster = new Enemy(e.getElementsByTagName("name").item(0).getTextContent());
+                    //Enemy monster = new Enemy(e.getElementsByTagName("name").item(0).getTextContent());
                     
                     System.out.println("id: " + e.getAttribute("id"));
                     System.out.println("name: " + e.getElementsByTagName("name").item(0).getTextContent());

@@ -47,23 +47,9 @@ import kdr.game.theseus.Player;
 public class Main extends Application {
 
 	private Stage primaryStage;
-    private Player player;
+	private GameController game;
     
     public static Logger logger = LoggerFactory.getLogger(Main.class);
-
-    /**
-	 * @return the player
-	 */
-	public Player getPlayer() {
-		return player;
-	}
-
-	/**
-	 * @param player the player to set
-	 */
-	public void setPlayer(Player player) {
-		this.player = player;
-	}
 
 	@Override
     public void start(Stage primaryStage) {
@@ -83,7 +69,8 @@ public class Main extends Application {
             BorderPane loginLayout = (BorderPane) loader.load();
             
             LoginViewController controller = loader.getController();
-            controller.setMainApp(this);
+            game = new GameController(this);
+            controller.setGameController(game);
             
             Scene scene = new Scene(loginLayout);
             primaryStage.setScene(scene);
@@ -108,10 +95,8 @@ public class Main extends Application {
             loader.setLocation(this.getClass().getResource("/fxml/TheseusGameLayout.fxml"));
             BorderPane gameLayout = (BorderPane) loader.load();            
 
-            GameController game = new GameController(this, player);
             GameViewController controller = loader.getController();
-            controller.setMainApp(this);
-            controller.setController(game);
+            controller.setGameController(game);
             
             Scene scene = new Scene(gameLayout);
             primaryStage.setScene(scene);

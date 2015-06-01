@@ -24,7 +24,7 @@
 package kdr.game.theseus;
 
 import static kdr.game.theseus.view.Main.logger;
-
+import javafx.scene.image.Image;
 import kdr.game.theseus.model.CreatureDeadException;
 import kdr.game.theseus.model.Equipment;
 import kdr.game.theseus.model.Proficiencies;
@@ -36,7 +36,9 @@ import kdr.game.theseus.model.Proficiencies;
  * @see kdr.game.theseus.Player
  */
 public class Creature {
+	protected Tile containerTile;
 	protected String name;
+	protected Image image;
 	protected int health;
 	protected Stats stats;
 	protected Proficiencies proficiencies;
@@ -46,12 +48,14 @@ public class Creature {
 	 * The constructor is protected. You can't use this 
 	 * class directly. It is used only for type-casting.
 	 * @param name - the name
+	 * @param image - the image
 	 * @see kdr.game.theseus.Enemy
 	 * @see kdr.game.theseus.Player
 	 */
-	protected Creature(String name) {
+	protected Creature(String name, Image image) {
 		super();
 		this.name = name;
+		this.image = image;
 		equipment = new Equipment();
 	}
 
@@ -120,6 +124,20 @@ public class Creature {
 	}
 	
 	/**
+	 * @return the image
+	 */
+	public Image getGraphic() {
+		return image;
+	}
+
+	/**
+	 * @param image - the image to set
+	 */
+	public void setGraphic(Image image) {
+		this.image = image;
+	}
+
+	/**
 	 * @return the equipment
 	 */
 	public Equipment getEquipment() {
@@ -182,5 +200,23 @@ public class Creature {
 	 */
 	public double getHealthInPercent() {
 		return ((double)health / (double)stats.getMaxHealth()) * 100.0;
+	}
+
+	/**
+	 * @return the containerTile
+	 */
+	public Tile getContainerTile() {
+		return containerTile;
+	}
+
+	/**
+	 * @param containerTile - the containerTile to set
+	 */
+	public void setContainerTile(Tile containerTile) {
+		if(this.containerTile != null) {
+			this.containerTile.setCreature(null);
+		}
+		containerTile.setCreature(this);
+		this.containerTile = containerTile;
 	}
 }

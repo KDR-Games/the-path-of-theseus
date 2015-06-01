@@ -22,6 +22,8 @@
  */
 package kdr.game.theseus.model;
 
+import javafx.scene.image.Image;
+
 /**
  * Shield 
  */
@@ -37,7 +39,7 @@ public class Shield extends Weapon {
 	 * @param shieldType - the type of the shield
 	 * @param defense - defense
 	 */
-	public Shield(String name, String image, ShieldType shieldType,
+	public Shield(String name, Image image, ShieldType shieldType,
 			int defense, double speed) {
 		super(name, image, 0, speed);
 		this.shieldType = shieldType;

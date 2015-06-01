@@ -71,5 +71,17 @@ public enum TileType {
 	 * The exit of the map. If a player steps on this tile, a 
 	 * {@link kdr.game.theseus.ExitReachedException} is thrown.
 	 */
-	Exit
+	Exit;
+	
+	public boolean isFree() {
+		switch(this) {
+		case Floor:
+		case Entrance:
+		case Exit:
+			return true;
+
+		default:
+			return false;
+		}
+	}
 }

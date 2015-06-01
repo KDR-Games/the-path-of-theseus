@@ -22,6 +22,8 @@
  */
 package kdr.game.theseus.model;
 
+import javafx.scene.image.Image;
+
 /**
  * Class representing a two-handed weapon. 
  */
@@ -36,7 +38,7 @@ public class TwoHanded extends Weapon {
 	 * @param damage - damage
 	 * @param speed - speed
 	 */
-	public TwoHanded(String name, String image, DamageType damageType, int damage, double speed) {
+	public TwoHanded(String name, Image image, DamageType damageType, int damage, double speed) {
 		super(name, image, damage, speed);
 		this.damageType = damageType;
 		this.weaponType = WeaponType.TwoHanded;
