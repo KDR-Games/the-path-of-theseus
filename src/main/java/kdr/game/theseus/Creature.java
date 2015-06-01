@@ -23,6 +23,8 @@
 
 package kdr.game.theseus;
 
+import static kdr.game.theseus.view.Main.logger;
+
 import kdr.game.theseus.model.CreatureDeadException;
 import kdr.game.theseus.model.Equipment;
 import kdr.game.theseus.model.Proficiencies;
@@ -72,6 +74,7 @@ public class Creature {
 	 */
 	public void setHealthToMax() {
 		this.health = stats.getMaxHealth();
+		logger.info("Health set to max.");
 	}
 	
 	/**
@@ -82,6 +85,7 @@ public class Creature {
 	public void decreaseHealth(int value) throws CreatureDeadException {
 		health -= value;
 		if(health <= 0) {
+			logger.info("Creature died.");
 			throw new CreatureDeadException(this);
 		}
 	}

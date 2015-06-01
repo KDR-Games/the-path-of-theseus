@@ -24,12 +24,19 @@
 package kdr.game.theseus.view;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,6 +91,9 @@ public class Main extends Application {
             primaryStage.centerOnScreen();
             primaryStage.show();
             logger.info("Login screen set up and shown.");
+            primaryStage.setOnCloseRequest((WindowEvent e)-> {
+            	logger.info("Quit.");
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,6 +119,21 @@ public class Main extends Application {
             primaryStage.centerOnScreen();
             primaryStage.show();
             logger.info("Game screen set up and shown.");
+            primaryStage.setOnCloseRequest((WindowEvent e)-> {
+            	Alert exitPrompt = new Alert(AlertType.CONFIRMATION);
+        		exitPrompt.setTitle("Exit game");
+        		exitPrompt.setHeaderText("Are you sure, you want to exit?");
+        		exitPrompt.setContentText("This is a rouge-like game, your progress won't be saved.");
+        		ButtonType buttonYes = new ButtonType("Yes");
+        		ButtonType buttonNo = new ButtonType("No", ButtonData.CANCEL_CLOSE);
+        		exitPrompt.getButtonTypes().setAll(buttonYes, buttonNo);
+        		
+        		Optional<ButtonType> result = exitPrompt.showAndWait();
+        		if(result.get() == buttonYes) {
+        			Platform.exit();
+        		}
+            	logger.info("Quit.");
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
