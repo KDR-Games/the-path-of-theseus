@@ -44,6 +44,8 @@ import javafx.scene.layout.TilePane;
 import kdr.game.theseus.Constants;
 import kdr.game.theseus.Enemy;
 import kdr.game.theseus.GameController;
+import kdr.game.theseus.HighScoresDAO;
+import kdr.game.theseus.model.HighScore;
 import kdr.game.theseus.model.StatValue;
 
 public class GameViewController extends ViewController {
@@ -284,8 +286,20 @@ public class GameViewController extends ViewController {
 			Platform.exit();
 		}
 	}
+	
+	@FXML
+	private void showHighScores() {
+		ArrayList<HighScore> highScores = new HighScoresDAO().getHighScores();
+		TextArea table = new TextArea();
+		table.setText("Name                Kills               Distance            ");
+		for(HighScore score : highScores) {
+			table.appendText(score.toString());
+		}
+		
+		// TODO: show a proper high score list
+	}
 
-	private void showUpgradePointsIfAvailable() {
+	public void showUpgradePointsIfAvailable() {
 		boolean hasFreePoints = game.getPlayer().getFreePoints() > 0;
 		playerMaxHealthButton.setVisible(hasFreePoints);
 		if(!game.getPlayer().getStats().getStrength().isMax()) {
@@ -323,7 +337,7 @@ public class GameViewController extends ViewController {
 		equipmentContainer.setText(game.getPlayer().getName() + " - Level " + game.getPlayer().getLevel());
 	}
 
-	private void updateHealthAndXpBar(){
+	public void updateHealthAndXpBar(){
 		xpProgressBar.setProgress(game.getPlayer().getExperienceInPercent());
 		currentXpLabel.setText(game.getPlayer().getExperience() + 
 				"/" + Constants.XpLevels[game.getPlayer().getLevel()]);

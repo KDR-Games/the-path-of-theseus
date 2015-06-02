@@ -20,37 +20,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package kdr.game.theseus.model;
-
-import kdr.game.theseus.Creature;
+package kdr.game.theseus;
 
 /**
- * CreatureDeadException 
+ * FightNeededException.
  */
-public class CreatureDeadException extends Exception {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 977004021723345034L;
+public class FightNeededException extends Exception {
 	
-	private Creature creature;
+	private static final long serialVersionUID = 7829883505463652907L;
+	private Creature creatureA;
+	private Creature creatureB;
+	private Tile tile;
 	
-	/**
-	 * Creates a new instance of this exception, with 
-	 * {@code creature} as parameter, which health reached zero or below.
-	 * @param creature - the creature
-	 */
-	public CreatureDeadException(Creature creature) {
-		this.creature = creature;
-	}
-	
-	/**
-	 * 
-	 * @return the creature which triggered this exception.
-	 */
-	public Creature getCreature() {
-		return creature;
+	public FightNeededException(Creature A, Creature B, Tile tile) {
+		this.creatureA = A;
+		this.creatureB = B;
+		this.tile = tile;
 	}
 
+	/**
+	 * @return the creatureA
+	 */
+	public Creature getCreatureA() {
+		return creatureA;
+	}
+
+	/**
+	 * @return the creatureB
+	 */
+	public Creature getCreatureB() {
+		return creatureB;
+	}
+
+	/**
+	 * @return the tile
+	 */
+	public Tile getTile() {
+		return tile;
+	}
 }

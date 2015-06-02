@@ -26,5 +26,10 @@ package kdr.game.theseus;
  * FightController 
  */
 public class FightController {
-
+	public Creature getWinner(Creature A, Creature B) {
+		
+		// TODO: calculate fight results
+		
+		return A;
+	}
 }

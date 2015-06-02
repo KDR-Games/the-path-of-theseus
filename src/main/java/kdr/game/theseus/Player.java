@@ -81,15 +81,19 @@ public class Player extends Creature {
 		for(int i = 0; i < Constants.ObservableMapSize; i++) {
 			for(int j = 0; j < Constants.ObservableMapSize; j++) {
 				view.getMapButtons()[i][j].setOnKeyPressed((KeyEvent ke) -> {
-					if(canMove(ke.getCode())) {
-						try {
-							move(ke.getCode());
-						} catch (ExitReachedException e) {
-							HighScoresDAO database = new HighScoresDAO();
-							HighScore score = new HighScore(name, kills, distanceTravelled);
-							database.addNewHighScore(score);
-							view.gameOver();
+					try {
+						if(canMove(ke.getCode())) {
+							try {
+								move(ke.getCode());
+							} catch (ExitReachedException e) {
+								HighScoresDAO database = new HighScoresDAO();
+								HighScore score = new HighScore(name, kills, distanceTravelled);
+								database.addNewHighScore(score);
+								view.gameOver();
+							}
 						}
+					} catch (FightNeededException ex) {
+						fight(ex);
 					}
 				});
 				final int ii = i;
@@ -152,6 +156,10 @@ public class Player extends Creature {
 			freePoints++;
 			level++;
 			logger.info("Level up! New level: " + level + ".");
+		}
+		if(view != null) {
+			view.updateHealthAndXpBar();
+			view.showUpgradePointsIfAvailable();
 		}
 	}
 
@@ -337,19 +345,31 @@ public class Player extends Creature {
 	 * @return true if the player can move in the given direction, 
 	 * false if he can't move or the pressed key is not set to move the character.
 	 */
-	public boolean canMove(KeyCode code) {
+	public boolean canMove(KeyCode code) throws FightNeededException {
 		Tile left = containerTile.getNeighbors().getLeft();
 		Tile right = containerTile.getNeighbors().getRight();
 		Tile up = containerTile.getNeighbors().getTop();
 		Tile down = containerTile.getNeighbors().getBottom();
 		switch (code) {
 		case LEFT:
+			if(left.getCreature() != null) {
+				throw new FightNeededException((Creature)this, left.getCreature(), left);
+			}
 			return (left.isFreeTile() || ghostMode) && left.getType() != TileType.Margin;
 		case RIGHT:
+			if(right.getCreature() != null) {
+				throw new FightNeededException((Creature)this, right.getCreature(), right);
+			}
 			return (right.isFreeTile() || ghostMode) && right.getType() != TileType.Margin;
 		case UP:
+			if(up.getCreature() != null) {
+				throw new FightNeededException((Creature)this, up.getCreature(), up);
+			}
 			return (up.isFreeTile() || ghostMode) && up.getType() != TileType.Margin;
 		case DOWN:
+			if(down.getCreature() != null) {
+				throw new FightNeededException((Creature)this, down.getCreature(), down);
+			}
 			return (down.isFreeTile() || ghostMode) && down.getType() != TileType.Margin;
 		default:
 			break;
@@ -374,6 +394,27 @@ public class Player extends Creature {
 			view.showEnemyStats(enemy);
 		} else {
 			view.showEnemyStats(null);
+		}
+	}
+	
+	private void fight(FightNeededException ex) {
+
+		FightController judge = new FightController();
+		Creature winner = judge.getWinner(this, ex.getCreatureB());
+		if(winner == (Creature)this) {
+			this.incrementKills();
+			this.addToExperience(((Enemy)ex.getCreatureB()).getDroppedXp());
+			try {
+				map.setCenterTile(ex.getTile());
+			} catch (ExitReachedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.setContainerTile(ex.getTile());
+			map.updateMap();
+			logger.info("Enemy killed. Kills: {}", kills);
+		} else {
+			// TODO: player is dead
 		}
 	}
 }

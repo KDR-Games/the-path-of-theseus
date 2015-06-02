@@ -20,44 +20,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package kdr.game.theseus.model;
+package kdr.game.theseus;
+
 
 /**
- * HighScores 
+ * CreatureDeadException 
  */
-public class HighScore {
-	String playerName;
-	int kills;
-	int distanceTravelled;
+public class CreatureDeadException extends Exception {
+
 	/**
-	 * @return the playerName
+	 * 
 	 */
-	public String getPlayerName() {
-		return playerName;
-	}
+	private static final long serialVersionUID = 977004021723345034L;
+	
+	private Creature creature;
+	
 	/**
-	 * @return the kills
+	 * Creates a new instance of this exception, with 
+	 * {@code creature} as parameter, which health reached zero or below.
+	 * @param creature - the creature
 	 */
-	public int getKills() {
-		return kills;
-	}
-	/**
-	 * @return the distanceTravelled
-	 */
-	public int getDistanceTravelled() {
-		return distanceTravelled;
-	}
-	/**
-	 * @param playerName - the name of the character
-	 * @param kills - number of monster kills
-	 * @param distanceTravelled - the distance travelled by the character
-	 */
-	public HighScore(String playerName, int kills, int distanceTravelled) {
-		super();
-		this.playerName = playerName;
-		this.kills = kills;
-		this.distanceTravelled = distanceTravelled;
+	public CreatureDeadException(Creature creature) {
+		this.creature = creature;
 	}
 	
-	
+	/**
+	 * 
+	 * @return the creature which triggered this exception.
+	 */
+	public Creature getCreature() {
+		return creature;
+	}
+
 }

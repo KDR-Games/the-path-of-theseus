@@ -25,7 +25,6 @@ package kdr.game.theseus;
 
 import static kdr.game.theseus.view.Main.logger;
 import javafx.scene.image.Image;
-import kdr.game.theseus.model.CreatureDeadException;
 import kdr.game.theseus.model.Equipment;
 import kdr.game.theseus.model.Proficiencies;
 import kdr.game.theseus.model.Stats;

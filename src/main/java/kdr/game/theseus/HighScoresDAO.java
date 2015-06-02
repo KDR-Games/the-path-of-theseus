@@ -94,8 +94,9 @@ public class HighScoresDAO {
 				st.executeUpdate(String.format(
 						"insert into characters values('%s', '%d', '%d')", 
 						score.getPlayerName(), score.getKills(), score.getDistanceTravelled()));
+				logger.info("Player registered into the database.");
 			} else {
-				// throw new ExistingPlayerException(score.getPlayerName());
+				logger.info("Player already registered into the database. Further progress is not saved.");
 			}
 		} catch (SQLException e) {
 			logger.warn("Couldn't connect to the database.");

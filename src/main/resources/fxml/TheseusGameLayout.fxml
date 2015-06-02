@@ -71,7 +71,7 @@
 				</Menu>
 				<Menu mnemonicParsing="false" text="Help">
 					<items>
-                  <MenuItem mnemonicParsing="false" text="High scores" />
+                  <MenuItem mnemonicParsing="false" onAction="#showHighScores" text="High scores" />
 						<MenuItem mnemonicParsing="false" text="About" />
 					</items>
 				</Menu>
