@@ -75,7 +75,13 @@ public class GameController {
 	}
 	
 	public boolean checkPlayerName(String name) {
-		return true;
+		ArrayList<String> names = new HighScoresDAO().getCharacterNames();
+		
+		if(names.contains(name)) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	/**

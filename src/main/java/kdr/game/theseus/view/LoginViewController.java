@@ -59,7 +59,8 @@ public class LoginViewController extends ViewController {
 		if (name.getText().length() < 3) {
 			name.getStyleClass().add("wrong_user");
 		} else {
-			if(game.checkPlayerName(name.getText())) {
+			boolean ok = game.checkPlayerName(name.getText());
+			if(ok) {
 				Difficulty difficulty = Difficulty.Normal;
 				if (difficultyToggleGroup.getSelectedToggle().equals(difficultyEasy)) {
 					difficulty = Difficulty.Easy;

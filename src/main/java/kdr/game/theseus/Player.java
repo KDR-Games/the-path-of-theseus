@@ -28,6 +28,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import kdr.game.theseus.model.HighScore;
 import kdr.game.theseus.view.GameViewController;
 import kdr.game.theseus.view.ObservableMap;
 import static kdr.game.theseus.view.Main.logger;
@@ -84,6 +85,9 @@ public class Player extends Creature {
 						try {
 							move(ke.getCode());
 						} catch (ExitReachedException e) {
+							HighScoresDAO database = new HighScoresDAO();
+							HighScore score = new HighScore(name, kills, distanceTravelled);
+							database.addNewHighScore(score);
 							view.gameOver();
 						}
 					}
