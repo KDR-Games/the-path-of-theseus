@@ -34,9 +34,6 @@ import javafx.scene.image.Image;
 import kdr.game.theseus.Constants;
 import kdr.game.theseus.Difficulty;
 import kdr.game.theseus.Player;
-import kdr.game.theseus.StatValue;
-import kdr.game.theseus.Stats;
-import kdr.game.theseus.model.Proficiencies;
 
 public class LoginViewController extends ViewController {
 

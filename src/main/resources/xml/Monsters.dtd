@@ -14,16 +14,16 @@
 <!ELEMENT full (#PCDATA)>
 <!ELEMENT tile (#PCDATA)>
 <!ELEMENT stats (health, strength, agility, endurance)>
-<!ELEMENT proficiency (slash | piercing | blunt | none)>
+<!ELEMENT proficiency (slashing | piercing | blunt | none)>
 <!ELEMENT weapons (double-hand | (main-hand, off-hand))>
-<!ELEMENT armors (head, chest, legs, arms)>
+<!ELEMENT armors (head, chest, legs, hands)>
 
 <!ELEMENT health (#PCDATA)>
 <!ELEMENT strength (value)>
 <!ELEMENT agility (value)>
 <!ELEMENT endurance (value)>
 
-<!ELEMENT slash (value)>
+<!ELEMENT slashing (value)>
 <!ELEMENT piercing (value)>
 <!ELEMENT blunt (value)>
 <!ELEMENT none EMPTY>
@@ -35,7 +35,7 @@
 <!ELEMENT head (armor-name)*>
 <!ELEMENT chest (armor-name)*>
 <!ELEMENT legs (armor-name)*>
-<!ELEMENT arms (armor-name)*>
+<!ELEMENT hands (armor-name)*>
 
 <!ELEMENT value (#PCDATA)>
 <!ELEMENT weapon-name (#PCDATA)>

@@ -42,7 +42,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kdr.game.theseus.GameController;
-import kdr.game.theseus.Player;
 
 public class Main extends Application {
 
@@ -107,15 +106,17 @@ public class Main extends Application {
             primaryStage.setOnCloseRequest((WindowEvent e)-> {
             	Alert exitPrompt = new Alert(AlertType.CONFIRMATION);
         		exitPrompt.setTitle("Exit game");
-        		exitPrompt.setHeaderText("Are you sure, you want to exit?");
-        		exitPrompt.setContentText("This is a rouge-like game, your progress won't be saved.");
+        		exitPrompt.setHeaderText("This game has no save functionality, any progress will be lost.");
+        		exitPrompt.setContentText("Are you sure, you want to exit?");
         		ButtonType buttonYes = new ButtonType("Yes");
         		ButtonType buttonNo = new ButtonType("No", ButtonData.CANCEL_CLOSE);
         		exitPrompt.getButtonTypes().setAll(buttonYes, buttonNo);
-        		
+
         		Optional<ButtonType> result = exitPrompt.showAndWait();
         		if(result.get() == buttonYes) {
         			Platform.exit();
+        		} else {
+        			e.consume();
         		}
             	logger.info("Quit.");
             });

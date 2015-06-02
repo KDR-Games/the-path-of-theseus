@@ -101,7 +101,7 @@ private String inputXml;
                     Element weapon = (Element)oneHanded.item(i);
 
 					String name = weapon.getElementsByTagName("name").item(0).getTextContent();
-					String imageSrc = Constants.weaponsLocation + weapon.getElementsByTagName("image").item(0).getTextContent();
+					String imageSrc = Constants.WeaponsLocation + weapon.getElementsByTagName("image").item(0).getTextContent();
 					logger.info(imageSrc);
 					String type = weapon.getElementsByTagName("damage-type").item(0).getTextContent();
 					DamageType damageType = null;
@@ -165,7 +165,7 @@ private String inputXml;
                     Element weapon = (Element)twoHanded.item(i);
 
 					String name = weapon.getElementsByTagName("name").item(0).getTextContent();
-					String imageSrc = Constants.weaponsLocation + weapon.getElementsByTagName("image").item(0).getTextContent();
+					String imageSrc = Constants.WeaponsLocation + weapon.getElementsByTagName("image").item(0).getTextContent();
 					logger.info(imageSrc);
 					String type = weapon.getElementsByTagName("damage-type").item(0).getTextContent();
 					DamageType damageType = null;
@@ -229,7 +229,7 @@ private String inputXml;
                     Element shield = (Element)shieldList.item(i);
 
 					String name = shield.getElementsByTagName("name").item(0).getTextContent();
-					String imageSrc = Constants.shieldsLocation + shield.getElementsByTagName("image").item(0).getTextContent();
+					String imageSrc = Constants.ShieldsLocation + shield.getElementsByTagName("image").item(0).getTextContent();
 					logger.info(imageSrc);
 					String type = shield.getElementsByTagName("defense-type").item(0).getTextContent();
 					ShieldType defenseType = null;

@@ -22,10 +22,14 @@
  */
 package kdr.game.theseus;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import kdr.game.theseus.model.Armor;
+import kdr.game.theseus.model.Monster;
 import kdr.game.theseus.model.Proficiencies;
+import kdr.game.theseus.model.StatValue;
+import kdr.game.theseus.model.Stats;
 import kdr.game.theseus.model.Weapon;
 import kdr.game.theseus.view.GameViewController;
 import kdr.game.theseus.view.Main;
@@ -43,6 +47,7 @@ public class GameController {
 	private ObservableMap map;
 	private Map<String, Armor> armors;
 	private Map<String, Weapon> weapons;
+	private Map<String, Monster> monsters;
 	
 	/**
 	 * 
@@ -94,7 +99,12 @@ public class GameController {
 		
 		armors = new ArmorsDAO("/xml/Armors.xml").getArmors();
 		weapons = new WeaponsDAO("/xml/Weapons.xml").getWeapons();
+		monsters = new MonstersDAO("/xml/Monsters.xml").getMonsters();
 		logger.info("Nem game started.");
+		
+		ArrayList<Monster> m = new ArrayList<Monster>();
+		m.addAll(monsters.values());
+		MapGenerator.scatterMonsters(world.getFirstLevel().getTiles(), m);
 		
 		mainApp.showGame();
 	}

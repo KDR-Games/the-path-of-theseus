@@ -42,13 +42,15 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import kdr.game.theseus.Constants;
+import kdr.game.theseus.Enemy;
 import kdr.game.theseus.GameController;
+import kdr.game.theseus.model.StatValue;
 
 public class GameViewController extends ViewController {
 
 	private Button[][] buttons;
 	private ArrayList<Button> inventoryBag;
-	
+
 	@FXML
 	private TilePane pane;
 	@FXML
@@ -133,9 +135,9 @@ public class GameViewController extends ViewController {
 	private TextArea bigMessageTextArea;
 	@FXML
 	private TabPane bagTabPane;
-	
-	
-	
+
+
+
 	public void initialize() {
 		buttons = new Button[Constants.ObservableMapSize][Constants.ObservableMapSize];
 		pane.setPrefSize(Constants.ButtonSize * Constants.ObservableMapSize, 
@@ -190,7 +192,7 @@ public class GameViewController extends ViewController {
 			}
 		}
 	}
-	
+
 	/**
 	 * @return the buttons which serve as the tiles of tiles map.
 	 */
@@ -207,62 +209,62 @@ public class GameViewController extends ViewController {
 		ButtonType buttonYes = new ButtonType("Yes");
 		ButtonType buttonNo = new ButtonType("No", ButtonData.CANCEL_CLOSE);
 		exitPrompt.getButtonTypes().setAll(buttonYes, buttonNo);
-		
+
 		Optional<ButtonType> result = exitPrompt.showAndWait();
 		if(result.get() == buttonYes) {
 			Platform.exit();
 		}		
 	}
-	
+
 	@FXML
 	private void maxHealthUpgraded() {
 		game.getPlayer().upgradeMaxHealth();
 		playerMaxHealthLabel.setText("" + game.getPlayer().getStats().getMaxHealth());
 		showUpgradePointsIfAvailable();
 	}
-	
+
 	@FXML
 	private void strengthUpgraded() {
 		game.getPlayer().upgradeStrength();
 		playerStrengthLabel.setText(game.getPlayer().getStats().getStrength().toString());
 		showUpgradePointsIfAvailable();
 	}
-	
+
 	@FXML
 	private void agilityUpgraded() {
 		game.getPlayer().upgradeAgility();
 		playerAgilityLabel.setText(game.getPlayer().getStats().getAgility().toString());
 		showUpgradePointsIfAvailable();
 	}
-	
+
 	@FXML
 	private void enduranceUpgraded() {
 		game.getPlayer().upgradeEndurance();
 		playerEnduranceLabel.setText(game.getPlayer().getStats().getEndurance().toString());
 		showUpgradePointsIfAvailable();
 	}
-	
+
 	@FXML
 	private void slashingUpgraded() {
 		game.getPlayer().upgradeProficiencySlashing();
 		playerSlashingLabel.setText(game.getPlayer().getProficiencies().getSlashing().toString());
 		showUpgradePointsIfAvailable();
 	}
-	
+
 	@FXML
 	private void piercingUpgraded() {
 		game.getPlayer().upgradeProficiencyPiercing();
 		playerPiercingLabel.setText(game.getPlayer().getProficiencies().getPiercing().toString());
 		showUpgradePointsIfAvailable();
 	}
-	
+
 	@FXML
 	private void bluntUpgraded() {
 		game.getPlayer().upgradeProficiencyBlunt();
 		playerBluntLabel.setText(game.getPlayer().getProficiencies().getBlunt().toString());
 		showUpgradePointsIfAvailable();
 	}
-	
+
 	/**
 	 * A prompt pops up, with a congratulation text.
 	 * The current statistics are written in the database.
@@ -276,13 +278,13 @@ public class GameViewController extends ViewController {
 		ButtonType buttonYes = new ButtonType("Yes");
 		ButtonType buttonNo = new ButtonType("No", ButtonData.CANCEL_CLOSE);
 		exitPrompt.getButtonTypes().setAll(buttonYes, buttonNo);
-		
+
 		Optional<ButtonType> result = exitPrompt.showAndWait();
 		if(result.get() == buttonYes) {
 			Platform.exit();
 		}
 	}
-	
+
 	private void showUpgradePointsIfAvailable() {
 		boolean hasFreePoints = game.getPlayer().getFreePoints() > 0;
 		playerMaxHealthButton.setVisible(hasFreePoints);
@@ -320,12 +322,46 @@ public class GameViewController extends ViewController {
 		playerInformationContainer.setText(game.getPlayer().getName() + " - Level " + game.getPlayer().getLevel());
 		equipmentContainer.setText(game.getPlayer().getName() + " - Level " + game.getPlayer().getLevel());
 	}
-	
+
 	private void updateHealthAndXpBar(){
 		xpProgressBar.setProgress(game.getPlayer().getExperienceInPercent());
 		currentXpLabel.setText(game.getPlayer().getExperience() + 
 				"/" + Constants.XpLevels[game.getPlayer().getLevel()]);
 		healthProgressBar.setProgress(game.getPlayer().getHealthInPercent());
 		currentHealthLabel.setText("" + game.getPlayer().getHealth());
+	}
+
+	public void showEnemyStats(Enemy enemy) {
+		if(enemy != null) {
+			enemyInformationContainer.setText(enemy.getName());
+			enemyMaxHealthLabel.setText(enemy.getStats().getMaxHealth() + "");
+			enemyStrengthLabel.setText(enemy.getStats().getStrength().toString());
+			enemyAgilityLabel.setText(enemy.getStats().getAgility().toString());
+			enemyEnduranceLabel.setText(enemy.getStats().getEndurance().toString());
+			if(enemy.getProficiencies().getSlashing() != StatValue.None) {
+				enemySlashingLabel.setText(enemy.getProficiencies().getSlashing().toString());
+			} else {
+				enemySlashingLabel.setText("-");
+			}
+			if(enemy.getProficiencies().getPiercing() != StatValue.None) {
+				enemyPiercingLabel.setText(enemy.getProficiencies().getPiercing().toString());
+			} else {
+				enemyPiercingLabel.setText("-");
+			}
+			if(enemy.getProficiencies().getBlunt() != StatValue.None) {
+				enemyBluntLabel.setText(enemy.getProficiencies().getBlunt().toString());
+			} else {
+				enemyBluntLabel.setText("-");
+			}
+		} else {
+			enemyInformationContainer.setText("-");
+			enemyMaxHealthLabel.setText("-");
+			enemyStrengthLabel.setText("-");
+			enemyAgilityLabel.setText("-");
+			enemyEnduranceLabel.setText("-");
+			enemySlashingLabel.setText("-");
+			enemyPiercingLabel.setText("-");
+			enemyBluntLabel.setText("-");
+		}
 	}
 }

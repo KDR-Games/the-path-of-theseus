@@ -21,7 +21,8 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus;
+package kdr.game.theseus.model;
+
 
 /**
  * This class holds different attributes of a {@link kdr.game.theseus.Creature},

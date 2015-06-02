@@ -23,9 +23,11 @@
 
 package kdr.game.theseus;
 
+import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import kdr.game.theseus.view.GameViewController;
 import kdr.game.theseus.view.ObservableMap;
 import static kdr.game.theseus.view.Main.logger;
@@ -86,6 +88,15 @@ public class Player extends Creature {
 						}
 					}
 				});
+				final int ii = i;
+				final int jj = j;
+				view.getMapButtons()[i][j].setOnMouseClicked((MouseEvent me) -> {
+					if(isVisibleTile(ii, jj) && hasEnemyCreature(ii, jj)) {
+						showEnemyStats(ii, jj);
+					} else if(isVisibleTile(ii, jj) && !hasEnemyCreature(ii, jj)) {
+						showEnemyStats(-1, -1);
+					}
+				});
 			}
 		}
 		map.setButtons(view.getMapButtons());
@@ -125,7 +136,7 @@ public class Player extends Creature {
 	 * @return the experience
 	 */
 	public double getExperienceInPercent() {
-		return (double)experience / (double)Constants.XpLevels[level];
+		return (double)experience / (double)Constants.XpLevels[level-1];
 	}
 
 	/**
@@ -133,7 +144,7 @@ public class Player extends Creature {
 	 */
 	public void addToExperience(int xp) {
 		this.experience += xp;
-		while(this.experience > Constants.XpLevels[level]) {
+		while(this.experience > Constants.XpLevels[level-1]) {
 			freePoints++;
 			level++;
 			logger.info("Level up! New level: " + level + ".");
@@ -341,5 +352,24 @@ public class Player extends Creature {
 		}
 
 		return false;
+	}
+	
+	public boolean isVisibleTile(int i, int j) {
+		Tile t = map.getVisibleTiles().get(new Point2D(i, j));
+		return t.getVisibility() == Visibility.Visible;
+	}
+	
+	public boolean hasEnemyCreature(int i, int j) {
+		Tile t = map.getVisibleTiles().get(new Point2D(i, j));
+		return (t.getCreature() != null) && (t.getCreature() != this);
+	}
+	
+	public void showEnemyStats(int i, int j) {
+		if(i != -1 && j != -1) {
+			Enemy enemy = (Enemy) map.getVisibleTiles().get(new Point2D(i, j)).getCreature();
+			view.showEnemyStats(enemy);
+		} else {
+			view.showEnemyStats(null);
+		}
 	}
 }

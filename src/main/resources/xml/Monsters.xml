@@ -27,7 +27,6 @@
 				<piercing>
 					<value>E</value>
 				</piercing>
-
 			</proficiency>
 		</attributes>
 		<equipment>
@@ -51,9 +50,9 @@
 				<legs>
 					<armor-name>Leather leggings</armor-name>
 				</legs>
-				<arms>
+				<hands>
 					<armor-name>Leather bracelets</armor-name>
-				</arms>
+				</hands>
 			</armors>
 		</equipment>
 	</Monster>
@@ -95,9 +94,9 @@
 				<chest></chest>
 				<legs>
 				</legs>
-				<arms>
+				<hands>
 					<armor-name>Leather bracelets</armor-name>
-				</arms>
+				</hands>
 			</armors>
 		</equipment>
 	</Monster>
@@ -125,7 +124,6 @@
 				<blunt>
 					<value>D</value>
 				</blunt>
-
 			</proficiency>
 		</attributes>
 		<equipment>
@@ -139,7 +137,6 @@
 					<weapon-name>Ceremonial shield</weapon-name>
 					<weapon-name>Parma</weapon-name>
 				</off-hand>
-
 			</weapons>
 			<armors>
 				<head>
@@ -152,9 +149,9 @@
 				<legs>
 					<armor-name>Leather leggings</armor-name>
 				</legs>
-				<arms>
+				<hands>
 					<armor-name>Leather bracelets</armor-name>
-				</arms>
+				</hands>
 			</armors>
 		</equipment>
 	</Monster>
@@ -182,7 +179,6 @@
 				<piercing>
 					<value>B</value>
 				</piercing>
-
 			</proficiency>
 		</attributes>
 		<equipment>
@@ -195,7 +191,6 @@
 					<weapon-name>Javelin</weapon-name>
 					<weapon-name>Tower shield</weapon-name>
 				</off-hand>
-
 			</weapons>
 			<armors>
 				<head></head>
@@ -203,7 +198,7 @@
 					<armor-name>Kinght armor</armor-name>
 				</chest>
 				<legs></legs>
-				<arms></arms>
+				<hands></hands>
 			</armors>
 		</equipment>
 	</Monster>
@@ -228,9 +223,9 @@
 				</endurance>
 			</stats>
 			<proficiency>
-				<slash>
+				<slashing>
 					<value>B</value>
-				</slash>
+				</slashing>
 			</proficiency>
 		</attributes>
 		<equipment>
@@ -245,7 +240,6 @@
 					<weapon-name>Myrmidon shield</weapon-name>
 					<weapon-name>Aspis</weapon-name>
 				</off-hand>
-
 			</weapons>
 			<armors>
 				<head>
@@ -253,7 +247,7 @@
 				</head>
 				<chest></chest>
 				<legs></legs>
-				<arms></arms>
+				<hands></hands>
 			</armors>
 		</equipment>
 	</Monster>
@@ -261,7 +255,7 @@
 		<name>Beast</name>
 		<image>
 			<full>lion-warrior.png</full>
-			<tile>lion-warror-48x48.png</tile>
+			<tile>lion-warrior-48x48.png</tile>
 		</image>
 		<XP>45</XP>
 		<attributes>
@@ -279,7 +273,6 @@
 			</stats>
 			<proficiency>
 				<none />
-
 			</proficiency>
 		</attributes>
 		<equipment>
@@ -298,7 +291,7 @@
 				<legs>
 					<armor-name>Knight leggings</armor-name>
 				</legs>
-				<arms></arms>
+				<hands></hands>
 			</armors>
 		</equipment>
 	</Monster>
@@ -326,7 +319,6 @@
 				<piercing>
 					<value>B</value>
 				</piercing>
-
 			</proficiency>
 		</attributes>
 		<equipment>
@@ -349,9 +341,9 @@
 					<armor-name>Leather leggings</armor-name>
 					<armor-name>Knight leggings</armor-name>
 				</legs>
-				<arms>
+				<hands>
 					<armor-name>Leather bracelets</armor-name>
-				</arms>
+				</hands>
 			</armors>
 		</equipment>
 	</Monster>
@@ -376,9 +368,9 @@
 				</endurance>
 			</stats>
 			<proficiency>
-				<slash>
+				<slashing>
 					<value>B</value>
-				</slash>
+				</slashing>
 			</proficiency>
 		</attributes>
 		<equipment>
@@ -399,10 +391,10 @@
 				<legs>
 					<armor-name>Knight leggings</armor-name>
 				</legs>
-				<arms>
+				<hands>
 					<armor-name>Knight gauntlets</armor-name>
 					<armor-name>Steel gauntlets</armor-name>
-				</arms>
+				</hands>
 			</armors>
 		</equipment>
 	</Monster>
@@ -427,9 +419,9 @@
 				</endurance>
 			</stats>
 			<proficiency>
-				<slash>
+				<slashing>
 					<value>A</value>
-				</slash>
+				</slashing>
 			</proficiency>
 		</attributes>
 		<equipment>
@@ -443,7 +435,6 @@
 					<weapon-name>Longsword</weapon-name>
 					<weapon-name>Crest shield</weapon-name>
 				</off-hand>
-
 			</weapons>
 			<armors>
 				<head>
@@ -455,9 +446,9 @@
 				<legs>
 					<armor-name>Knight leggings</armor-name>
 				</legs>
-				<arms>
+				<hands>
 					<armor-name>Knight gauntlets</armor-name>
-				</arms>
+				</hands>
 			</armors>
 		</equipment>
 	</Monster>
@@ -485,7 +476,6 @@
 				<blunt>
 					<value>A</value>
 				</blunt>
-
 			</proficiency>
 		</attributes>
 		<equipment>
@@ -504,9 +494,9 @@
 				<legs>
 					<armor-name>Steel leggings</armor-name>
 				</legs>
-				<arms>
+				<hands>
 					<armor-name>Steel gauntlets</armor-name>
-				</arms>
+				</hands>
 			</armors>
 		</equipment>
 	</Monster>
@@ -532,9 +522,9 @@
 				</endurance>
 			</stats>
 			<proficiency>
-				<slash>
+				<slashing>
 					<value>S</value>
-				</slash>
+				</slashing>
 			</proficiency>
 		</attributes>
 		<equipment>
@@ -551,9 +541,9 @@
 				<legs>
 					<armor-name>Steel armor</armor-name>
 				</legs>
-				<arms>
+				<hands>
 					<armor-name>Steel armor</armor-name>
-				</arms>
+				</hands>
 			</armors>
 		</equipment>
 	</Monster>

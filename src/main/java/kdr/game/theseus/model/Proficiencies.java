@@ -22,13 +22,12 @@
  */
 package kdr.game.theseus.model;
 
-import kdr.game.theseus.StatValue;
 
 
 /**
  * Class representing the different stats in proficiencies.
- * @see kdr.game.theseus.Stats
- * @see kdr.game.theseus.StatValue
+ * @see kdr.game.theseus.model.Stats
+ * @see kdr.game.theseus.model.StatValue
  */
 public class Proficiencies {
 	private StatValue slashing;
@@ -37,8 +36,8 @@ public class Proficiencies {
 	
 	/**
 	 * Creates a new instance of {@link Proficiencies} with the given parameters.
-	 * If one of the parameter is <code>null</code>, then 
-	 * {@link kdr.game.theseus.StatValue#None} is assigned to it.
+	 * If a parameter is <code>null</code>, then 
+	 * {@link kdr.game.theseus.model.StatValue#None} is assigned to it.
 	 * @param slashing - proficiency in slashing
 	 * @param piercing - proficiency in piercing
 	 * @param blunt - proficiency in blunt

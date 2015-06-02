@@ -24,6 +24,11 @@
 package kdr.game.theseus.view;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import kdr.game.theseus.Constants;
@@ -32,6 +37,7 @@ import kdr.game.theseus.ExitReachedException;
 import kdr.game.theseus.LevelMap;
 import kdr.game.theseus.Tile;
 import kdr.game.theseus.TileType;
+import kdr.game.theseus.Visibility;
 import kdr.game.theseus.VisibilityCalculator;
 import static kdr.game.theseus.view.Main.logger;
 
@@ -219,5 +225,20 @@ public class ObservableMap {
 	 */
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
+	}
+	
+	public Map<Point2D, Tile> getVisibleTiles() {
+		Map<Point2D, Tile> visibleTiles = new HashMap<Point2D, Tile>();
+		
+		for (int i = 0; i < tiles.length; i++) {
+			for (int j = 0; j < tiles[i].length; j++) {
+				if(tiles[i][j].getVisibility() == Visibility.Visible) {
+					Point2D p = new Point2D(i,j);
+					visibleTiles.put(p, tiles[i][j]);
+				}
+			}
+		}
+		
+		return visibleTiles;
 	}
 }

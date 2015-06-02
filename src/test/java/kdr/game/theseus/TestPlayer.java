@@ -23,6 +23,8 @@
 package kdr.game.theseus;
 
 import kdr.game.theseus.model.Proficiencies;
+import kdr.game.theseus.model.StatValue;
+import kdr.game.theseus.model.Stats;
 
 import org.junit.Test;
 
@@ -61,7 +63,7 @@ public class TestPlayer {
 		
 		player.addToExperience(Constants.XpLevels[1]);
 		
-		assertEquals(1, player.getLevel());
+		assertEquals(2, player.getLevel());
 		assertEquals(1, player.getFreePoints());
 	}
 }

@@ -101,7 +101,7 @@ public class ArmorsDAO {
 						if (node.getNodeType() == Node.ELEMENT_NODE) {
 							Element armor = (Element) nList.item(j);
 							String name = armor.getElementsByTagName("name").item(0).getTextContent();
-							String imageSrc = Constants.armorsLocation + armor.getElementsByTagName("image").item(0).getTextContent();
+							String imageSrc = Constants.ArmorsLocation + armor.getElementsByTagName("image").item(0).getTextContent();
 							logger.info(imageSrc);
 							int defense = Integer.parseInt(armor.getElementsByTagName("defense").item(0).getTextContent());
 							double speed = Double.parseDouble(armor.getElementsByTagName("speed").item(0).getTextContent());
@@ -152,7 +152,7 @@ public class ArmorsDAO {
 						if (node.getNodeType() == Node.ELEMENT_NODE) {
 							Element armor = (Element) nList.item(j);
 							String name = armor.getElementsByTagName("name").item(0).getTextContent();
-							String imageSrc = Constants.armorsLocation + armor.getElementsByTagName("image").item(0).getTextContent();
+							String imageSrc = Constants.ArmorsLocation + armor.getElementsByTagName("image").item(0).getTextContent();
 							logger.info(imageSrc);
 							int defense = Integer.parseInt(armor.getElementsByTagName("defense").item(0).getTextContent());
 							double speed = Double.parseDouble(armor.getElementsByTagName("speed").item(0).getTextContent());
@@ -202,7 +202,7 @@ public class ArmorsDAO {
 						if (node.getNodeType() == Node.ELEMENT_NODE) {
 							Element armor = (Element) nList.item(j);
 							String name = armor.getElementsByTagName("name").item(0).getTextContent();
-							String imageSrc = Constants.armorsLocation + armor.getElementsByTagName("image").item(0).getTextContent();
+							String imageSrc = Constants.ArmorsLocation + armor.getElementsByTagName("image").item(0).getTextContent();
 							logger.info(imageSrc);
 							int defense = Integer.parseInt(armor.getElementsByTagName("defense").item(0).getTextContent());
 							double speed = Double.parseDouble(armor.getElementsByTagName("speed").item(0).getTextContent());
@@ -252,7 +252,7 @@ public class ArmorsDAO {
 						if (node.getNodeType() == Node.ELEMENT_NODE) {
 							Element armor = (Element) nList.item(j);
 							String name = armor.getElementsByTagName("name").item(0).getTextContent();
-							String imageSrc = Constants.armorsLocation + armor.getElementsByTagName("image").item(0).getTextContent();
+							String imageSrc = Constants.ArmorsLocation + armor.getElementsByTagName("image").item(0).getTextContent();
 							logger.info(imageSrc);
 							int defense = Integer.parseInt(armor.getElementsByTagName("defense").item(0).getTextContent());
 							double speed = Double.parseDouble(armor.getElementsByTagName("speed").item(0).getTextContent());

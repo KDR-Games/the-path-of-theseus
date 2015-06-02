@@ -28,6 +28,7 @@ import javafx.scene.image.Image;
 import kdr.game.theseus.model.CreatureDeadException;
 import kdr.game.theseus.model.Equipment;
 import kdr.game.theseus.model.Proficiencies;
+import kdr.game.theseus.model.Stats;
 
 /**
  * The main class for creatures. This class can't be used directly.

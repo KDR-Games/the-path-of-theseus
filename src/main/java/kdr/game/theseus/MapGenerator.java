@@ -24,8 +24,10 @@
 package kdr.game.theseus;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
 
+import kdr.game.theseus.model.Monster;
 import static kdr.game.theseus.view.Main.logger;
 
 /**
@@ -41,7 +43,7 @@ public class MapGenerator {
 	 * another, then that room is dropped and a new attempt to put down a room will be used.
 	 */
 	static public int roomAttempts = 200;
-	
+
 	/**
 	 * The number of free tiles to leave in which the character can move.
 	 * Use this to control the sparseness of the map.
@@ -208,254 +210,290 @@ public class MapGenerator {
 	 */
 	static public Tile[][] getNewMap(int rows, int cols) {
 		long startupTime = System.nanoTime();
-		logger.info("Generating new map..." +
-				"\nWidth: " + cols +
-				"\nHeight: " + rows);
+		boolean exitFound = false;
 		Tile[][] map = new Tile[rows][cols];
-		long startTime = System.nanoTime();
+		while(!exitFound)
+		{
+			logger.info("Generating new map..." +
+					"\nWidth: " + cols +
+					"\nHeight: " + rows);
+			long startTime = System.nanoTime();
 
-		for(int i = 0; i < map.length; i++) {
-			for (int j = 0; j < map[i].length; j++) {
-				map[i][j] = new Tile(TileType.Wall, j, i);
-			}
-		}
-
-		// Set neighbors
-		for(int i = 0; i < map.length; i++) {
-			for (int j = 0; j < map[i].length; j++) {
-				if(i == 0) {
-					if(j == 0) { // TopLeftCorner
-						map[i][j].setNeighbors(new Neighbors(map[i][j], map[i+1][j], null, map[i][j+1]));
-					} else if(j == map[i].length-1) { // TopRightCorner
-						map[i][j].setNeighbors(new Neighbors(map[i][j], map[i+1][j], map[i][j-1], null));
-					} else { // TopEdge
-						map[i][j].setNeighbors(new Neighbors(null, map[i+1][j], map[i][j-1], map[i][j+1]));
-					}
-				} else if(i == map.length-1) {
-					if(j == 0) { // BottomLeftCorner
-						map[i][j].setNeighbors(new Neighbors(map[i-1][j], null, null, map[i][j+1]));
-					} else if(j == map[i].length-1) { //BottomRightCorner
-						map[i][j].setNeighbors(new Neighbors(map[i-1][j], null, map[i][j-1], null));
-					} else { //BottomEdge
-						map[i][j].setNeighbors(new Neighbors(map[i-1][j], null, map[i][j-1], map[i][j+1]));							
-					}
-				} else {
-					if(j == 0) { // LeftEdge
-						map[i][j].setNeighbors(new Neighbors(map[i-1][j], map[i+1][j], null, map[i][j+1]));
-					} else if(j == map[i].length-1) { // RightEdge
-						map[i][j].setNeighbors(new Neighbors(map[i-1][j], map[i+1][j], map[i][j-1], null));
-					} else { // Middle
-						map[i][j].setNeighbors(new Neighbors(map[i-1][j], map[i+1][j], map[i][j-1], map[i][j+1]));						
-					}
-				}
-			}
-		}
-		
-		long endTime = System.nanoTime();
-		logger.info("Map initialized. " + ((double)(endTime - startTime)/1000000.0) + "ms");
-		startTime = System.nanoTime();
-
-		// Generate rooms
-		ArrayList<Region> regions = new ArrayList<Region>();
-		Random rd = new Random();
-		ArrayList<Room> rooms = new ArrayList<Room>();
-		Room mainRoom = null;
-		for (int i = 0; i < roomAttempts || rooms.size() < 2; i++) {
-			int top = rd.nextInt(rows);
-			int left = rd.nextInt(cols);
-			int width = rd.nextInt(5) + 2;
-			int height = rd. nextInt(5) + 2;
-			Room room = new Room(top, left, width, height);
-			if((room.getRight() > cols) || (room.getBottom() > rows)) {
-				continue;
-			} else if(rooms.isEmpty()) {
-				rooms.add(room);
-				mainRoom = room;
-				regions.add(room);
-			} else {
-				boolean overlaps = false;
-				for(Room r : rooms) {
-					if(room.overlaps(r)) {
-						overlaps = true;
-						break;
-					}
-				}
-				if(!overlaps) {
-					rooms.add(room);
-					regions.add(room);
-				}
-			}
-		}
-
-		// Add generated rooms to the map
-		for(Room r : rooms) {
-			for (int i = r.getTop(); i < r.getBottom(); i++) {
-				for (int j = r.getLeft(); j < r.getRight(); j++) {
-					map[i][j].setType(TileType.Floor);
-					map[i][j].setContainerRegion(r);
-				}
-			}
-		}
-
-		endTime = System.nanoTime();
-		logger.info("Rooms added. "  + ((double)(endTime - startTime)/1000000.0) + "ms" + 
-				"\nNumber of rooms: " + rooms.size());
-		startTime = System.nanoTime();
-		
-		// Generate labyrinths
-		boolean foundNext = false;
-		do {
-			foundNext = false;
-			int startX = 1, startY = 1;
-			for (int i = 1; i < rows - 1; i++) {
-				for (int j = 1; j < cols - 1; j++) {
-					if (map[i][j].getType() == TileType.Wall && map[i][j].getNeighbourWallNum() == 4) {
-						startX = j;
-						startY = i;
-						foundNext = true;
-						break;
-					}
-				}
-				if(foundNext) {
-					break;
-				}
-			}
-
-			Region labyrinth = new Region();
-			generateLabyrinth(labyrinth, map, startX, startY);
-			regions.add(labyrinth);
-		} while(foundNext);
-
-		endTime = System.nanoTime();
-		logger.info("Remaining walls carved into labyrinths. " + ((double)(endTime - startTime)/1000000.0) + "ms");
-		startTime = System.nanoTime();
-
-		// Look for potential doors and mark them
-		ArrayList<Passage> passages = new ArrayList<Passage>();
-		for (int i = 1; i < rows - 1; i++) {
-			for (int j = 1; j < cols - 1; j++) {
-				if ((map[i][j].getType() == TileType.Wall)) {
-					if((map[i-1][j].getType() == TileType.Floor) && 
-							(map[i+1][j].getType() == TileType.Floor) && 
-							(map[i-1][j].getContainerRegion() != map[i+1][j].getContainerRegion())) {
-						map[i][j].setType(TileType.PotentialDoor);
-						passages.add(new Passage(map[i][j], false));
-					} else if ((map[i][j-1].getType() == TileType.Floor) && 
-							(map[i][j+1].getType() == TileType.Floor) && 
-							(map[i][j-1].getContainerRegion() != map[i][j+1].getContainerRegion())) {
-						map[i][j].setType(TileType.PotentialDoor);
-						passages.add(new Passage(map[i][j], true));
-					}
-				}
-			}
-		}
-
-		endTime = System.nanoTime();
-		logger.info("Possible doors found. " + ((double)(endTime - startTime)/1000000.0) + "ms");
-		startTime = System.nanoTime();
-		
-		// Connect regions
-		Region mainRegion = mainRoom;
-		while(!passages.isEmpty()) {
-			ArrayList<Passage> passagesToMainRegion = new ArrayList<Passage>();
-
-			for(Passage p : passages) {
-				if((p.getRegionA() == mainRegion) || (p.getRegionB() == mainRegion)) {
-					passagesToMainRegion.add(p);
-				}
-			}
-			
-			if(passagesToMainRegion.isEmpty()) {
-				break;
-			}
-			int randIndex = rd.nextInt(passagesToMainRegion.size());
-			Passage passage = passagesToMainRegion.get(randIndex);
-			Tile door = passagesToMainRegion.get(randIndex).getTile();
-			door.setType(TileType.Floor);
-			door.setContainerRegion(mainRegion);
-			
-			floodFill(mainRegion, door);
-			
-			passages.remove(passage);
-			ArrayList<Passage> passagesToRemove = new ArrayList<Passage>();
-			for(int i = 0; i < passages.size(); i++) {
-				if(passages.get(i).getRegionA() == passages.get(i).getRegionB()) {
-					passagesToRemove.add(passages.get(i));
-				}
-			}
-			for(Passage p : passagesToRemove) {
-				p.getTile().setType(TileType.Wall);
-				passages.remove(p);
-			}
-		}
-		
-		endTime = System.nanoTime();
-		logger.info("Regions connected. " + ((double)(endTime - startTime)/1000000.0) + "ms");
-		startTime = System.nanoTime();
-		
-		// delete some of the dead ends
-		for(int k = 0; k < rows*cols - tilesToLeave; k++) {
-			ArrayList<Tile> deadEnds = new ArrayList<Tile>();
 			for(int i = 0; i < map.length; i++) {
 				for (int j = 0; j < map[i].length; j++) {
-					if((map[i][j].getType() == TileType.Floor) && (map[i][j].getNeighbourWallNum() == 3)) {
-						deadEnds.add(map[i][j]);
-					}
+					map[i][j] = new Tile(TileType.Wall, j, i);
 				}
 			}
-			
-			if(!deadEnds.isEmpty()) {
-				int indexToRemove = rd.nextInt(deadEnds.size());
-				deadEnds.get(indexToRemove).setType(TileType.Wall);
-				deadEnds.get(indexToRemove).setContainerRegion(null);
-			} else {
-				break;
-			}
-		}
-		
-		endTime = System.nanoTime();
-		logger.info("Dead ends uncarved. " + ((double)(endTime - startTime)/1000000.0) + "ms");
-		startTime = System.nanoTime();
-		
-		// look for an entrance and exit
-		ArrayList<Tile> potentialEntrances = new ArrayList<Tile>();
-		int k = 1;
-		while(potentialEntrances.isEmpty()) {
+
+			// Set neighbors
 			for(int i = 0; i < map.length; i++) {
 				for (int j = 0; j < map[i].length; j++) {
-					if(i == k || i == map.length-1-k || j==k || j==map[i].length-1-k)
-					{
-						if((map[i][j].getType() == TileType.Floor) && (map[i][j].getNeighbourWallNum() == 0)) {
-							potentialEntrances.add(map[i][j]);						
+					if(i == 0) {
+						if(j == 0) { // TopLeftCorner
+							map[i][j].setNeighbors(new Neighbors(map[i][j], map[i+1][j], null, map[i][j+1]));
+						} else if(j == map[i].length-1) { // TopRightCorner
+							map[i][j].setNeighbors(new Neighbors(map[i][j], map[i+1][j], map[i][j-1], null));
+						} else { // TopEdge
+							map[i][j].setNeighbors(new Neighbors(null, map[i+1][j], map[i][j-1], map[i][j+1]));
+						}
+					} else if(i == map.length-1) {
+						if(j == 0) { // BottomLeftCorner
+							map[i][j].setNeighbors(new Neighbors(map[i-1][j], null, null, map[i][j+1]));
+						} else if(j == map[i].length-1) { //BottomRightCorner
+							map[i][j].setNeighbors(new Neighbors(map[i-1][j], null, map[i][j-1], null));
+						} else { //BottomEdge
+							map[i][j].setNeighbors(new Neighbors(map[i-1][j], null, map[i][j-1], map[i][j+1]));							
+						}
+					} else {
+						if(j == 0) { // LeftEdge
+							map[i][j].setNeighbors(new Neighbors(map[i-1][j], map[i+1][j], null, map[i][j+1]));
+						} else if(j == map[i].length-1) { // RightEdge
+							map[i][j].setNeighbors(new Neighbors(map[i-1][j], map[i+1][j], map[i][j-1], null));
+						} else { // Middle
+							map[i][j].setNeighbors(new Neighbors(map[i-1][j], map[i+1][j], map[i][j-1], map[i][j+1]));						
 						}
 					}
 				}
 			}
-			k++;
+
+			long endTime = System.nanoTime();
+			logger.info("Map initialized. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+			startTime = System.nanoTime();
+
+			// Generate rooms
+			ArrayList<Region> regions = new ArrayList<Region>();
+			Random rd = new Random();
+			ArrayList<Room> rooms = new ArrayList<Room>();
+			Room mainRoom = null;
+			for (int i = 0; i < roomAttempts || rooms.size() < 2; i++) {
+				int top = rd.nextInt(rows);
+				int left = rd.nextInt(cols);
+				int width = rd.nextInt(5) + 2;
+				int height = rd. nextInt(5) + 2;
+				Room room = new Room(top, left, width, height);
+				if((room.getRight() > cols) || (room.getBottom() > rows)) {
+					continue;
+				} else if(rooms.isEmpty()) {
+					rooms.add(room);
+					mainRoom = room;
+					regions.add(room);
+				} else {
+					boolean overlaps = false;
+					for(Room r : rooms) {
+						if(room.overlaps(r)) {
+							overlaps = true;
+							break;
+						}
+					}
+					if(!overlaps) {
+						rooms.add(room);
+						regions.add(room);
+					}
+				}
+			}
+
+			// Add generated rooms to the map
+			for(Room r : rooms) {
+				for (int i = r.getTop(); i < r.getBottom(); i++) {
+					for (int j = r.getLeft(); j < r.getRight(); j++) {
+						map[i][j].setType(TileType.Floor);
+						map[i][j].setContainerRegion(r);
+					}
+				}
+			}
+
+			endTime = System.nanoTime();
+			logger.info("Rooms added. "  + ((double)(endTime - startTime)/1000000.0) + "ms" + 
+					"\nNumber of rooms: " + rooms.size());
+			startTime = System.nanoTime();
+
+			// Generate labyrinths
+			boolean foundNext = false;
+			do {
+				foundNext = false;
+				int startX = 1, startY = 1;
+				for (int i = 1; i < rows - 1; i++) {
+					for (int j = 1; j < cols - 1; j++) {
+						if (map[i][j].getType() == TileType.Wall && map[i][j].getNeighbourWallNum() == 4) {
+							startX = j;
+							startY = i;
+							foundNext = true;
+							break;
+						}
+					}
+					if(foundNext) {
+						break;
+					}
+				}
+
+				Region labyrinth = new Region();
+				generateLabyrinth(labyrinth, map, startX, startY);
+				regions.add(labyrinth);
+			} while(foundNext);
+
+			endTime = System.nanoTime();
+			logger.info("Remaining walls carved into labyrinths. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+			startTime = System.nanoTime();
+
+			// Look for potential doors and mark them
+			ArrayList<Passage> passages = new ArrayList<Passage>();
+			for (int i = 1; i < rows - 1; i++) {
+				for (int j = 1; j < cols - 1; j++) {
+					if ((map[i][j].getType() == TileType.Wall)) {
+						if((map[i-1][j].getType() == TileType.Floor) && 
+								(map[i+1][j].getType() == TileType.Floor) && 
+								(map[i-1][j].getContainerRegion() != map[i+1][j].getContainerRegion())) {
+							map[i][j].setType(TileType.PotentialDoor);
+							passages.add(new Passage(map[i][j], false));
+						} else if ((map[i][j-1].getType() == TileType.Floor) && 
+								(map[i][j+1].getType() == TileType.Floor) && 
+								(map[i][j-1].getContainerRegion() != map[i][j+1].getContainerRegion())) {
+							map[i][j].setType(TileType.PotentialDoor);
+							passages.add(new Passage(map[i][j], true));
+						}
+					}
+				}
+			}
+
+			endTime = System.nanoTime();
+			logger.info("Possible doors found. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+			startTime = System.nanoTime();
+
+			// Connect regions
+			Region mainRegion = mainRoom;
+			while(!passages.isEmpty()) {
+				ArrayList<Passage> passagesToMainRegion = new ArrayList<Passage>();
+
+				for(Passage p : passages) {
+					if((p.getRegionA() == mainRegion) || (p.getRegionB() == mainRegion)) {
+						passagesToMainRegion.add(p);
+					}
+				}
+
+				if(passagesToMainRegion.isEmpty()) {
+					break;
+				}
+				int randIndex = rd.nextInt(passagesToMainRegion.size());
+				Passage passage = passagesToMainRegion.get(randIndex);
+				Tile door = passagesToMainRegion.get(randIndex).getTile();
+				door.setType(TileType.Floor);
+				door.setContainerRegion(mainRegion);
+
+				floodFill(mainRegion, door);
+
+				passages.remove(passage);
+				ArrayList<Passage> passagesToRemove = new ArrayList<Passage>();
+				for(int i = 0; i < passages.size(); i++) {
+					if(passages.get(i).getRegionA() == passages.get(i).getRegionB()) {
+						passagesToRemove.add(passages.get(i));
+					}
+				}
+				for(Passage p : passagesToRemove) {
+					p.getTile().setType(TileType.Wall);
+					passages.remove(p);
+				}
+			}
+
+			endTime = System.nanoTime();
+			logger.info("Regions connected. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+			startTime = System.nanoTime();
+
+			// delete some of the dead ends
+			for(int k = 0; k < rows*cols - tilesToLeave; k++) {
+				ArrayList<Tile> deadEnds = new ArrayList<Tile>();
+				for(int i = 0; i < map.length; i++) {
+					for (int j = 0; j < map[i].length; j++) {
+						if((map[i][j].getType() == TileType.Floor) && (map[i][j].getNeighbourWallNum() == 3)) {
+							deadEnds.add(map[i][j]);
+						}
+					}
+				}
+
+				if(!deadEnds.isEmpty()) {
+					int indexToRemove = rd.nextInt(deadEnds.size());
+					deadEnds.get(indexToRemove).setType(TileType.Wall);
+					deadEnds.get(indexToRemove).setContainerRegion(null);
+				} else {
+					break;
+				}
+			}
+
+			endTime = System.nanoTime();
+			logger.info("Dead ends uncarved. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+			startTime = System.nanoTime();
+
+			// look for an entrance and exit
+			ArrayList<Tile> potentialEntrances = new ArrayList<Tile>();
+			int k = 1;
+			while(potentialEntrances.isEmpty()) {
+				for(int i = 0; i < map.length; i++) {
+					for (int j = 0; j < map[i].length; j++) {
+						if(i == k || i == map.length-1-k || j==k || j==map[i].length-1-k)
+						{
+							if((map[i][j].getType() == TileType.Floor) && (map[i][j].getNeighbourWallNum() == 0)) {
+								potentialEntrances.add(map[i][j]);						
+							}
+						}
+					}
+				}
+				k++;
+			}
+			int entranceIndex = rd.nextInt(potentialEntrances.size());
+			potentialEntrances.get(entranceIndex).setType(TileType.Entrance);
+			Tile entranceTile = potentialEntrances.get(entranceIndex);
+
+			endTime = System.nanoTime();
+			logger.info("Entrance found. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+			startTime = System.nanoTime();
+
+			int exitIndex = 0;
+			Tile exitTile = null;
+			int attempts = 100;
+			do {
+				logger.info("Looking for exit...");
+				exitIndex = rd.nextInt(potentialEntrances.size());
+				exitTile = potentialEntrances.get(exitIndex);
+				attempts--;
+			} while(((entranceTile.x() == exitTile.x()) || 
+					(entranceTile.y() == exitTile.y())) &&
+					attempts > 0);
+			if(attempts > 0) {
+				potentialEntrances.get(exitIndex).setType(TileType.Exit);
+				endTime = System.nanoTime();
+				logger.info("Exit found. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+				exitFound = true;
+			} else {
+				logger.info("Couldn't find a good exit in 100 attempts. Generating a new map.");
+			}
 		}
-		int entranceIndex = rd.nextInt(potentialEntrances.size());
-		potentialEntrances.get(entranceIndex).setType(TileType.Entrance);
-		Tile entranceTile = potentialEntrances.get(entranceIndex);
-		
-		endTime = System.nanoTime();
-		logger.info("Entrance found. " + ((double)(endTime - startTime)/1000000.0) + "ms");
-		startTime = System.nanoTime();
-		
-		int exitIndex = 0;
-		Tile exitTile = null;
-		do {
-			logger.info("Looking for exit...");
-			exitIndex = rd.nextInt(potentialEntrances.size());
-			exitTile = potentialEntrances.get(exitIndex);
-		} while((entranceTile.x() == exitTile.x()) || 
-				(entranceTile.y() == exitTile.y()));
-		potentialEntrances.get(exitIndex).setType(TileType.Exit);
-		
-		endTime = System.nanoTime();
-		logger.info("Exit found. " + ((double)(endTime - startTime)/1000000.0) + "ms");
+
+		long endTime = System.nanoTime();
 		logger.info("Map is succesfully generated." + 
 				"\nElapsed time: " + ((double)(endTime - startupTime)/1000000.0) + "ms");
 
 		return map;
+	}
+	
+	public static void scatterMonsters(Tile[][] map, ArrayList<Monster> monsters) {
+		ArrayList<Tile> possibleLocations = new ArrayList<Tile>();
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[i].length; j++) {
+				if(map[i][j].getNeighbourWallNum() == 0 && map[i][j].isFreeTile()) {
+					possibleLocations.add(map[i][j]);
+				}
+			}
+		}
+		logger.info("Possible locations: {}", possibleLocations.size());
+		Random rd = new Random();
+		int numMonsters = possibleLocations.size()/2;
+		for(int i = 0; i < numMonsters; i++) {
+			int tileIndex = rd.nextInt(possibleLocations.size());
+			int monsterIndex = rd.nextInt(monsters.size());
+			Tile tile = possibleLocations.get(tileIndex);
+			Enemy enemy = new Enemy(monsters.get(monsterIndex));
+			tile.setCreature(enemy);
+			possibleLocations.remove(tileIndex);
+		}
+		logger.info("Monsters spawned: {}", numMonsters);
 	}
 }

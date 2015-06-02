@@ -40,7 +40,7 @@
    <bottom>
       <AnchorPane prefHeight="30.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="177.0" layoutY="1.0" mnemonicParsing="false" onAction="#check" styleClass="button-start" text="Start!" textAlignment="CENTER" />
+            <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="177.0" layoutY="1.0" mnemonicParsing="false" onAction="#check" styleClass="button-start" text="Start!" textAlignment="CENTER" />
             <CheckBox fx:id="ghostModeCheckBox" layoutX="270.0" layoutY="1.0" mnemonicParsing="false" styleClass="text-login" text="Ghost mode" />
          </children>
       </AnchorPane>

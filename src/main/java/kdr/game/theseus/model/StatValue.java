@@ -21,15 +21,13 @@
  * THE SOFTWARE.
  */
 
-package kdr.game.theseus;
-
-import kdr.game.theseus.model.Proficiencies;
+package kdr.game.theseus.model;
 
 /**
  * Stat values in a predefined order:<br>
  * {@code E < D < C < B < A < S}.<br>
  * 
- * @see kdr.game.theseus.Stats
+ * @see kdr.game.theseus.model.Stats
  * @see kdr.game.theseus.model.Proficiencies
  */
 public enum StatValue {
@@ -101,5 +99,30 @@ public enum StatValue {
 	 */
 	public boolean isMax() {
 		return this.equals(S);
+	}
+	
+	/**
+	 * Converts a String to StatValue.
+	 * @param s - the {@link String} to convert
+	 * @return the corresponding value. If it's not a valid string, then
+	 * {@link StatValue#None} is returned.
+	 */
+	public static StatValue parseStatValue(String s) {
+		switch (s) {
+		case "E":
+			return StatValue.E;
+		case "D":
+			return StatValue.D;
+		case "C":
+			return StatValue.C;
+		case "B":
+			return StatValue.B;
+		case "A":
+			return StatValue.A;
+		case "S":
+			return StatValue.S;
+		default:
+			return StatValue.None;
+		}
 	}
 }
