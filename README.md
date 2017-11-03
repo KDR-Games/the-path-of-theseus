@@ -6,8 +6,6 @@ This is a simple rouge-like game, created in Java with JavaFX.
 
 0.9
 
-Still in active development.
-
 ## Description
 
 Follow the path of Theseus, the greek hero, who cleared this labyrinth in which your journey begins. Or did he?
