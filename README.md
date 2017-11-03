@@ -1,6 +1,6 @@
 # The path of Theseus
 
-This is a simple rouge-like game, created in Java with JavaFX as a school project.
+This is a simple rouge-like game, created in Java with JavaFX.
 
 ## Version
 
