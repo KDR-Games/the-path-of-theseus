@@ -50,8 +50,10 @@ $ mvn exec:java
 
 ## TODO
 
-- write a proper TODO list
-- too many to list them
+- better enemy placement
+- enemies should fight back
+- inventory
+- game balance
 
 ## License
 
